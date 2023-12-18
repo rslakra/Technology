@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -9,33 +11,67 @@
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
-    <groupId>com.rslakra</groupId>
+    <!-- services -->
+    <groupId>com.rslakra.technology.swagger-services</groupId>
     <artifactId>swagger-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>swagger-service</name>
-    <description>swagger-service</description>
+    <version>${revision}</version>
+    <name>${project.artifactId}</name>
+    <description>The ${project.artifactId} Service</description>
 
+    <!-- properties -->
     <properties>
+        <!-- revision -->
+        <revision>0.0.0</revision>
+
+        <!-- sourceEncoding & outputEncoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- java version -->
         <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <appsuite-core.version>0.0.24</appsuite-core.version>
-        <appsuite-spring.version>0.0.7</appsuite-spring.version>
-        <swagger.version>2.1.10</swagger.version>
-        <skipSwagger>false</skipSwagger>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- maven plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
+
+        <!-- checkstyle -->
+        <code-styles.dir>https://raw.githubusercontent.com/rslakra/code-styles/master</code-styles.dir>
+        <checkstyle.threshold>0</checkstyle.threshold>
+
+        <!-- appsuite-core -->
+        <appsuite-core.version>0.0.4</appsuite-core.version>
+
+        <!-- appsuite-spring -->
+        <appsuite-spring.version>0.0.4</appsuite-spring.version>
+
+        <!-- lombok -->
+        <lombok.version>1.18.28</lombok.version>
+
+        <!-- swagger -->
+        <swagger.skip>false</swagger.skip>
+
+        <!-- junit-jupiter-params -->
+        <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
+
     </properties>
 
+    <!-- dependencies -->
     <dependencies>
-        <!-- appsuite-framework-modules -->
+
+        <!-- appsuite-core -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-core</artifactId>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-core</artifactId>
             <version>${appsuite-core.version}</version>
         </dependency>
 
+        <!-- appsuite-spring -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-spring</artifactId>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-spring</artifactId>
             <version>${appsuite-spring.version}</version>
         </dependency>
 
@@ -43,10 +79,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
+        <!--        </dependency>-->
         <!--        <dependency>-->
         <!--            <groupId>org.springframework.boot</groupId>-->
         <!--            <artifactId>spring-boot-starter-data-rest</artifactId>-->
@@ -76,7 +112,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-<!--            <optional>true</optional>-->
+            <!--            <optional>true</optional>-->
         </dependency>
 
         <!-- Swagger Open API Specification -->
@@ -116,7 +152,7 @@
 
     </dependencies>
 
-    <!-- Build -->
+    <!-- build -->
     <build>
         <finalName>${project.artifactId}</finalName>
         <resources>
@@ -140,34 +176,34 @@
             </plugin>
 
             <!-- Swagger -->
-<!--            <plugin>-->
-<!--                <groupId>io.swagger.core.v3</groupId>-->
-<!--                <artifactId>swagger-maven-plugin</artifactId>-->
-<!--                <version>${swagger.version}</version>-->
-<!--                <configuration>-->
-<!--                    <outputFileName>swaggerOpenApiSpecification</outputFileName>-->
-<!--                    <outputPath>${project.build.directory}</outputPath>-->
-<!--                    <outputFormat>YAML</outputFormat>-->
-<!--                    <configurationFilePath>${project.basedir}/src/main/resources/swaggerAPIConfiguration.yaml</configurationFilePath>-->
-<!--                    <filterClass>com.rslakra.swaggerservice.filter.SwaggerSpecFilter</filterClass>-->
-<!--                    <skip>${skipSwagger}</skip>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>resolve</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>javax.ws.rs</groupId>-->
-<!--                        <artifactId>javax.ws.rs-api</artifactId>-->
-<!--                        <version>2.1</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>io.swagger.core.v3</groupId>-->
+            <!--                <artifactId>swagger-maven-plugin</artifactId>-->
+            <!--                <version>${swagger.version}</version>-->
+            <!--                <configuration>-->
+            <!--                    <outputFileName>swaggerOpenApiSpecification</outputFileName>-->
+            <!--                    <outputPath>${project.build.directory}</outputPath>-->
+            <!--                    <outputFormat>YAML</outputFormat>-->
+            <!--                    <configurationFilePath>${project.basedir}/src/main/resources/swaggerAPIConfiguration.yaml</configurationFilePath>-->
+            <!--                    <filterClass>com.rslakra.swaggerservice.filter.SwaggerSpecFilter</filterClass>-->
+            <!--                    <skip>${skipSwagger}</skip>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <phase>compile</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>resolve</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>javax.ws.rs</groupId>-->
+            <!--                        <artifactId>javax.ws.rs-api</artifactId>-->
+            <!--                        <version>2.1</version>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 

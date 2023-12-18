@@ -1,7 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- Parent -->
+    <!-- parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -9,42 +11,76 @@
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
-    <!-- project - auditing-service -->
-    <groupId>com.rslakra</groupId>
+    <!-- services -->
+    <groupId>com.rslakra.technology</groupId>
     <artifactId>auditing-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
-    <name>The ${project.artifactId} Project</name>
+    <name>${project.artifactId}</name>
+    <description>The ${project.artifactId} Project</description>
 
-    <!-- Properties -->
+    <!-- properties -->
     <properties>
+        <!-- revision -->
+        <revision>0.0.0</revision>
+
+        <!-- sourceEncoding & outputEncoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- java version -->
         <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- maven plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
+
+        <!-- checkstyle -->
         <code-styles.dir>https://raw.githubusercontent.com/rslakra/code-styles/master</code-styles.dir>
         <checkstyle.threshold>0</checkstyle.threshold>
-        <!-- appsuite-framework -->
-        <appsuite-framework-core.version>0.0.23</appsuite-framework-core.version>
-        <appsuite-framework-spring.version>0.0.32</appsuite-framework-spring.version>
+
+        <!-- appsuite-core -->
+        <appsuite-core.version>0.0.4</appsuite-core.version>
+
+        <!-- appsuite-spring -->
+        <appsuite-spring.version>0.0.4</appsuite-spring.version>
+
+        <!-- lombok -->
+        <lombok.version>1.18.28</lombok.version>
+
+        <!-- swagger -->
         <swagger.skip>false</swagger.skip>
+
+        <!-- csv parser version -->
+        <commons-csv.version>1.9.0</commons-csv.version>
+        <opencsv.version>5.7.0</opencsv.version>
+        <!-- excel parser version -->
+        <poi.version>5.2.3</poi.version>
+        <poi-ooxml.version>5.2.3</poi-ooxml.version>
+
+        <!-- junit-jupiter-params -->
+        <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
+
     </properties>
 
-    <!-- Dependencies -->
+    <!-- dependencies -->
     <dependencies>
 
-        <!-- appsuite-framework-modules -->
+        <!-- appsuite-core -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-core</artifactId>
-            <version>${appsuite-framework-core.version}</version>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-core</artifactId>
+            <version>${appsuite-core.version}</version>
         </dependency>
 
+        <!-- appsuite-spring -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-spring</artifactId>
-            <version>${appsuite-framework-spring.version}</version>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-spring</artifactId>
+            <version>${appsuite-spring.version}</version>
         </dependency>
 
         <dependency>
@@ -88,7 +124,7 @@
 
     </dependencies>
 
-    <!-- Build -->
+    <!-- build -->
     <build>
         <!-- plugins -->
         <plugins>

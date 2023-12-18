@@ -1,6 +1,6 @@
 package com.rslakra.auditingservice.controller;
 
-import com.devamatre.framework.spring.exception.NoRecordFoundException;
+import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.auditingservice.persistence.entity.File;
 import com.rslakra.auditingservice.persistence.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;

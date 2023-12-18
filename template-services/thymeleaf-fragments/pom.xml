@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <!-- parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -11,14 +11,13 @@
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
-
-    <groupId>com.rslakra</groupId>
+    <!-- services -->
+    <groupId>com.rslakra.technology.template-services</groupId>
     <artifactId>thymeleaf-fragments</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
-
     <name>${project.artifactId}</name>
-    <description>The Thymeleaf Fragments</description>
+    <description>The ${project.artifactId} Thymeleaf Fragments</description>
 
     <licenses>
         <license>
@@ -27,18 +26,58 @@
         </license>
     </licenses>
 
+    <!-- properties -->
     <properties>
+        <!-- revision -->
+        <revision>0.0.0</revision>
+
+        <!-- sourceEncoding & outputEncoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- java version -->
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <!-- maven plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
+
+        <!-- checkstyle -->
+        <code-styles.dir>https://raw.githubusercontent.com/rslakra/code-styles/master</code-styles.dir>
+        <checkstyle.threshold>0</checkstyle.threshold>
+
+        <!-- appsuite-core -->
+        <appsuite-core.version>0.0.4</appsuite-core.version>
+
+        <!-- appsuite-spring -->
+        <appsuite-spring.version>0.0.4</appsuite-spring.version>
+
+        <!-- lombok -->
+        <lombok.version>1.18.28</lombok.version>
+
+        <!-- swagger -->
+        <swagger.skip>false</swagger.skip>
+
+        <!-- thymeleaf -->
         <thymeleaf-layout-dialect.version>3.2.1</thymeleaf-layout-dialect.version>
         <thymeleaf-with-dialect.version>3.0.1</thymeleaf-with-dialect.version>
         <libsass-maven-plugin.version>0.2.29</libsass-maven-plugin.version>
+
+        <!-- resources-folder -->
+        <source-resources-path>${project.basedir}/src/main/resources/static</source-resources-path>
+        <target-resources-path>${project.basedir}/target/generated-resources</target-resources-path>
+
+        <!-- junit-jupiter-params -->
+        <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
+
     </properties>
 
+    <!-- dependencies -->
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -94,31 +133,36 @@
         </dependency>
     </dependencies>
 
+    <!-- build -->
     <build>
+        <!-- resources -->
         <resources>
             <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
+                <directory>${source-resources-path}</directory>
             </resource>
             <resource>
-                <directory>${project.basedir}/target/generated-resources</directory>
+                <directory>${target-resources-path}</directory>
             </resource>
         </resources>
+
+        <!-- pluginManagement -->
         <pluginManagement>
             <plugins>
+                <!-- closure-compiler-maven-plugin -->
                 <plugin>
                     <groupId>com.github.blutorange</groupId>
                     <artifactId>closure-compiler-maven-plugin</artifactId>
                     <version>2.26.0</version>
                     <configuration>
-                        <baseSourceDir>${project.basedir}/src/main</baseSourceDir>
-                        <baseTargetDir>${project.build.directory}/generated-resources</baseTargetDir>
+                        <baseSourceDir>${source-resources-path}</baseSourceDir>
+                        <baseTargetDir>${target-resources-path}</baseTargetDir>
                     </configuration>
                     <executions>
                         <execution>
                             <id>default-minify</id>
                             <configuration>
                                 <encoding>UTF-8</encoding>
-                                <sourceDir>javascript</sourceDir>
+                                <sourceDir>js</sourceDir>
                                 <targetDir>static</targetDir>
                                 <includes>**/*.js</includes>
                                 <skipMerge>false</skipMerge>
@@ -132,6 +176,7 @@
                     </executions>
                 </plugin>
 
+                <!-- dart-sass-maven-plugin -->
                 <plugin>
                     <groupId>io.github.cleydyr</groupId>
                     <artifactId>dart-sass-maven-plugin</artifactId>
@@ -154,15 +199,19 @@
             </plugins>
         </pluginManagement>
 
+        <!-- plugins -->
         <plugins>
+            <!-- spring-boot-maven-plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- closure-compiler-maven-plugin -->
             <plugin>
                 <groupId>com.github.blutorange</groupId>
                 <artifactId>closure-compiler-maven-plugin</artifactId>
             </plugin>
+            <!-- dart-sass-maven-plugin -->
             <plugin>
                 <groupId>io.github.cleydyr</groupId>
                 <artifactId>dart-sass-maven-plugin</artifactId>

@@ -1,6 +1,6 @@
 package com.rslakra.springservices.thymeleafsidebarlayouts.framework.controller.rest;
 
-import com.devamatre.framework.spring.exception.InvalidRequestException;
+import com.devamatre.appsuite.spring.exception.InvalidRequestException;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

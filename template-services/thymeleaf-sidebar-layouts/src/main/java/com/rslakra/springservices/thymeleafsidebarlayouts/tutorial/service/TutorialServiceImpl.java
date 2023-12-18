@@ -1,6 +1,6 @@
 package com.rslakra.springservices.thymeleafsidebarlayouts.tutorial.service;
 
-import com.devamatre.framework.spring.exception.NoRecordFoundException;
+import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.springservices.thymeleafsidebarlayouts.framework.service.AbstractServiceImpl;
 import com.rslakra.springservices.thymeleafsidebarlayouts.tutorial.persistence.entity.Tutorial;
 import com.rslakra.springservices.thymeleafsidebarlayouts.tutorial.persistence.repository.TutorialRepository;

@@ -1,6 +1,6 @@
 package com.rslakra.thymeleaf.persistence.manager;
 
-import com.devamatre.framework.core.TimeUtils;
+import com.devamatre.appsuite.core.TimeUtils;
 import com.rslakra.thymeleaf.persistence.entities.Customer;
 import com.rslakra.thymeleaf.persistence.entities.Order;
 import com.rslakra.thymeleaf.persistence.entities.OrderLine;
