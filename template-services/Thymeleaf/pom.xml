@@ -69,7 +69,7 @@
         <checkstyle.threshold>0</checkstyle.threshold>
 
         <!-- appsuite-core -->
-        <appsuite-core.version>0.0.4</appsuite-core.version>
+        <appsuite-core.version>0.0.26</appsuite-core.version>
 
         <!-- lombok -->
         <lombok.version>1.18.28</lombok.version>
