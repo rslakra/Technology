@@ -9,6 +9,9 @@ import lombok.Data;
 @Data
 public class Shape {
 
+    /**
+     * @return
+     */
     public Double perimeter() {
         return null;
     }
