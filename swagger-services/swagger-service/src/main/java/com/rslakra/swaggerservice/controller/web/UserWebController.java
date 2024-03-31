@@ -58,7 +58,7 @@ public class UserWebController {
      * @param userId
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{userId}"})
+    @GetMapping(path = {"/create", "/update/{userId}"})
     public String upsertUser(Model model, @PathVariable(name = "userId") Optional<Long> userId) {
         User user = null;
         if (userId.isPresent()) {
