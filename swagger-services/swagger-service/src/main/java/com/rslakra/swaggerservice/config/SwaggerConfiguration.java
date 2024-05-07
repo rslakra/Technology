@@ -16,7 +16,7 @@
 //                           "Some custom description of API.",
 //                           "1.0",
 //                           "Terms of service",
-//                           new Contact("Sallo Szrajbman", "www.baeldung.com", "salloszraj@gmail.com"),
+//                           new Contact("Rohtash Lakra", "www.devamatre.com", "devamatre@gmail.com"),
 //                           "License of API",
 //                           "API license URL",
 //                           Collections.emptyList());

@@ -1,7 +1,4 @@
 #!/bin/bash
-# https://www.baeldung.com/spring-thymeleaf-fragments
-# https://github.com/eugenp/tutorials/tree/master/spring-web-modules/spring-thymeleaf
-
 
 #mvn cargo:run
 #note: starts on port '8082'

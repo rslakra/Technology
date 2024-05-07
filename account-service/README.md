@@ -1,6 +1,7 @@
-# Getting Started
+# Account Service
 
-### Reference Documentation
+
+### References
 
 For further reference, please consider the following sections:
 
