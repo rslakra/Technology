@@ -1,6 +1,6 @@
 package com.rslakra.springservices.thymeleafsidebar.task.service;
 
-import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
+import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.springservices.thymeleafsidebar.framework.service.AbstractService;
 import com.rslakra.springservices.thymeleafsidebar.task.persistence.entity.Task;
 import com.rslakra.springservices.thymeleafsidebar.task.persistence.repository.TaskRepository;

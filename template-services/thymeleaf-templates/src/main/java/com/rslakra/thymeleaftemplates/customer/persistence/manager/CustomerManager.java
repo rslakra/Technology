@@ -1,6 +1,6 @@
 package com.rslakra.thymeleaftemplates.customer.persistence.manager;
 
-import com.devamatre.appsuite.core.TimeUtils;
+import com.rslakra.appsuite.core.TimeUtils;
 import com.rslakra.thymeleaftemplates.customer.persistence.entity.Customer;
 
 import java.util.ArrayList;

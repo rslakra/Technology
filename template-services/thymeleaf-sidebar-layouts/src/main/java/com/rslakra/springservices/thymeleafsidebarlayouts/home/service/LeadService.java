@@ -1,7 +1,7 @@
 package com.rslakra.springservices.thymeleafsidebarlayouts.home.service;
 
-import com.devamatre.appsuite.spring.exception.InvalidRequestException;
-import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
+import com.rslakra.appsuite.spring.exception.InvalidRequestException;
+import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.springservices.thymeleafsidebarlayouts.framework.service.AbstractServiceImpl;
 import com.rslakra.springservices.thymeleafsidebarlayouts.home.persistence.entity.Lead;
 import com.rslakra.springservices.thymeleafsidebarlayouts.home.persistence.repository.LeadRepository;

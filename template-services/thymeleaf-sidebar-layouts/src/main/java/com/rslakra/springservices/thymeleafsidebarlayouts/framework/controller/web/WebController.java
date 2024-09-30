@@ -1,6 +1,6 @@
 package com.rslakra.springservices.thymeleafsidebarlayouts.framework.controller.web;
 
-import com.devamatre.appsuite.spring.exception.InvalidRequestException;
+import com.rslakra.appsuite.spring.exception.InvalidRequestException;
 import org.springframework.ui.Model;
 
 import java.util.Optional;

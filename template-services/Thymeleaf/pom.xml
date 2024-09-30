@@ -69,7 +69,7 @@
         <checkstyle.threshold>0</checkstyle.threshold>
 
         <!-- appsuite-core -->
-        <appsuite-core.version>0.0.30</appsuite-core.version>
+        <appsuite-core.version>0.0.34</appsuite-core.version>
 
         <!-- lombok -->
         <lombok.version>1.18.28</lombok.version>
@@ -89,7 +89,7 @@
 
         <!-- appsuite-core -->
         <dependency>
-            <groupId>com.devamatre.appsuite</groupId>
+            <groupId>com.rslakra.appsuite</groupId>
             <artifactId>appsuite-core</artifactId>
             <version>${appsuite-core.version}</version>
         </dependency>
