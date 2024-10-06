@@ -1,5 +1,7 @@
 package com.rslakra.alertservice.jobs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,10 +21,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableAsync
 public class FixedRateAsyncTask {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FixedRateAsyncTask.class);
+
     @Async
     @Scheduled(fixedRate = 1000)
     public void scheduleFixedRateTaskAsync() throws InterruptedException {
-        System.out.println("Fixed rate task async - " + System.currentTimeMillis() / 1000);
+        long timeInSecondsUnixEpoch = System.currentTimeMillis() / 1000;
+        LOGGER.debug("Fixed rate task async - {timeInSecondsUnixEpoch}", timeInSecondsUnixEpoch);
         Thread.sleep(2000);
     }
 }
