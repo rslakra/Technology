@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.15</version>
+        <!-- lookup parent from repository -->
+        <relativePath/>
+    </parent>
+    <!-- services -->
+    <groupId>com.rslakra.technology</groupId>
+    <artifactId>audit-service</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>The ${project.artifactId} Project</description>
+
+    <!-- properties -->
+    <properties>
+        <!-- revision -->
+        <revision>0.0.0</revision>
+
+        <!-- sourceEncoding & outputEncoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- java version -->
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- maven plugins -->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
+
+        <!-- checkstyle -->
+        <code-styles.dir>https://raw.githubusercontent.com/rslakra/code-styles/master</code-styles.dir>
+        <checkstyle.threshold>0</checkstyle.threshold>
+
+        <!-- appsuite-core -->
+        <appsuite-core.version>0.0.64</appsuite-core.version>
+
+        <!-- appsuite-spring -->
+        <appsuite-spring.version>0.0.15</appsuite-spring.version>
+
+        <!-- lombok -->
+        <lombok.version>1.18.34</lombok.version>
+
+        <!-- swagger -->
+        <swagger.skip>false</swagger.skip>
+
+        <!-- csv parser version -->
+        <commons-csv.version>1.9.0</commons-csv.version>
+        <opencsv.version>5.7.0</opencsv.version>
+        <!-- excel parser version -->
+        <poi.version>5.2.3</poi.version>
+        <poi-ooxml.version>5.2.3</poi-ooxml.version>
+
+        <!-- junit-jupiter-params -->
+        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
+
+    </properties>
+
+    <!-- dependencies -->
+    <dependencies>
+
+        <!-- appsuite-core -->
+        <dependency>
+            <groupId>com.rslakra.appsuite</groupId>
+            <artifactId>appsuite-core</artifactId>
+            <version>${appsuite-core.version}</version>
+        </dependency>
+
+        <!-- appsuite-spring -->
+        <dependency>
+            <groupId>com.rslakra.appsuite</groupId>
+            <artifactId>appsuite-spring</artifactId>
+            <version>${appsuite-spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <!-- build -->
+    <build>
+        <!-- plugins -->
+        <plugins>
+
+            <!-- spring-boot-maven-plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- maven-compiler-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- maven-checkstyle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <configuration>
+                    <configLocation>${code-styles.dir}/styles.xml</configLocation>
+                    <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <configLocation>${code-styles.dir}/styles.xml</configLocation>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+                            <maxAllowedViolations>${checkstyle.threshold}</maxAllowedViolations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- reporting -->
+    <reporting>
+        <!-- maven-checkstyle-plugin -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <configuration>
+                    <configLocation>${code-styles.dir}/styles.xml</configLocation>
+                    <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
