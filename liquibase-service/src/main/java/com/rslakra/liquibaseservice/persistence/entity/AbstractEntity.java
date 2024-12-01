@@ -16,7 +16,7 @@ import javax.persistence.MappedSuperclass;
 @Setter
 @EqualsAndHashCode
 @MappedSuperclass
-public class BaseEntity<U> extends Auditable<U> {
+public class AbstractEntity<U> extends Auditable<U> {
 
     @Id
     @GeneratedValue

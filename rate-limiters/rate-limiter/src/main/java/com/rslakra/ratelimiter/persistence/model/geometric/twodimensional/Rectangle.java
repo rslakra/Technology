@@ -1,4 +1,4 @@
-package com.rslakra.ratelimiter.persistence.model.geometric._2d;
+package com.rslakra.ratelimiter.persistence.model.geometric.twodimensional;
 
 import com.rslakra.ratelimiter.persistence.model.Dimension;
 import com.rslakra.ratelimiter.persistence.model.geometric.GeometricShape;

@@ -27,24 +27,24 @@ import java.util.List;
 
 
 public class ProductRepository {
-
+    
     private static final ProductRepository INSTANCE = new ProductRepository();
-
+    
     private ProductRepository() {
         super();
     }
-
+    
     public static ProductRepository getInstance() {
         return INSTANCE;
     }
-
+    
     public List<Product> findAll() {
         return new ArrayList<Product>(ProductManager.INSTANCE.findAll());
     }
-
+    
     public Product findById(final Long id) {
         return ProductManager.INSTANCE.findById(id);
     }
-
-
+    
+    
 }

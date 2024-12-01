@@ -7,19 +7,19 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UserProfileController implements ThymeLeafController {
+public class UserProfileController implements ThymeleafController {
 
     public UserProfileController() {
         super();
     }
 
     public void process(
-        final HttpServletRequest request, final HttpServletResponse response,
-        final ServletContext servletContext, final ITemplateEngine templateEngine)
+            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
+            final ServletContext servletContext, final ITemplateEngine templateEngine)
         throws Exception {
 
-        final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        templateEngine.process("userprofile", ctx, response.getWriter());
+        final WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
+        templateEngine.process("userprofile", ctx, servletResponse.getWriter());
 
     }
 

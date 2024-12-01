@@ -50,9 +50,9 @@ public class EntityOperationListener<E> {
      * @param auditable
      */
     private void setLastUpdated(Auditable auditable) {
-        auditable.setLastUpdatedAt(new Date());
-        auditable.setLastUpdatedOn(auditable.getLastUpdatedAt().getTime());
-        auditable.setLastUpdatedBy("rslakra");
+        auditable.setUpdatedAt(new Date());
+        auditable.setUpdatedOn(auditable.getUpdatedAt().getTime());
+        auditable.setUpdatedBy("rslakra");
     }
 
     /**

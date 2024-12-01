@@ -6,16 +6,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface ThymeLeafController {
-
+public interface ThymeleafController {
+    
     /**
-     * @param request
-     * @param response
+     * @param servletRequest
+     * @param servletResponse
      * @param servletContext
      * @param templateEngine
      * @throws Exception
      */
-    public void process(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext,
-                        ITemplateEngine templateEngine) throws Exception;
-
+    public void process(HttpServletRequest servletRequest, HttpServletResponse servletResponse, ServletContext servletContext, ITemplateEngine templateEngine) throws Exception;
+    
 }

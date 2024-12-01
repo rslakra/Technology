@@ -11,24 +11,24 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class OrderListController implements ThymeLeafController {
+public class OrderListController implements ThymeleafController {
 
     public OrderListController() {
         super();
     }
 
     public void process(
-        final HttpServletRequest request, final HttpServletResponse response,
-        final ServletContext servletContext, final ITemplateEngine templateEngine)
+            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
+            final ServletContext servletContext, final ITemplateEngine templateEngine)
         throws Exception {
 
         final OrderService orderService = new OrderService();
         final List<Order> allOrders = orderService.findAll();
 
-        final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
+        final WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
         ctx.setVariable("orders", allOrders);
 
-        templateEngine.process("order/list", ctx, response.getWriter());
+        templateEngine.process("order/list", ctx, servletResponse.getWriter());
 
     }
 

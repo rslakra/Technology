@@ -1,4 +1,4 @@
-package com.rslakra.ratelimiter.persistence.model.geometric._3d;
+package com.rslakra.ratelimiter.persistence.model.geometric.threedimensional;
 
 /**
  * @author Rohtash Lakra

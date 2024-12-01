@@ -9,26 +9,26 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ProductCommentsController implements ThymeLeafController {
+public class ProductCommentsController implements ThymeleafController {
 
     public ProductCommentsController() {
         super();
     }
 
     public void process(
-        final HttpServletRequest request, final HttpServletResponse response,
-        final ServletContext servletContext, final ITemplateEngine templateEngine)
+            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
+            final ServletContext servletContext, final ITemplateEngine templateEngine)
         throws Exception {
 
-        final Long prodId = Long.valueOf(request.getParameter("prodId"));
+        final Long prodId = Long.valueOf(servletRequest.getParameter("prodId"));
 
         final ProductService productService = new ProductService();
         final Product product = productService.findById(prodId);
 
-        final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
+        final WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
         ctx.setVariable("prod", product);
 
-        templateEngine.process("product/comments", ctx, response.getWriter());
+        templateEngine.process("product/comments", ctx, servletResponse.getWriter());
 
     }
 

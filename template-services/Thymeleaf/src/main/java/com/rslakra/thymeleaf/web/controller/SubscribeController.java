@@ -7,19 +7,19 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SubscribeController implements ThymeLeafController {
+public class SubscribeController implements ThymeleafController {
 
     public SubscribeController() {
         super();
     }
 
     public void process(
-        final HttpServletRequest request, final HttpServletResponse response,
-        final ServletContext servletContext, final ITemplateEngine templateEngine)
+            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
+            final ServletContext servletContext, final ITemplateEngine templateEngine)
         throws Exception {
 
-        WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        templateEngine.process("subscribe", ctx, response.getWriter());
+        WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
+        templateEngine.process("subscribe", ctx, servletResponse.getWriter());
 
     }
 

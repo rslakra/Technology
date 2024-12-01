@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>ThymeLeaf Virtual Grocery</title>
+    <title>Thymeleaf Virtual Grocery</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="../../css/thymeleaf.css" media="all" rel="stylesheet" th:href="@{/css/thymeleaf.css}" type="text/css"/>
 </head>
@@ -10,8 +10,8 @@
 <body>
 
 <div>
-    <img alt="ThymeLeaf Logo" src="../../images/ThymeLeafLogo.png" th:alt-title="#{logo}"
-         th:src="@{/images/ThymeLeafLogo.png}" title="ThymeLeaf Logo"/>
+    <img alt="Thymeleaf Logo" src="../../images/ThymeleafLogo.png" th:alt-title="#{logo}"
+         th:src="@{/images/ThymeleafLogo.png}" title="Thymeleaf Logo"/>
 </div>
 
 <p th:utext="#{home.welcome(${session.user.firstName}, ${session.user.lastName})}">Welcome to our grocery store,

@@ -14,16 +14,16 @@ import java.util.Map;
  * @created 6/4/20 4:08 PM
  */
 public enum ProductManager {
-
+    
     INSTANCE;
-
+    
     private final Map<Long, Product> productsById;
-
-    private ProductManager() {
+    
+    ProductManager() {
         this.productsById = new LinkedHashMap<Long, Product>();
         initProducts();
     }
-
+    
     /**
      * @param id
      * @return
@@ -31,14 +31,14 @@ public enum ProductManager {
     private Product getProduct(Long id) {
         return productsById.get(id);
     }
-
+    
     /**
      * @param product
      */
     private void addProduct(Product product) {
         this.productsById.put(product.getId(), product);
     }
-
+    
     private void initProducts() {
         addProduct(new Product(1L, "Fresh Sweet Basil", true, new BigDecimal("4.99")));
         addProduct(new Product(2L, "Italian Tomato", false, new BigDecimal("1.25")));
@@ -70,53 +70,53 @@ public enum ProductManager {
         addProduct(new Product(28L, "Unsweetened Lemon Green Tea", true, new BigDecimal("18.34")));
         addProduct(new Product(29L, "Whole Grain Flakes Cereal", true, new BigDecimal("3.52")));
         addProduct(new Product(30L, "Berry Chewy Granola Bars", true, new BigDecimal("4.00")));
-
+        
         Product product = getProduct(2L);
         product.getComments().add(new Comment(1, "I'm so sad this product is no longer available!"));
         product.getComments().add(new Comment(2, "When do you expect to have it back?"));
-
+        
         product = getProduct(13L);
         product.getComments().add(new Comment(3, "Very tasty! I'd definitely buy it again!"));
         product.getComments().add(new Comment(4, "My kids love it!"));
         product.getComments()
-            .add(new Comment(5, "Good, my basic breakfast cereal. Though maybe a bit in the sweet side..."));
+                .add(new Comment(5, "Good, my basic breakfast cereal. Though maybe a bit in the sweet side..."));
         product.getComments()
-            .add(new Comment(6, "Not that I find it bad, but I think the vanilla flavouring is too intrusive"));
+                .add(new Comment(6, "Not that I find it bad, but I think the vanilla flavouring is too intrusive"));
         product.getComments()
-            .add(new Comment(7, "I agree with the excessive flavouring, but still one of my favourites!"));
+                .add(new Comment(7, "I agree with the excessive flavouring, but still one of my favourites!"));
         product.getComments().add(new Comment(8, "Cheaper than at the local store!"));
         product.getComments().add(new Comment(9, "I'm sorry to disagree, but IMO these are far too sweet"));
         product.getComments().add(new Comment(10, "Good. Pricey though."));
-
+        
         product = getProduct(9L);
         product.getComments().add(new Comment(11, "Made bread with this and it was great!"));
         product.getComments().add(new Comment(12, "Note: this comes actually mixed with wheat flour"));
-
+        
         product = getProduct(14L);
         product.getComments().add(new Comment(13, "Awesome Spanish oil. Buy it now."));
         product.getComments().add(new Comment(14, "Would definitely buy it again. Best one I've tasted"));
         product.getComments().add(new Comment(15, "A bit acid for my taste, but still a very nice one."));
         product.getComments().add(new Comment(16, "Definitely not the average olive oil. Really good."));
-
+        
         product = getProduct(16L);
         product.getComments().add(new Comment(17, "Great value!"));
-
+        
         product = getProduct(24L);
         product.getComments().add(new Comment(18, "My favourite :)"));
-
+        
         product = getProduct(30L);
         product.getComments().add(new Comment(19, "Too hard! I would not buy again"));
         product.getComments()
-            .add(new Comment(20, "Taste is OK, but I agree with previous comment that bars are too hard to eat"));
+                .add(new Comment(20, "Taste is OK, but I agree with previous comment that bars are too hard to eat"));
         product.getComments().add(new Comment(21, "Would definitely NOT buy again. Simply unedible!"));
     }
-
+    
     public List<Product> findAll() {
         return new ArrayList<Product>(productsById.values());
     }
-
+    
     public Product findById(final Long id) {
         return productsById.get(id);
     }
-
+    
 }

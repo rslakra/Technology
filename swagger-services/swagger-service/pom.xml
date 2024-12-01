@@ -7,12 +7,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
+        <version>2.5.15</version>
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
     <!-- services -->
-    <groupId>com.rslakra.technology.swagger-services</groupId>
+    <groupId>com.rslakra.technology</groupId>
     <artifactId>swagger-service</artifactId>
     <version>${revision}</version>
     <name>${project.artifactId}</name>
@@ -28,13 +28,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- java version -->
-        <java.version>23</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- maven plugins -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
         <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
 
         <!-- checkstyle -->
@@ -42,19 +42,19 @@
         <checkstyle.threshold>0</checkstyle.threshold>
 
         <!-- appsuite-core -->
-        <appsuite-core.version>0.0.34</appsuite-core.version>
+        <appsuite-core.version>0.0.64</appsuite-core.version>
 
         <!-- appsuite-spring -->
         <appsuite-spring.version>0.0.15</appsuite-spring.version>
 
         <!-- lombok -->
-        <lombok.version>1.18.28</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
 
         <!-- swagger -->
         <swagger.skip>false</swagger.skip>
 
         <!-- junit-jupiter-params -->
-        <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
+        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
 
     </properties>
 
@@ -113,10 +113,11 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!--            <optional>true</optional>-->
+            <version>${lombok.version}</version>
         </dependency>
 
         <!-- Swagger Open API Specification -->
@@ -210,5 +211,22 @@
             <!--            </plugin>-->
         </plugins>
     </build>
+
+    <!-- reporting -->
+    <reporting>
+        <!-- plugins -->
+        <plugins>
+            <!-- maven-checkstyle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <configuration>
+                    <configLocation>${code-styles.dir}/styles.xml</configLocation>
+                    <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

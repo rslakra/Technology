@@ -9,26 +9,26 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class OrderDetailsController implements ThymeLeafController {
+public class OrderDetailsController implements ThymeleafController {
 
     public OrderDetailsController() {
         super();
     }
 
     public void process(
-        final HttpServletRequest request, final HttpServletResponse response,
-        final ServletContext servletContext, final ITemplateEngine templateEngine)
+            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
+            final ServletContext servletContext, final ITemplateEngine templateEngine)
         throws Exception {
 
-        final Long orderId = Long.valueOf(request.getParameter("orderId"));
+        final Long orderId = Long.valueOf(servletRequest.getParameter("orderId"));
 
         final OrderService orderService = new OrderService();
         final Order order = orderService.findById(orderId);
 
-        final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
+        final WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
         ctx.setVariable("order", order);
 
-        templateEngine.process("order/details", ctx, response.getWriter());
+        templateEngine.process("order/details", ctx, servletResponse.getWriter());
 
     }
 

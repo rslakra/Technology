@@ -1,4 +1,4 @@
-# Docker Employee Service
+# swagger-sample
 
 ## Create Network
 ```shell
@@ -127,3 +127,6 @@ docker rm employee-service
 
 ## References
 - [Docker MySQL](https://www.javainuse.com/devOps/docker/docker-mysql)
+
+# Author
+- Rohtash Lakra

@@ -7,11 +7,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
+        <version>2.5.15</version>
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
-    <!-- services -->
+    <!-- liquibase-service -->
     <groupId>com.rslakra.technology</groupId>
     <artifactId>liquibase-service</artifactId>
     <version>${revision}</version>
@@ -30,13 +30,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- java version -->
-        <java.version>23</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- maven plugins -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
         <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
 
         <!-- checkstyle -->
@@ -50,13 +50,16 @@
         <appsuite-spring.version>0.0.15</appsuite-spring.version>
 
         <!-- lombok -->
-        <lombok.version>1.18.28</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
 
         <!-- swagger -->
         <swagger.skip>false</swagger.skip>
 
+        <!-- liquibase -->
+        <liquibase.version>4.29.0</liquibase.version>
+
         <!-- junit-jupiter-params -->
-        <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
+        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
 
     </properties>
 
@@ -82,10 +85,20 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.h2database</groupId>

@@ -12,18 +12,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class LiquibaseApplication {
+public class LiquibaseServiceApplication {
 
     // LOGGER
-    private static Logger LOGGER = LoggerFactory.getLogger(LiquibaseApplication.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(LiquibaseServiceApplication.class);
     private static final boolean ADD_DUMMY_RECORDS = false;
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        LOGGER.debug("Launching LiquibaseApplication ...");
-        SpringApplication.run(LiquibaseApplication.class, args);
+        LOGGER.debug("Launching LiquibaseServiceApplication ...");
+        SpringApplication.run(LiquibaseServiceApplication.class, args);
     }
 
 
