@@ -1,6 +1,8 @@
 #!/bin/bash
-# Author: Rohtash Lakra
+#Author: Rohtash Lakra
 clear
+#set -euo pipefail
+#IFS=$'\n\t'
 VERSION="0.0"
 # Build Version Function
 function buildVersion() {
@@ -19,16 +21,11 @@ function buildVersion() {
 }
 
 echo
-#JAVA_VERSION=11
-#export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
 echo "${JAVA_HOME}"
 echo
-#mvn clean install -DskipTests=true
 SNAPSHOT_VERSION=$(buildVersion SNAPSHOT)
 RELEASE_VERSION=$(buildVersion)
-#echo "RELEASE_VERSION: ${RELEASE_VERSION}, SNAPSHOT_VERSION: ${SNAPSHOT_VERSION}"
-#mvn clean install -DskipTests=true -DprojectVersion=$RELEASE_VERSION
-mvn clean install -Drevision=$SNAPSHOT_VERSION
-mvn install -Drevision=$RELEASE_VERSION -DskipTests=true
-#mvn clean install -DskipTests=true -DprojectVersion=$(./makeVersion.sh SNAPSHOT)
+#java -jar target/employee-service-$RELEASE_VERSION.jar
+#mvn clean package -DskipTests
+mvn clean spring-boot:run -Drevision=$SNAPSHOT_VERSION
 echo

@@ -22,5 +22,5 @@ echo "${JAVA_HOME}"
 echo
 SNAPSHOT_VERSION=$(buildVersion SNAPSHOT)
 RELEASE_VERSION=$(buildVersion)
-mvn package cargo:run -Drevision=$SNAPSHOT_VERSION
+mvn package cargo:run -Drevision=RELEASE_VERSION
 echo
