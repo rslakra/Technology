@@ -8,12 +8,12 @@ Flask-Log-Request-ID==0.10.1
 Flask-SQLAlchemy==3.1.1
 gunicorn==23.0.0
 itsdangerous==2.2.0
-Jinja2==3.1.4
+Jinja2==3.1.6
 MarkupSafe==2.1.5
 PyYAML==6.0.2
 requests==2.32.3
 SQLAlchemy==2.0.31
 typing_extensions==4.12.2
-Werkzeug==3.0.3
+Werkzeug==3.1.3
 
 
