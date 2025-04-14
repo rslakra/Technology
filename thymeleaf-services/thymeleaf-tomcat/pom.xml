@@ -61,7 +61,7 @@
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <tomcat-maven-plugin.version>2.2</tomcat-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
-        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
+        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
 
         <!-- spring-boot maven plugins -->
