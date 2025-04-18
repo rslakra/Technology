@@ -19,7 +19,12 @@ public class SwaggerConfig {
      */
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("public-api").apiInfo(apiInfo()).select().paths(PathSelectors.any()).build();
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("public-api")
+                .apiInfo(apiInfo())
+                .select()
+                .paths(PathSelectors.any())
+                .build();
 
     }
 
@@ -27,7 +32,15 @@ public class SwaggerConfig {
      * @return
      */
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Swagger API").description("Swagger API reference for developers").termsOfServiceUrl("http://swagger.com").contact(new Contact("Rohtash", "www.rslakra.com", "swagger@gmail.com")).license("Swagger License").licenseUrl("oauth@gmail.com").version("1.0.0").build();
+        return new ApiInfoBuilder()
+                .title("Swagger API")
+                .description("Swagger API reference for developers")
+                .termsOfServiceUrl("http://swagger.com")
+                .contact(new Contact("Rohtash", "www.rslakra.com", "swagger@gmail.com"))
+                .license("Swagger License")
+                .licenseUrl("oauth@gmail.com")
+                .version("1.0.0")
+                .build();
     }
 
 
