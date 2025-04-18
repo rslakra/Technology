@@ -1,6 +1,5 @@
-# Technology
-
----
+Technology
+===
 
 The ```Technology``` repository contains all the Technology python projects.
 
@@ -26,6 +25,11 @@ The ```Technology``` repository contains all the Technology python projects.
     └── README.md
 ```
 
+
+
+# Reference
+
+---
 
 
 # Author
