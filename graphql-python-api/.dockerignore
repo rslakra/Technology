@@ -1,0 +1,19 @@
+# General files
+.DS_store
+
+venv/
+tmp/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.env
+.env.local
+.env.test
+.env.dev
+
+liquibase_status_output.txt
+# Ignore .log files
+*.log

@@ -1,0 +1,21 @@
+version: "3"
+services:
+  docker-service:
+    image: dockerlakra/docker-service
+    ports:
+      - "8080:8080"
+    networks:
+      - docker-network
+    depends_on:
+      - mysql-docker
+
+  mysql-docker:
+    image: mysql:latest
+    networks:
+      - docker-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=EmployeeService
+
+networks:
+  docker-network:

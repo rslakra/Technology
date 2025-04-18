@@ -7,15 +7,15 @@ services:
     networks:
       - mysql-network
     depends_on:
-      - mysqldb
+      - mysql-docker
 
-  mysqldb:
+  mysql-docker:
     image: mysql:latest
     networks:
       - mysql-network
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=employeedb
+      - MYSQL_DATABASE=EmployeeService
 
 networks:
   mysql-network:

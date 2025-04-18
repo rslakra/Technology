@@ -11,20 +11,20 @@ docker network ls
 
 ## Pull and run mysql image
 ```
-docker container run --network mysql-network --name mysqldb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=employeedb -d mysql:latest
+docker container run --network mysql-network --name mysql-docker -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=EmployeeService -d mysql:latest
 
-#docker container run --network mysql-network --name mysqldb -p 3306:3306 -e MYSQL_ROOT_HOST=localhost -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=employeedb -d mysql:latest
+#docker container run --network mysql-network --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_HOST=localhost -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=EmployeeService -d mysql:latest
 ```
 
 ```shell
-docker stop mysqldb
-docker rm mysqldb
+docker stop mysql-docker
+docker rm mysql-docker
 ```
 
 ## Can use below command to get into mysql bash and run queries
 ```
-docker exec -it mysqldb mysql -uroot -proot
-use employeedb;
+docker exec -it mysql-docker mysql -uroot -proot
+use EmployeeService;
 show databases;
 show tables;
 exit;
@@ -41,26 +41,26 @@ mvn clean package -DskipTests
 
 ## Create Dockerfile under the project directory and put below lines in it
 ```
-FROM openjdk:11
+FROM openjdk:21
 VOLUME /tmp
-ADD ./target/advice-service-0.0.1-SNAPSHOT.jar app.jar
+ADD ./target/employee-service-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
 ```
 
 ## And build docker image
 ```
-docker build -t dockerlakra/advice-service .
+docker build -t dockerlakra/employee-service .
 ```
 
 ## Run your docker image and the microservice is up
 ```
-docker run -p 8080:8080 -d --name advice-service dockerlakra/advice-service
+docker run -p 8080:8080 -d --name employee-service dockerlakra/employee-service
 ```
 
 ## Check Logs
 ```shell
-docker container logs -f advice-service
+docker container logs -f employee-service
 ```
 
 ## Or instead of creating Dockerfile we can also use docker-maven-plugin the pom
@@ -77,8 +77,8 @@ docker container logs -f advice-service
       <artifactId>docker-maven-plugin</artifactId>
       <version>0.4.13</version>
       <configuration>
-        <imageName>${docker.image.prefix}/advice-service</imageName>
-        <baseImage>java:8</baseImage>
+        <imageName>${docker.image.prefix}/employee-service</imageName>
+        <baseImage>java:21</baseImage>
         <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
         <resources>
           <resource>
@@ -100,29 +100,29 @@ docker container logs -f advice-service
 
 ## Run your docker image and the microservice is up
 ```
-docker run -p 8080:8080 -d --name advice-service dockerlakra/advice-service
+docker run -p 8080:8080 -d --name employee-service dockerlakra/employee-service
 ```
 
 ## If we want to run your microservice container in docker by linking mysql container in docker instead of directly pointing to url we can do that by below command
 ```shell
-docker run --link mysqldb --name advice-service -d dockerlakra/advice-service
+docker run --link mysql-docker --name employee-service -d dockerlakra/employee-service
 ```
 
 OR
 
 ```shell
-docker container run --network=mysql-network --name advice-service -p 8080:8080 -d dockerlakra/advice-service
+docker container run --network=mysql-network --name employee-service -p 8080:8080 -d dockerlakra/employee-service
 ```
 
 OR
 
 ```shell
-docker container run --network=mysql-network --link mysqldb --name advice-service -p 8080:8080 -d dockerlakra/advice-service
+docker container run --network=mysql-network --link mysql-docker --name employee-service -p 8080:8080 -d dockerlakra/employee-service
 ```
 
 ## Remove Docker Services
 ```shell
-docker rm advice-service
+docker rm employee-service
 ```
 
 ## References

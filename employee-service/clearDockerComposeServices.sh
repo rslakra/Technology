@@ -3,7 +3,7 @@
 clear
 echo
 SERVICE_NAME=${1:-employee-service}
-MYSQL_SERVICE_NAME=${2:-mysqldb}
+MYSQL_SERVICE_NAME=${2:-mysql-docker}
 DOCKER_MSQL_SERVICE_NAME="${SERVICE_NAME}-${MYSQL_SERVICE_NAME}-1"
 DOCKER_SERVICE_NAME="${SERVICE_NAME}-employeeService-1"
 echo "Docker mysqlServiceName:${DOCKER_MSQL_SERVICE_NAME}, serviceName:${DOCKER_SERVICE_NAME}"

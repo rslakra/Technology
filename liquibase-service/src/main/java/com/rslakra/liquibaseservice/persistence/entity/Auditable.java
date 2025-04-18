@@ -36,13 +36,13 @@ public abstract class Auditable<U> implements Serializable {
     private U createdBy;
 
     @LastModifiedDate
-    private Long lastUpdatedOn;
+    private Long updatedOn;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdatedAt;
+    private Date updatedAt;
 
     @LastModifiedBy
-    private U lastUpdatedBy;
+    private U updatedBy;
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity(name = "houses")
-public class House extends BaseEntity<String> {
+public class House extends AbstractEntity<String> {
 
     private String owner;
     private boolean fullyPaid;

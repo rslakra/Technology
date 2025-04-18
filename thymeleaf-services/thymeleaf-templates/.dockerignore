@@ -1,0 +1,11 @@
+node_modules/
+instance/
+__pycache__/
+!README*.*
+*.bak
+*.db
+# Use Docker Secrets: (Recommended)
+#*.env
+Dockerfile
+Makefile
+

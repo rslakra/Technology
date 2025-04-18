@@ -1,14 +1,16 @@
-# Server Settings
-#
-#server:
-#  port: 8080
-#  servlet:
-#    context-path: /liquibase
+# App Configs
+envType: DEV
 
-#management:
-#  server:
-#    port: 8081
-#    address: 127:0:0:1
+# Server Settings
+server:
+  port: 8080
+  servlet:
+    context-path: /liquibase-service
+
+management:
+  server:
+    port: 8081
+    address: 127:0:0:1
 
 #
 # Debug Settings
@@ -21,9 +23,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+  # Profile
   config:
     activate:
       on-profile: test
+
   #
   # JPA Settings
   #
@@ -42,7 +46,7 @@ spring:
   #
   spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   datasource:
-    url: jdbc:h2:file:~/Downloads/H2DB/liquibase;DB_CLOSE_ON_EXIT=FALSE;
+    url: jdbc:h2:file:~/Downloads/H2DB/LiquibaseService;DB_CLOSE_ON_EXIT=FALSE;
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -51,7 +55,7 @@ spring:
   # Enabling H2 Console
   # http://localhost:8080/h2
   # OR
-  # http://localhost:8080/liquibase/h2
+  # http://localhost:8080/liquibase-service/h2
   #
   h2:
     console:
@@ -62,8 +66,8 @@ spring:
   # Liquibase Settings
   #
   liquibase:
+    #    enabled: true
     drop-first: true
-    change-log: classpath:db/changelog/dbchangelog.xml
+    change-log: classpath:liquibase/changelog/dbchangelog.xml
 
-# App Configs
-envType: DEV
+

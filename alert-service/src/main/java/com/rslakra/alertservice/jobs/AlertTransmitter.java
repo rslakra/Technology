@@ -17,7 +17,8 @@ public class AlertTransmitter {
      */
     @Scheduled(fixedDelay = 1000)
     public void scheduleFixedDelayTask() {
-        LOGGER.debug("Fixed delay task: {}", System.currentTimeMillis() / 1000);
+        long timeInSecondsUnixEpoch = System.currentTimeMillis() / 1000;
+        LOGGER.debug("Fixed delay task - {timeInSecondsUnixEpoch}", timeInSecondsUnixEpoch);
     }
 
 

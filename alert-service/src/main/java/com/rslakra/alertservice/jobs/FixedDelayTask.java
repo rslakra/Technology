@@ -1,5 +1,7 @@
 package com.rslakra.alertservice.jobs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 
 /**
@@ -14,9 +16,12 @@ import org.springframework.scheduling.annotation.Scheduled;
  */
 public class FixedDelayTask {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FixedDelayTask.class);
+
     @Scheduled(fixedDelay = 1000)
     public void scheduleFixedDelayTask() {
-        System.out.println("Fixed delay task - " + System.currentTimeMillis() / 1000);
+        long timeInSecondsUnixEpoch = System.currentTimeMillis() / 1000;
+        LOGGER.debug("Fixed delay task - {timeInSecondsUnixEpoch}", timeInSecondsUnixEpoch);
     }
 
 }

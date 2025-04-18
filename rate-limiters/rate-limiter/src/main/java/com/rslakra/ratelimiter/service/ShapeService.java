@@ -2,7 +2,7 @@ package com.rslakra.ratelimiter.service;
 
 import com.rslakra.ratelimiter.payload.request.ShapeRequest;
 import com.rslakra.ratelimiter.payload.response.ShapeResponse;
-import com.rslakra.ratelimiter.persistence.model.geometric._2d.Rectangle;
+import com.rslakra.ratelimiter.persistence.model.geometric.twodimensional.Rectangle;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

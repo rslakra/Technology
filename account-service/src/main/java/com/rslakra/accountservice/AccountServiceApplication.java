@@ -2,6 +2,7 @@ package com.rslakra.accountservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * <pre>
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *  5. User this user's accessToken to access further resources.
  * </pre>
  */
+@EnableJpaRepositories
 @SpringBootApplication
 public class AccountServiceApplication {
 

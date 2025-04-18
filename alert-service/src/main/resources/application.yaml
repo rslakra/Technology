@@ -1,14 +1,14 @@
 # Server Settings
 #
-#server:
-#  port: 8080
-#  servlet:
-#    context-path: /rslakra
+server:
+  port: 8080
+  servlet:
+    context-path: /alert-service
 
-#management:
-#  server:
-#    port: 8081
-#    address: 127:0:0:1
+management:
+  server:
+    port: 8081
+    address: 127:0:0:1
 
 #
 # Debug Settings
@@ -46,9 +46,10 @@ spring:
 
   #
   # Enabling H2 Console
-  # http://localhost:8080/h2
+  # http://localhost:8080/alert-service/h2
   #
   h2:
     console:
       enabled: true
       path: /h2
+
