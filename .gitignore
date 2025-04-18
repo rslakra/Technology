@@ -32,7 +32,8 @@ dist/
 # Gradle
 .gradle/
 gradle/
-
+gradlew
+gradlew.bat
 # Avoid ignore Gradle wrappper properties
 !gradle-wrapper.properties
 

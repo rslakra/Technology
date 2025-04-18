@@ -1,5 +1,18 @@
 # swagger-sample
 
+## Swagger UI
+
+To verify that Springfox is working, we can visit this URL in our browser:
+```shell
+http://localhost:8080/v2/api-docs
+```
+
+Now we can test it in our browser by visiting:
+```shell
+http://localhost:8080/swagger-ui/
+```
+
+
 ## Create Network
 ```shell
 docker network create mysql-network
