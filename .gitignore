@@ -16,6 +16,8 @@
 env/
 venv/
 ENV/
+env.*/
+venv.*/
 *.bak/
 *.env/
 
@@ -59,12 +61,12 @@ pip-delete-this-directory.txt
 target/
 
 # Gradle
-.gradle/
-gradle/
-gradlew
-gradlew.bat
+/**/.gradle/
+/**/gradle/
+/**/gradlew
+/**/gradlew.bat
 # Avoid ignore Gradle wrappper properties
-!gradle-wrapper.properties
+/**/!gradle-wrapper.properties
 
 ### STS ###
 .apt_generated
@@ -214,15 +216,6 @@ celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.*/
-venv.*/
 
 # Spyder project settings
 .spyderproject
