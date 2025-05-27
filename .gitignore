@@ -65,6 +65,8 @@ target/
 /**/gradle/
 /**/gradlew
 /**/gradlew.bat
+gradlew/
+gradlew.bat
 # Avoid ignore Gradle wrappper properties
 /**/!gradle-wrapper.properties
 
