@@ -36,7 +36,7 @@
             $("#myModal").modal();
             $("#myModalBody").text("");
             $.ajax({
-                url: "signup",
+                url: "/login",
                 cache: false
             }).done(function (html) {
                 $("#myModalBody").append(html);
@@ -51,7 +51,7 @@
             $("#myModal").modal();
             $("#myModalBody").text("");
             $.ajax({
-                url: "signup",
+                url: "/register",
                 cache: false
             }).done(function (html) {
                 $("#myModalBody").append(html);

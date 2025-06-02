@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments/head :: head}">Head</div>
+
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+<div class="container">
+<!--    <h1 class="text-center">Sign in</h1>-->
+    <div>
+        <form class="form-narrow form-horizontal" method="post" th:action="@{/login}">
+            <!--error message-->
+            <div th:if="${param.error}">
+                <div th:replace="fragments/alert :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+                <div class="alert alert-danger">
+                    Invalid username or password!
+                </div>
+            </div>
+            <fieldset>
+                <legend>Sign in</legend>
+                <div class="form-group">
+                    <label for="userName" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="userName" placeholder="Email" name="userName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="_spring_security_remember_me" /> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button class="btn btn-info">Sign In</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <span>New user? <a href="/" th:href="@{/register}">Register</a></span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+<!-- inline script -->
+<script th:inline="javascript" type="text/javascript">
+
+    /* Path Builder Helper Function */
+    function pathSegment(...pathSegments) {
+        pathString = window.location.origin;
+        if (pathSegments) {
+            pathString += "/" + pathSegments.join("/");
+        }
+
+        console.log("pathString" + pathString);
+        return pathString;
+    }
+
+    /* Handle JavaScript Events */
+    $(document).ready(function () {
+        console.log("Page is ready!");
+    });
+
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Signup</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">Model Body</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Sign In</title>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>-->
+<!--    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<form class="form-narrow form-horizontal" action="/authenticate" method="post" th:action="@{/authenticate}">-->
+<!--    <th:block th:if="${param.error != null}">-->
+<!--        <div th:replace="fragments/alert :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>-->
+<!--    </th:block>-->
+<!--    <fieldset>-->
+<!--        <legend>Please Sign In</legend>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputEmail" class="col-lg-2 control-label">Email</label>-->
+<!--            <div class="col-lg-10">-->
+<!--                <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="username" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputPassword" class="col-lg-2 control-label">Password</label>-->
+<!--            <div class="col-lg-10">-->
+<!--                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <div class="col-lg-offset-2 col-lg-10">-->
+<!--                <div class="checkbox">-->
+<!--                    <label>-->
+<!--                        <input type="checkbox" name="_spring_security_remember_me" /> Remember me-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <div class="col-lg-offset-2 col-lg-10">-->
+<!--                <button type="submit" class="btn btn-default">Sign in</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <div class="col-lg-offset-2 col-lg-10">-->
+<!--                <p>New here? <a href="/register" th:href="@{/register}">Sign Up</a></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </fieldset>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

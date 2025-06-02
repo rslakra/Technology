@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          padding: 8px;
+        }
+
+        th {
+          background-color: #dddddd;
+          text-align: center;
+        }
+
+        td {
+          text-align: left;
+        }
+
+        /*
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }*/
+    </style>
+</head>
+<body>
+
+<h2>Get Current Url Details</h2>
+
+<table>
+    <tr>
+        <th>Origin</th>
+        <th>Host</th>
+        <th>Pathname</th>
+        <th>Query Params</th>
+    </tr>
+    <tr>
+        <td><p id="origin"></p></td>
+        <td><p id="host"></p></td>
+        <td><p id="pathname"></p></td>
+        <td><p id="queryParams"></p></td>
+    </tr>
+    <tr>
+        <td colspan="4"><p id="fullUrl"></p></td>
+    </tr>
+</table>
+
+
+<script>
+    document.getElementById("origin").innerHTML = window.location.origin;
+    document.getElementById("host").innerHTML = window.location.host;
+    document.getElementById("pathname").innerHTML = window.location.pathname;
+    queryParams = document.location.search.replace("?",'').split("&")
+    document.getElementById("queryParams").innerHTML = queryParams;
+    document.getElementById("fullUrl").innerHTML = window.location.href;
+</script>
+
+</body>
+</html>

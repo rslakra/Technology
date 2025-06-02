@@ -15,10 +15,6 @@
         <p>
             Get started quickly by signing up.
         </p>
-
-        <p>
-            This tutorial uses the Thymeleaf integration with the Spring Framework.
-        </p>
     </div>
 
     <h2 class="text-center">Not Signed In</h2>
@@ -49,7 +45,7 @@
             $("#myModal").modal();
             $("#myModalBody").text("");
             $.ajax({
-                url: "signup",
+                url: "/login",
                 cache: false
             }).done(function (html) {
                 $("#myModalBody").append(html);
@@ -64,7 +60,7 @@
             $("#myModal").modal();
             $("#myModalBody").text("");
             $.ajax({
-                url: "signup",
+                url: "/register",
                 cache: false
             }).done(function (html) {
                 $("#myModalBody").append(html);

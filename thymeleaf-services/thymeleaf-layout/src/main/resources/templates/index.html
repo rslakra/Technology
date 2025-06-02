@@ -15,21 +15,16 @@
         <p>
             Get started quickly by signing up.
         </p>
-
         <p>
             This tutorial uses the Thymeleaf integration with the Spring Framework.
         </p>
     </div>
 
-    <h2 class="text-center">Not Signed In</h2>
+    <h2 class="text-center">Index Page</h2>
 
     <div class="my-3">
-        <div class="row d-flex">
-            <div class="col-md-6 mt-2">
-                <button class="btn btn-info" id="btnSignIn">Sign In</button>
-                <button class="btn btn-info" id="btnSignUp">Sign Up</button>
-            </div>
-        </div>
+        <button class="btn btn-info" id="btnLogin" th:onclick="@{/login}">Sign In</button>
+        <button class="btn btn-info" id="btnRegister" th:onclick="@{/register}">Sign Up</button>
     </div>
 
 </div>
@@ -38,40 +33,38 @@
 
 <!-- inline script -->
 <script th:inline="javascript" type="text/javascript">
-    /* Fill in modal with content loaded with Ajax */
-    $(document).ready(function () {
 
-        /**
-         * Sign-In Button
-         */
-        $('#btnSignIn').on('click', function (e) {
+    /* Path Builder Helper Function */
+    function pathSegment(...pathSegments) {
+        pathString = window.location.origin;
+        if (pathSegments) {
+            pathString += "/" + pathSegments.join("/");
+        }
+
+        console.log("pathString" + pathString);
+        return pathString;
+    }
+
+    /* Handle JavaScript Events */
+    $(document).ready(function () {
+        console.log("Page is ready!");
+
+        $("#btnLogin").on("click", function (e) {
             e.preventDefault();
-            $("#myModal").modal();
-            $("#myModalBody").text("");
-            $.ajax({
-                url: "signup",
-                cache: false
-            }).done(function (html) {
-                $("#myModalBody").append(html);
-            });
+            urlString = pathSegment('login')
+            console.log("urlString:" +urlString);
+            window.location = urlString;
         });
 
-        /**
-         * Sign-Up Button
-         */
-        $('#btnSignUp').on('click', function (e) {
+        $("#btnRegister").on("click", function (e) {
             e.preventDefault();
-            $("#myModal").modal();
-            $("#myModalBody").text("");
-            $.ajax({
-                url: "signup",
-                cache: false
-            }).done(function (html) {
-                $("#myModalBody").append(html);
-            });
+            urlString = pathSegment('register')
+            console.log("urlString:" +urlString);
+            window.location = urlString;
         });
 
     });
+
 </script>
 
 <!-- Modal -->
