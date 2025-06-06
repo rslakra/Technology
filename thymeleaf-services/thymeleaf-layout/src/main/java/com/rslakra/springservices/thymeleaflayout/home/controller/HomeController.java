@@ -83,6 +83,12 @@ public class HomeController extends AbstractController {
         String loginPage = "home/login";
         if (Objects.nonNull(principal)) {
             loginPage = "index";
+        } else if ("get".equals(request.getMethod().toLowerCase())) {
+            final List<String> values = Arrays.asList("modal", "dialog");
+            String loginType = request.getParameter("loginType");
+            if (Objects.nonNull(loginType) && values.contains(loginType)) {
+                loginPage = String.format("home/login-%s", loginType);
+            }
         } else if ("post".equals(request.getMethod().toLowerCase())) {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
@@ -151,5 +157,22 @@ public class HomeController extends AbstractController {
         LOGGER.debug("-search(), keyword={}, model={}", keyword, model);
         return searchPage;
     }
+
+    /**
+     * @return
+     */
+    @GetMapping({"/terms"})
+    public String termsOfService() {
+        return "terms-of-service";
+    }
+
+    /**
+     * @return
+     */
+    @GetMapping({"/privacy-policy"})
+    public String privacyPolicy() {
+        return "privacy-policy";
+    }
+
 
 }

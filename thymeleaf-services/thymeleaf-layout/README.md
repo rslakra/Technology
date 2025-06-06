@@ -81,3 +81,9 @@ Run both Back-end & Front-end in one place:
 mvn spring-boot:run
 ```
 
+# Reference
+- [HTML Inputs and Labels: A Love Story](https://css-tricks.com/html-inputs-and-labels-a-love-story/)
+
+# Author:
+
+- Rohtash Lakra

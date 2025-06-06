@@ -50,7 +50,16 @@
                 <div class="form-group">
                     <label for="dateOfBirth" class="col-lg-2 control-label">Birthday:</label>
                     <div class="col-lg-10">
-                        <input type="date" class="form-control" id="dateOfBirth" placeholder="Birthday" name="dateOfBirth" />
+                        <!-- Describes additional information, usually about formatting -->
+                        <span id="date-format">(DD-MM-YYYY):</span>
+                        <input type="date" class="form-control" id="dateOfBirth" placeholder="Birthday" name="dateOfBirth" aria-describedby="date-format" min="2021-03-01" max="2031-01-01"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input type="checkbox" id="termsAndConditions" name="termsAndConditions" />
+                        <label for="termsAndConditions">I accept the <a href="#" th:href="@{/terms}">terms and conditions</a> and <a href="/" th:href="@{/privacy-policy}">privacy policy</a>.</label>
                     </div>
                 </div>
 
@@ -59,11 +68,13 @@
                         <button class="btn btn-info" id="btnSignIn">Sign Up</button>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <span>Already have an account? <a href="/" th:href="@{/login}">Login</a></span>
                     </div>
                 </div>
+
             </fieldset>
         </form>
     </div>

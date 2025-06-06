@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments/head :: head}">Head</div>
+
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+<div class="container">
+    <h1 class="text-center">Home</h1>
+
+    <div class="text-body">
+        <p>
+            Welcome to the Spring MVC Quickstart application!
+        </p>
+        <p>
+            Get started quickly by signing up.
+            This tutorial uses the Thymeleaf integration with the Spring Framework.
+        </p>
+    </div>
+
+    <!-- Login Modal Dialog-->
+    <div id="divLogin" class="commento-login">
+        <button type="button" class="commento-login-text">Login Modal Dialog</button>
+    </div>
+
+    <!-- Login Modal Dialog -->
+    <div id="loginModalDialog" role="dialog" style="display:none;"
+         aria-labelledby="commento-login-box-oauth-heading"
+         tabindex="-1" class="commento-login-box">
+        <h1 id="commento-login-box-oauth-heading">Login</h1>
+        <h2 id="commento-login-box-oauth-pretext" class="commento-login-box-subtitle">Proceed with social login</h2>
+        <div id="commento-login-box-oauth-buttons-container" class="commento-oauth-buttons-container">
+            <div class="commento-oauth-buttons">
+                <button class="commento-button commento-google-button">google</button>
+                <button class="commento-button commento-twitter-button">twitter</button>
+                <button class="commento-button commento-github-button">github</button>
+                <button class="commento-button commento-gitlab-button">gitlab</button>
+            </div>
+        </div>
+        <hr id="commento-login-box-hr2">
+        <h2 id="commento-login-box-email-subtitle" class="commento-login-box-subtitle">Login with your email
+            address</h2>
+        <div class="commento-email-container">
+            <div class="commento-email">
+                <label for="commento-login-box-email-input" class="commento-label">Email address</label>
+                <input id="commento-login-box-email-input" class="commento-input" name="email" type="text">
+                <button id="commento-login-box-email-button" class="commento-email-button">Continue</button>
+            </div>
+        </div>
+        <div id="commento-login-box-forgot-link-container" class="commento-forgot-link-container">
+            <button class="commento-forgot-link">Forgot your password?</button>
+        </div>
+        <div id="commento-login-box-login-link-container" class="commento-login-link-container">
+            <button class="commento-login-link">Don't have an account? Sign up.</button>
+        </div>
+        <button class="commento-login-box-close" aria-label="Close"></button>
+    </div>
+
+
+    <!-- My Modal Dialog-->
+    <div class="my-3">
+        <button id="btnLogin" class="btn btn-info">My Login Dialog</button>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="myModal" class="modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+        <div class="modal-content">
+            <span class="close-button" onclick="hideLoginModalDialog()">&times;</span>
+
+            <h2 id="modalTitle">Login</h2>
+            <p id="modalDesc">Please enter your credentials to log in.</p>
+
+            <form>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+<!-- inline script -->
+<script th:inline="javascript" type="text/javascript">
+
+  /**
+   * Path Builder Helper Function
+   */
+  function pathSegment(...pathSegments) {
+      pathString = window.location.origin;
+      if (pathSegments) {
+          pathString += "/" + pathSegments.join("/");
+      }
+
+      console.log("pathString" + pathString);
+      return pathString;
+  }
+
+  /**
+   * Handle JavaScript Events
+   */
+  $(document).ready(function () {
+      console.log("Page is ready!");
+
+    /**
+     * OnClick Generic Function
+     *
+     * node: An HTML DOM element (e.g., a button or div).
+     *
+     * f: A function to be called when the node is clicked.
+     *
+     * arg: An argument to be passed to f.
+     *
+     * When node is clicked, it runs f(arg).
+     *
+     * <code>
+     * function sayHello(name) {
+     *   alert("Hello, " + name + "!");
+     * }
+     *
+     * var button = document.getElementById("myButton");
+     * onClick(button, sayHello, "Alice");
+     * </>code>
+     */
+    function onClick(node, f, arg) {
+        node.addEventListener('click', function() {
+            f(arg);
+        }, false);
+    }
+
+    closeLoginDialog = function() {
+        var mainArea = $(ID_MAIN_AREA);
+        var loginBoxContainer = $(ID_LOGIN_BOX_CONTAINER);
+
+        classRemove(mainArea, 'blurred');
+        classRemove(root, 'root-min-height');
+
+        // Remove insert where required
+        var removeInert = document.querySelectorAll('header, footer, .modal-open-inert')
+        removeInert.forEach(item => {
+            item.removeAttribute('insert');
+        });
+
+        attrSet(loginBoxContainer, 'style', 'display: none');
+        setTimeout(() => {
+            document.querySelector('.commento-login-text').focus();
+            }, 1);
+    };
+
+    /**
+     * Show Button Dialog
+     */
+    function showLoginDialog(id) {
+        const node = document.getElementById("loginModalDialog");
+        if (node) {
+            node.style.display = 'block';
+        }
+
+        // Make background elements inert
+        const makeInert = document.querySelectorAll('header, footer, .modal-open-inert');
+        makeInert.forEach(item => {
+            item.setAttribute('inert', '');
+        });
+    }
+
+
+    /**
+     * Show Button Dialog
+     */
+    function showLoginModalDialog(id = 'myModal') {
+        const node = document.getElementById(id);
+        if (node) {
+            node.style.display = 'block';
+        } else {
+            console.warn(`Element with id "${id}" not found.`);
+            return;
+        }
+
+        // Set inert on background elements
+        const makeInert = document.querySelectorAll('header, footer, .modal-open-inert');
+        makeInert.forEach(item => {
+            item.setAttribute('inert', '');
+        });
+    }
+
+    function hideLoginModalDialog(id = 'myModal') {
+        const node = document.getElementById(id);
+        if (node) {
+            node.style.display = 'none';
+        }
+
+        // Remove inert from background elements
+        const makeInert = document.querySelectorAll('header, footer, .modal-open-inert');
+        makeInert.forEach(item => {
+            item.removeAttribute('inert');
+        });
+    }
+
+    onClick(document.getElementById("divLogin"), showLoginDialog, "Login DIV Clicked");
+    onClick(document.getElementById("btnLogin"), showLoginModalDialog, "Login Button Clicked");
+
+  });
+
+
+</script>
+
+</body>
+</html>
+
+

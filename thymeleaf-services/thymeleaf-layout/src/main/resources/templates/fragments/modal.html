@@ -1,0 +1,34 @@
+<div th:fragment="modal">
+
+    <!-- LOGIN MODAL -->
+    <div id="myModal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content form-narrow">
+            <span class="close" aria-label="Close Modal">&times;</span>
+            <form>
+                <fieldset>
+                    <legend>Login</legend>
+
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username">
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+
+                    <input type="submit" value="Login">
+
+                    <p style="text-align:center; margin-top: 16px;">
+                        Don't have an account?
+                        <a href="#">Sign up here</a>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>

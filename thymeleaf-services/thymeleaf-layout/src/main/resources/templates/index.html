@@ -25,9 +25,13 @@
     <div class="my-3">
         <button class="btn btn-info" id="btnLogin" th:onclick="@{/login}">Sign In</button>
         <button class="btn btn-info" id="btnRegister" th:onclick="@{/register}">Sign Up</button>
+        <!-- Trigger Button -->
+        <button class="btn btn-info" onclick="showLoginModalDialog()">Login</button>
     </div>
 
 </div>
+
+<div th:replace="~{fragments/modal :: modal}">Modal</div>
 
 <div th:replace="fragments/footer :: footer">Footer</div>
 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Modal Dialog</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 300px;
+      max-width: 90%;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .close-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: #999;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to the Site</h1>
+</header>
+
+<main class="modal-open-inert">
+  <p>This is the main content of the page.</p>
+  <button onclick="showLoginModalDialog()">Login</button>
+</main>
+
+<footer>
+  <p>© 2025 Example Company</p>
+</footer>
+
+<!-- Modal -->
+<div id="myModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+  <div class="modal-content">
+    <span class="close-button" onclick="hideLoginModalDialog()">&times;</span>
+    <h2 id="modalTitle">Login</h2>
+    <p id="modalDesc">Please enter your credentials to log in.</p>
+    <form onsubmit="event.preventDefault(); alert('Logged in!'); hideLoginModalDialog();">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function showLoginModalDialog(id = 'myModal') {
+    const node = document.getElementById(id);
+    if (!node) return;
+
+    node.style.display = 'flex';
+
+    // Inert background
+    const makeInert = document.querySelectorAll('header, footer, .modal-open-inert');
+    makeInert.forEach(item => item.setAttribute('inert', ''));
+
+    // Focus first input
+    node.querySelector('input')?.focus();
+
+    // Escape key support
+    document.addEventListener('keydown', handleEscape);
+  }
+
+  function hideLoginModalDialog(id = 'myModal') {
+    const node = document.getElementById(id);
+    if (!node) return;
+
+    node.style.display = 'none';
+
+    // Remove inert
+    const makeInert = document.querySelectorAll('header, footer, .modal-open-inert');
+    makeInert.forEach(item => item.removeAttribute('inert'));
+
+    document.removeEventListener('keydown', handleEscape);
+  }
+
+  function handleEscape(e) {
+    if (e.key === 'Escape') {
+      hideLoginModalDialog();
+    }
+  }
+</script>
+</body>
+</html>

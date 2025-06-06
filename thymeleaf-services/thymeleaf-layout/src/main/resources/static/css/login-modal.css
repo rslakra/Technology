@@ -1,0 +1,142 @@
+/* Modal backdrop */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-width: 300px;
+  /*max-width: 640px;*/
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  /*animation: fadeIn 0.3s ease-in;*/
+  animation: zoomIn 0.3s ease-out;
+
+}
+
+/* Modal content */
+.modal-content {
+  /* Required for absolutely positioned .close */
+  /*position: relative;
+  background-color: #fff;
+  margin: 8% auto;
+  animation: slideDown 0.3s ease-out;*/
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 640px;
+  width: 90%;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  animation: slideDown 0.3s ease-out;
+
+}
+
+/* Close button */
+/*
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+*/
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px; /* Move to the right side */
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Stack label and inputs */
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Forgot password */
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 0.9em;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Remember me */
+.remember-me {
+  margin-top: 12px;
+}
+
+/* Optional: form container styling to match your theme */
+.form-narrow {
+    width:100%;
+  /*max-width: 640px;*/
+  padding: 19px 29px 29px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
