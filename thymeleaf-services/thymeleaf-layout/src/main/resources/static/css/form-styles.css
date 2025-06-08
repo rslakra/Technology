@@ -25,6 +25,10 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+textarea {
+ height: 200px;
+}
+
 
 fieldset {
   /*background-color: #eeeeee;*/

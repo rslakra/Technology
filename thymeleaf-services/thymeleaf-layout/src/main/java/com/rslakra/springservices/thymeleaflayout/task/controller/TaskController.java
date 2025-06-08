@@ -19,9 +19,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/tasks")
 public class TaskController extends AbstractController {
-
+    
     private final TaskService taskService;
-
+    
     /**
      * @param taskService
      */
@@ -29,7 +29,7 @@ public class TaskController extends AbstractController {
     public TaskController(final TaskService taskService) {
         this.taskService = taskService;
     }
-
+    
     /**
      * @param model
      * @param keyword
@@ -49,10 +49,10 @@ public class TaskController extends AbstractController {
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
         }
-
+        
         return "task/tasks";
     }
-
+    
     /**
      * @param model
      * @return
@@ -63,10 +63,10 @@ public class TaskController extends AbstractController {
         task.setCompleted(true);
         model.addAttribute("task", task);
         model.addAttribute("pageTitle", "Create Task");
-
+        
         return "task/edit-task-form";
     }
-
+    
     /**
      * @param task
      * @param redirectAttributes
@@ -80,10 +80,10 @@ public class TaskController extends AbstractController {
         } catch (Exception e) {
             redirectAttributes.addAttribute("message", e.getMessage());
         }
-
+        
         return "redirect:/tasks";
     }
-
+    
     /**
      * @param id
      * @param model
@@ -91,20 +91,20 @@ public class TaskController extends AbstractController {
      * @return
      */
     @GetMapping("/{id}")
-    public String editTutorial(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String editTask(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
             Task task = taskService.findById(id);
             model.addAttribute("task", task);
             model.addAttribute("pageTitle", "Edit Task (ID: " + id + ")");
-
+            
             return "task/edit-task-form";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
-
+            
             return "redirect:/tasks";
         }
     }
-
+    
     /**
      * @param id
      * @param model
@@ -112,18 +112,18 @@ public class TaskController extends AbstractController {
      * @return
      */
     @GetMapping("/delete/{id}")
-    public String deleteTutorial(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteTask(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
             taskService.delete(id);
             redirectAttributes.addFlashAttribute("message",
-                                                 "The task with id: " + id + " has been deleted successfully!");
+                    "The task with id: " + id + " has been deleted successfully!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
-
+        
         return "redirect:/tasks";
     }
-
+    
     /**
      * @param id
      * @param completed
@@ -142,7 +142,7 @@ public class TaskController extends AbstractController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
-
+        
         return "redirect:/tasks";
     }
 }

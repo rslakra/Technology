@@ -15,14 +15,14 @@ import java.util.List;
  */
 @Service
 public class TaskService extends AbstractService<Task, Long> {
-
+    
     private final TaskRepository taskRepository;
-
+    
     @Autowired
     public TaskService(final TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
-
+    
     /**
      * @param id
      * @return
@@ -31,7 +31,7 @@ public class TaskService extends AbstractService<Task, Long> {
     public Task findById(Long id) {
         return taskRepository.findById(id).orElseThrow(() -> new NoRecordFoundException("id:%d", id));
     }
-
+    
     /**
      * @return
      */
@@ -39,7 +39,7 @@ public class TaskService extends AbstractService<Task, Long> {
     public List<Task> getAll() {
         return taskRepository.findAll();
     }
-
+    
     /**
      * @param task
      * @return
@@ -48,7 +48,7 @@ public class TaskService extends AbstractService<Task, Long> {
     public Task create(Task task) {
         return taskRepository.save(task);
     }
-
+    
     /**
      * @param task
      * @return
@@ -57,7 +57,7 @@ public class TaskService extends AbstractService<Task, Long> {
     public Task update(Task task) {
         return taskRepository.save(task);
     }
-
+    
     /**
      * @param id
      * @return
@@ -68,7 +68,7 @@ public class TaskService extends AbstractService<Task, Long> {
         taskRepository.deleteById(id);
         return task;
     }
-
+    
     /**
      * @param name
      * @return
@@ -76,7 +76,15 @@ public class TaskService extends AbstractService<Task, Long> {
     public List<Task> findByNameContainsIgnoreCase(String name) {
         return taskRepository.findByNameContainsIgnoreCase(name);
     }
-
+    
+    /**
+     * @param keyword
+     * @return
+     */
+    public List<Task> findByNameOrDescriptionContainsIgnoreCase(String keyword) {
+        return taskRepository.findByNameOrDescriptionContainsIgnoreCase(keyword, keyword);
+    }
+    
     /**
      * @param id
      * @param isCompleted

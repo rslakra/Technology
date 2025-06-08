@@ -15,9 +15,9 @@ import java.util.List;
  */
 @Service
 public class TutorialService extends AbstractService<Tutorial, Long> {
-
+    
     private final TutorialRepository tutorialRepository;
-
+    
     /**
      * @param tutorialRepository
      */
@@ -25,7 +25,7 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
     public TutorialService(final TutorialRepository tutorialRepository) {
         this.tutorialRepository = tutorialRepository;
     }
-
+    
     /**
      * @param id
      * @return
@@ -34,7 +34,7 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
     public Tutorial findById(final Long id) {
         return tutorialRepository.findById(id).orElseThrow(() -> new NoRecordFoundException("id:%d", id));
     }
-
+    
     /**
      * @return
      */
@@ -42,7 +42,7 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
     public List<Tutorial> getAll() {
         return tutorialRepository.findAll();
     }
-
+    
     /**
      * @param tutorial
      * @return
@@ -51,7 +51,7 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
     public Tutorial create(Tutorial tutorial) {
         return tutorialRepository.save(tutorial);
     }
-
+    
     /**
      * @param tutorial
      * @return
@@ -60,7 +60,7 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
     public Tutorial update(Tutorial tutorial) {
         return tutorialRepository.save(tutorial);
     }
-
+    
     /**
      * @param id
      * @return
@@ -71,16 +71,24 @@ public class TutorialService extends AbstractService<Tutorial, Long> {
         tutorialRepository.deleteById(id);
         return tutorial;
     }
-
-
+    
     /**
-     * @param keyword
+     * @param title
      * @return
      */
-    public List<Tutorial> findByTitleContainingIgnoreCase(String keyword) {
-        return tutorialRepository.findByTitleContainingIgnoreCase(keyword);
+    public List<Tutorial> findByTitleContainingIgnoreCase(String title) {
+        return tutorialRepository.findByTitleContainingIgnoreCase(title);
     }
-
+    
+    /**
+     * @param title
+     * @param description
+     * @return
+     */
+    public List<Tutorial> findByTitleOrDescriptionContainingIgnoreCase(String title, String description) {
+        return tutorialRepository.findByTitleOrDescriptionContainingIgnoreCase(title, description);
+    }
+    
     /**
      * @param id
      * @param isPublished

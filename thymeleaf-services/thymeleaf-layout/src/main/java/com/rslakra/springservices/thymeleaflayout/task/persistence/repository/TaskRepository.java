@@ -6,20 +6,26 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public interface TaskRepository extends AbstractRepository<Task, Long> {
-
+    
     /**
      * @param name
      * @return
      */
     List<Task> findByNameContainsIgnoreCase(String name);
-
+    
+    /**
+     * @param name
+     * @param description
+     * @return
+     */
+    List<Task> findByNameOrDescriptionContainsIgnoreCase(String name, String description);
+    
     /**
      * @param id
      * @param isCompleted

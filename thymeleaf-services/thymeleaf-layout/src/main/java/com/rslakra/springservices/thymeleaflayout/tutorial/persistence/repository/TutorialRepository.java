@@ -6,20 +6,27 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public interface TutorialRepository extends AbstractRepository<Tutorial, Long> {
-
+    
     /**
-     * @param keyword
+     * @param title
      * @return
      */
-    List<Tutorial> findByTitleContainingIgnoreCase(String keyword);
-
+    List<Tutorial> findByTitleContainingIgnoreCase(String title);
+    
+    
+    /**
+     * @param title
+     * @param description
+     * @return
+     */
+    List<Tutorial> findByTitleOrDescriptionContainingIgnoreCase(String title, String description);
+    
     /**
      * @param id
      * @param isPublished

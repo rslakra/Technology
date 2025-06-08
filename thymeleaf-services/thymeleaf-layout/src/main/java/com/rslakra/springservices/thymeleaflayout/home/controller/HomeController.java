@@ -1,8 +1,15 @@
 package com.rslakra.springservices.thymeleaflayout.home.controller;
 
-import com.rslakra.springservices.thymeleaflayout.framework.controller.AbstractController;
-import com.rslakra.springservices.thymeleaflayout.home.entity.Query;
+import com.rslakra.appsuite.core.BeanUtils;
+import com.rslakra.springservices.thymeleaflayout.framework.RequestUtils;
+import com.rslakra.springservices.thymeleaflayout.framework.TextUtils;
+import com.rslakra.springservices.thymeleaflayout.home.Query;
+import com.rslakra.springservices.thymeleaflayout.home.persistence.entity.Contact;
 import com.rslakra.springservices.thymeleaflayout.home.service.HomeService;
+import com.rslakra.springservices.thymeleaflayout.task.persistence.entity.Task;
+import com.rslakra.springservices.thymeleaflayout.task.service.TaskService;
+import com.rslakra.springservices.thymeleaflayout.tutorial.persistence.entity.Tutorial;
+import com.rslakra.springservices.thymeleaflayout.tutorial.service.TutorialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +27,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ */
 @Controller
 @RequestMapping("/")
-public class HomeController extends AbstractController {
-
+public class HomeController {
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
     private final HomeService homeService;
+    private final TaskService taskService;
+    private final TutorialService tutorialService;
     // UriComponentsBuilder uriComponentsBuilder;
-
+    
     /**
      * @param homeService
      */
     @Autowired
-    public HomeController(final HomeService homeService) {
+    public HomeController(HomeService homeService, TaskService taskService, TutorialService tutorialService) {
         this.homeService = homeService;
+        this.taskService = taskService;
+        this.tutorialService = tutorialService;
     }
-
+    
     /**
      * @param request
      * @param principal
@@ -50,11 +64,11 @@ public class HomeController extends AbstractController {
         } else if ("/profile".equals(request.getServletPath())) {
             indexPage = "home/signedIn";
         }
-
+        
         LOGGER.debug("-index(), indexPage={}", indexPage);
         return indexPage;
     }
-
+    
     /**
      * @return
      */
@@ -62,15 +76,33 @@ public class HomeController extends AbstractController {
     public String aboutUs() {
         return "home/about-us";
     }
-
+    
     /**
+     * @param request
+     * @param model
      * @return
      */
-    @GetMapping({"/contact-us"})
-    public String contactUs() {
-        return "home/contact-us";
+    @RequestMapping(value = "/contact-us", method = {RequestMethod.GET, RequestMethod.POST})
+    public String contactUs(HttpServletRequest request, Model model) {
+        LOGGER.debug("+contactUs({}, {}), servletPath={}", request, model, request.getServletPath());
+        String pageContactUs = "home/contact-us";
+        Contact contact = new Contact();
+        
+        if (RequestUtils.isPostRequest(request)) {
+            contact.setFirstName(request.getParameter("firstName"));
+            contact.setLastName(request.getParameter("lastName"));
+            contact.setCountry(request.getParameter("country"));
+            contact.setSubject(request.getParameter("subject"));
+            LOGGER.debug("contact={}", contact);
+            contact = homeService.create(contact);
+        }
+        
+        model.addAttribute("contact", contact);
+        
+        LOGGER.debug("-contactUs(), pageContactUs={}, model={}", pageContactUs, model);
+        return pageContactUs;
     }
-
+    
     /**
      * @param request
      * @param principal
@@ -89,18 +121,18 @@ public class HomeController extends AbstractController {
             if (Objects.nonNull(loginType) && values.contains(loginType)) {
                 loginPage = String.format("home/login-%s", loginType);
             }
-        } else if ("post".equals(request.getMethod().toLowerCase())) {
+        } else if (RequestUtils.isPostRequest(request)) {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
             String rememberMe = request.getParameter("_spring_security_remember_me");
             LOGGER.debug("userName={}, password={}, rememberMe={}", userName, password, rememberMe);
             loginPage = "home/signedIn";
         }
-
+        
         LOGGER.debug("-login(), loginPage={}", loginPage);
         return loginPage;
     }
-
+    
     /**
      * @param request
      * @return
@@ -109,7 +141,7 @@ public class HomeController extends AbstractController {
     public String register(HttpServletRequest request) {
         LOGGER.debug("+register({}), servletPath={}", request, request.getServletPath());
         String signUpPage = "home/register";
-        if ("post".equals(request.getMethod().toLowerCase())) {
+        if (RequestUtils.isPostRequest(request)) {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
@@ -119,11 +151,11 @@ public class HomeController extends AbstractController {
             LOGGER.debug("userName={}, password={}, confirmPassword={}, firstName={}, lastName={}, dateOfBirth={}", userName, password, confirmPassword, firstName, lastName, dateOfBirth);
             signUpPage = "home/signedIn";
         }
-
+        
         LOGGER.debug("-register(), signUpPage={}", signUpPage);
         return signUpPage;
     }
-
+    
     /**
      * @param request
      * @param principal
@@ -136,8 +168,8 @@ public class HomeController extends AbstractController {
         LOGGER.debug("-logout(), logoutPage={}", logoutPage);
         return logoutPage;
     }
-
-
+    
+    
     /**
      * @param model
      * @param keyword
@@ -148,16 +180,45 @@ public class HomeController extends AbstractController {
         LOGGER.debug("+search({})", keyword);
         String searchPage = "home/search";
         List<Query> items = new ArrayList<>();
-        if (Objects.nonNull(keyword)) {
-            items.add(new Query(keyword, Arrays.asList("First", "Second")));
+        if (BeanUtils.isNotEmpty(keyword)) {
+            final Query query = new Query(keyword);
+            items.add(query);
+            
+            // find the keyword in tasks
+            List<Task> tasks = taskService.findByNameOrDescriptionContainsIgnoreCase(keyword);
+            if (BeanUtils.isNotEmpty(tasks)) {
+                tasks.forEach(task -> {
+                    if (TextUtils.containsIgnoreCase(task.getName(), keyword)) {
+                        query.getResults().add(task.getName());
+                    }
+                    
+                    if (TextUtils.containsIgnoreCase(task.getDescription(), keyword)) {
+                        query.getResults().add(task.getDescription());
+                    }
+                });
+            }
+            
+            // find the keyword in tutorials
+            List<Tutorial> tutorials = tutorialService.findByTitleOrDescriptionContainingIgnoreCase(keyword, keyword);
+            if (BeanUtils.isNotEmpty(tutorials)) {
+                tutorials.forEach(tutorial -> {
+                    if (TextUtils.containsIgnoreCase(tutorial.getTitle(), keyword)) {
+                        query.getResults().add(tutorial.getTitle());
+                    }
+                    
+                    if (TextUtils.containsIgnoreCase(tutorial.getDescription(), keyword)) {
+                        query.getResults().add(tutorial.getDescription());
+                    }
+                });
+            }
         }
-
+        
         model.addAttribute("items", items);
-
+        
         LOGGER.debug("-search(), keyword={}, model={}", keyword, model);
         return searchPage;
     }
-
+    
     /**
      * @return
      */
@@ -165,7 +226,7 @@ public class HomeController extends AbstractController {
     public String termsOfService() {
         return "terms-of-service";
     }
-
+    
     /**
      * @return
      */
@@ -173,6 +234,6 @@ public class HomeController extends AbstractController {
     public String privacyPolicy() {
         return "privacy-policy";
     }
-
-
+    
+    
 }
