@@ -1,6 +1,8 @@
-// Show modal
-function showLoginModalDialog() {
-  const modal = document.getElementById('myModal');
+/**
+ * Show Modal Dialog
+ */
+function showLoginModalDialog(nodeName) {
+  const modal = document.getElementById(nodeName);
   modal.style.display = 'block';
 
   // Disable interaction with page content
@@ -9,9 +11,9 @@ function showLoginModalDialog() {
   });
 }
 
-// Close modal
+/** Close Modal Event */
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('myModal');
+  const modal = document.getElementById('loginModalDialog');
   const closeBtn = modal.querySelector('.close');
 
   closeBtn.onclick = () => {

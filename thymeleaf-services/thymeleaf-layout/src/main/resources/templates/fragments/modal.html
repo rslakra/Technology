@@ -1,15 +1,15 @@
 <div th:fragment="modal">
 
-    <!-- LOGIN MODAL -->
-    <div id="myModal" class="modal" role="dialog" aria-modal="true">
+    <!-- Login Modal Dialog -->
+    <div id="loginModalDialog" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content form-narrow">
             <span class="close" aria-label="Close Modal">&times;</span>
             <form>
                 <fieldset>
                     <legend>Login</legend>
 
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter username">
+                    <label for="userName">Username</label>
+                    <input type="text" id="userName" name="userName" placeholder="Enter username">
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter password">
@@ -24,11 +24,69 @@
 
                     <p style="text-align:center; margin-top: 16px;">
                         Don't have an account?
-                        <a href="#">Sign up here</a>
+                        <a href="#" th:href="@{/register}">Sign up here</a>
                     </p>
                 </fieldset>
             </form>
         </div>
     </div>
+
+    <!-- Register Modal Dialog -->
+    <div id="signUpModalDialog" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content form-narrow">
+            <span class="close" aria-label="Close Modal">&times;</span>
+            <form>
+                <fieldset>
+                    <legend>Register</legend>
+
+                    <label for="userName">Username</label>
+                    <input type="text" id="userName" name="userName" placeholder="Email">
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name">
+
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+
+                    <label for="dateOfBirth">Last Name</label>
+                    <span id="date-format">(DD-MM-YYYY):</span>
+                    <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Birthday" min="1900-01-01"
+                           max="2099-12-31">
+
+                    <label for="termsAndConditions">
+                        <input type="checkbox" id="termsAndConditions" name="termsAndConditions"> I accept the
+                        <a href="#" th:href="@{/terms}">terms and conditions</a> and
+                        <a href="/" th:href="@{/privacy-policy}">privacy policy</a>.
+                    </label>
+
+                    <input type="submit" value="Register">
+
+                    <p style="text-align:center; margin-top: 16px;">
+                        Don't have an account?
+                        <a href="#" th:href="@{/login}">Login</a>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Dialog -->
+    <div id="modalDialog" class="modal fade" role="dialog" aria-modal="true" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Signup</h4>
+                </div>
+                <div class="modal-body" id="myModalBody">Model Body</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 </div>
