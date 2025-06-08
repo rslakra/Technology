@@ -75,7 +75,7 @@
         <slf4j-simple.version>2.0.17</slf4j-simple.version>
 
         <!-- appsuite-core -->
-        <appsuite-core.version>0.0.70</appsuite-core.version>
+        <appsuite-core.version>0.0.74</appsuite-core.version>
 
         <!-- lombok -->
         <lombok.version>1.18.34</lombok.version>
