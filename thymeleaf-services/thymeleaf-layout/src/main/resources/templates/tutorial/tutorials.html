@@ -8,13 +8,8 @@
 <div class="container">
     <h2 class="text-center">Tutorials</h2>
 
-    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
-         role="alert">
-        [[${message}]]
-        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <!-- Alert Message -->
+    <div th:replace="~{fragments/alerts :: alerts}">Alerts</div>
 
     <div class="my-3">
         <form th:action="@{/tutorials}">
@@ -62,12 +57,13 @@
                        th:href="@{'/tutorials/' + ${tutorial.id} + '/published/true'}" title="Enable this tutorial"></a>
                 </td>
                 <td>
-                    <a th:href="@{'/tutorials/' + ${tutorial.id}}" title="Edit this tutorial"
-                       class="fa-regular fa-pen-to-square icon-dark"></a>
+                    <!-- Edit Button -->
+                    <a th:href="@{/tutorials/{id}(id=${tutorial.id})}" title="Edit Tutorial"
+                       class="fa-regular fa-pen-to-square icon-dark edit-button"></a>
                     &nbsp;
-                    <a th:href="@{'/tutorials/delete/' + ${tutorial.id}}" th:tutorialTitle="${tutorial.title}"
-                       id="btnDelete"
-                       title="Delete this tutorial" class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+                    <!-- Delete Button -->
+                    <a th:href="@{/tutorials/delete/{id}(id=${tutorial.id})}" title="Delete Tutorial"
+                       class="fa-regular fa-trash-can icon-dark delete-button"></a>
                 </td>
             </tr>
             </tbody>

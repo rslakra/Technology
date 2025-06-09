@@ -8,13 +8,8 @@
 <div class="container">
     <h2 class="text-center">Tasks</h2>
 
-    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
-         role="alert">
-        [[${message}]]
-        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <!-- Alert Message -->
+    <div th:replace="~{fragments/alerts :: alerts}">Alerts</div>
 
     <div class="my-3">
         <form th:action="@{/tasks}">
@@ -23,8 +18,7 @@
                     <div class="search">
                         <i class="fa fa-search"></i>
                         <input id="keyword" type="search" name="keyword" th:value="${keyword}" required
-                               class="form-control"
-                               placeholder="Enter keyword">
+                               class="form-control" placeholder="Enter keyword">
                         <button type="submit" class="btn btn-secondary">Search</button>
                     </div>
                 </div>
@@ -62,11 +56,13 @@
                        th:href="@{'/tasks/' + ${task.id} + '/completed/true'}" title="Enable Task"></a>
                 </td>
                 <td>
-                    <a th:href="@{'/tasks/' + ${task.id}}" title="Edit Task"
-                       class="fa-regular fa-pen-to-square icon-dark"></a>
+                    <!-- Edit Button -->
+                    <a th:href="@{/tasks/{id}(id=${task.id})}" title="Edit Task"
+                       class="fa-regular fa-pen-to-square icon-dark edit-button"></a>
                     &nbsp;
-                    <a th:href="@{'/tasks/delete/' + ${task.id}}" th:taskTitle="${task.name}"
-                       title="Delete Task" class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+                    <!-- Delete Button -->
+                    <a th:href="@{/tasks/delete/{id}(id=${task.id})}" title="Delete Task"
+                       class="fa-regular fa-trash-can icon-dark delete-button"></a>
                 </td>
             </tr>
             </tbody>
@@ -105,15 +101,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".btn-delete").on("click", function (e) {
-            e.preventDefault();
-            link = $(this);
-
-            taskTitle = link.attr("taskTitle");
-            $("#yesBtn").attr("href", link.attr("href"));
-            $("#confirmText").html("Do you want to delete the task \<strong\>" + taskTitle + "\<\/strong\>?");
-            $("#confirmModal").modal();
-        });
 
         $("#btnClearTask").on("click", function (e) {
             e.preventDefault();

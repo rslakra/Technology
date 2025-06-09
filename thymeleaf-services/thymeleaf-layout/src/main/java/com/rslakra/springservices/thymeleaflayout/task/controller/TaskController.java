@@ -60,7 +60,6 @@ public class TaskController extends AbstractController {
     @GetMapping("/add")
     public String addTask(Model model) {
         Task task = new Task();
-        task.setCompleted(true);
         model.addAttribute("task", task);
         model.addAttribute("pageTitle", "Create Task");
         
@@ -95,7 +94,7 @@ public class TaskController extends AbstractController {
         try {
             Task task = taskService.findById(id);
             model.addAttribute("task", task);
-            model.addAttribute("pageTitle", "Edit Task (ID: " + id + ")");
+            model.addAttribute("pageTitle", "Edit Task (ID #" + id + ")");
             
             return "task/edit-task-form";
         } catch (Exception e) {
@@ -114,9 +113,9 @@ public class TaskController extends AbstractController {
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
-            taskService.delete(id);
-            redirectAttributes.addFlashAttribute("message",
-                    "The task with id: " + id + " has been deleted successfully!");
+            Task task = taskService.delete(id);
+            String message = String.format("The task [%s] has successfully been deleted!", task.getName());
+            redirectAttributes.addFlashAttribute("message", message);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
@@ -137,7 +136,9 @@ public class TaskController extends AbstractController {
         try {
             taskService.updateTaskStatus(id, completed);
             String status = completed ? "completed" : "pending";
-            String message = "The tasks id=" + id + " has been " + status;
+            String message = String.format("The task [%s] has been %s!", status);
+
+//            String message = "The tasks id=" + id + " has been " + status;
             redirectAttributes.addFlashAttribute("message", message);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());

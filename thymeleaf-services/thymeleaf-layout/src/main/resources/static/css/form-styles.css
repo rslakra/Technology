@@ -62,3 +62,17 @@ legend {
     width: 100%;
 }
 
+/**
+ * Edit Button
+ */
+.edit-button {
+    color: #008CBA; /* Blue */
+}
+
+/**
+ * Delete Button
+ */
+.delete-button {
+    color: #f44336; /* Red */
+}
+
