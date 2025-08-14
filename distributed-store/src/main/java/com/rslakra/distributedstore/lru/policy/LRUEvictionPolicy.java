@@ -8,12 +8,12 @@ import com.rslakra.distributedstore.lru.algo.DoublyLinkedListNode;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class LRUEviction<K> implements EvictionPolicy<K> {
+public class LRUEvictionPolicy<K> implements EvictionPolicy<K> {
     
     private final DoublyLinkedList<K> linkedList;
     private final Map<K, DoublyLinkedListNode<K>> mapper;
     
-    public LRUEviction() {
+    public LRUEvictionPolicy() {
         this.linkedList = new DoublyLinkedList<>();
         this.mapper = new ConcurrentHashMap<>();
     }

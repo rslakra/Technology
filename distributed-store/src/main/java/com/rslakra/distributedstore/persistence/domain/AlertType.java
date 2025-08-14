@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserType {
+public class AlertType {
     private Long id;
     private String name;
     private String category;

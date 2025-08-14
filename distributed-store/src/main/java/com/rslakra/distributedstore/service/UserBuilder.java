@@ -1,8 +1,8 @@
 package com.rslakra.distributedstore.service;
 
+import com.rslakra.distributedstore.persistence.domain.AlertType;
 import com.rslakra.distributedstore.persistence.domain.User;
 import com.rslakra.distributedstore.persistence.domain.UserDetail;
-import com.rslakra.distributedstore.persistence.domain.UserType;
 
 /**
  * @author Rohtash Lakra
@@ -15,11 +15,11 @@ public class UserBuilder {
     private String userName;
 
     /**
-     * @param userType
+     * @param alertType
      * @return
      */
-    public UserBuilder setAlertType(UserType userType) {
-        user.setUserType(userType);
+    public UserBuilder setAlertType(AlertType alertType) {
+        user.setAlertType(alertType);
         return this;
     }
 
@@ -27,7 +27,7 @@ public class UserBuilder {
      * @param userDetail
      * @return
      */
-    public UserBuilder setAlertParams(UserDetail userDetail) {
+    public UserBuilder setAlertDetails(UserDetail userDetail) {
         user.setUserDetail(userDetail);
         return this;
     }

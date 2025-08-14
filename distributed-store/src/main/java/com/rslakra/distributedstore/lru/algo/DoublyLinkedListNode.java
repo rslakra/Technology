@@ -6,16 +6,16 @@ import lombok.Getter;
 @Getter
 public class DoublyLinkedListNode<E> {
     
-    DoublyLinkedListNode<E> next;
-    DoublyLinkedListNode<E> previous;
     E element;
-    
+    DoublyLinkedListNode<E> previous;
+    DoublyLinkedListNode<E> next;
+
     /**
      * @param element
      */
     public DoublyLinkedListNode(E element) {
         this.element = element;
-        this.next = null;
         this.previous = null;
+        this.next = null;
     }
 }

@@ -21,7 +21,6 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private UserType userType;
     private String status;
     private String locale;
     private String timeZone;
@@ -33,4 +32,5 @@ public class User {
     private String emailStatus;
     private String sourceId;
     private SourceType sourceType;
+    private AlertType alertType;
 }

@@ -1,5 +1,6 @@
 package com.rslakra.distributedstore;
 
+import com.rslakra.distributedstore.ds.Cache;
 import com.rslakra.distributedstore.ds.KeyValueStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,20 +18,24 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @SpringBootApplication
 public class DistributedStoreApplication {
-    
+
     /**
      * @param args
      */
     public static void main(String[] args) {
-        KeyValueStore keyValueStore = new KeyValueStore();
+        Cache keyValueStore = new KeyValueStore();
         keyValueStore.set("key1", "value1");
         keyValueStore.set("key2", "value2");
         keyValueStore.begin();
         keyValueStore.set("key2", "value2.1");
-        keyValueStore.rollback();
+        try {
+            keyValueStore.commit();
+        } catch (Exception ex) {
+            keyValueStore.rollback();
+        }
         System.out.println(keyValueStore.get("key2"));
-        
+
         SpringApplication.run(DistributedStoreApplication.class, args);
     }
-    
+
 }
