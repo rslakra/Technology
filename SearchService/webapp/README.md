@@ -7,19 +7,23 @@ The ```webapp``` contains the python web server.
 
 ## Folder Structure Conventions
 ```
-    /
-    ├── webapp                      # The web server
-    |    ├── static                 # The static contents like css, js etc.
-    |    ├── templates              # The web templates like fragments, html pages etc.
-    |    ├── tests                  # The tests of the webapp
-    |    └── .env                   # The .env file
-    |    └── __init__.py            # The webapp initializer
-    |    └── app.py                 # The app class
-    |    └── config.py              # The webapp's configuration file
-    |    └── README.md              # Instructions and helpful links
-    |    └── requirements.txt       # The webapp's dependencies/packages
-    |    └── routes.py              # Routes of the webapp UI
-    └── README.md
+/
+├── webapp                          # The web server
+│    ├── static                     # The static contents like css, js etc.
+│    ├── templates                  # The web templates like fragments, html pages etc.
+│    ├── tests                      # The tests of the webapp
+│    ├── .env                       # The .env file
+│    ├── __init__.py                # The webapp initializer
+│    ├── app.py                     # The app class
+│    ├── config.py                  # The webapp's configuration file
+│    ├── README.md                  # Instructions and helpful links
+│    ├── requirements.txt           # The webapp's dependencies/packages
+│    ├── routes.py                  # Routes of the webapp UI
+│    └── /
+├── README.md                       # Instructions and helpful links
+├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
+├── <module>                        # The module service
+└── /
 ```
 
 ## Project Setup

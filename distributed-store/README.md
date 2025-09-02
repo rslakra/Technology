@@ -10,11 +10,12 @@ The ```Distributed Store``` handles the distributed transactions.
 ```
 /
 ├── distributed-store/
-|    ├── src/
-|    ├── pom.xml
-|    ├── README.md
-|    └── /
+│    ├── src/
+│    ├── pom.xml
+│    ├── README.md
+│    └── /
 ├── README.md
+├── <module>                        # The module service
 └── /
 ```
 

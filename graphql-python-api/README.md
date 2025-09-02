@@ -12,43 +12,46 @@ bundled in ```webapp/__init__.py```. If you split this functionality into module
 across different projects.
 
 ```
-    /
-    ├── ews                                 # An external web-service
-    ├── iws                                 # An internal web-service
-    │    ├── account                        # an account’s rest service.
-    │    │    ├── v1                        # contains v1 blueprints/api resources.
-    │    │    │    ├── routes               # contains the routes of api resource.
-    │    │    ├── v2                        # contains v2 blueprints/api resources.
-    │    │    │    ├── routes               # contains the routes of api resource.
-    │    │    ├── __init__.py               # The package initializer
-    │    │    ├── models.py                 # The model objects
-    │    │    ├── README.md                 # Instructions and helpful links
-    │    │    └── _routes.py                # The package initializer
-    │    ├── api                            # The API service
-    │    ├── common                         # contains the definition of the common’s models.
-    │    ├── framework                      # contains the definition of the framework’s models.
-    │    ├── logger                         # The logger module
-    │    ├── tests                          # The unit-tests module of an application
-    │    ├── webapp                         # contains the definition of the webapp’s module.
-    │    │    ├── static                    # The static contents like css, js etc.
-    │    │    │    ├── css                  # contains css files
-    │    │    │    ├── images               # contains image files
-    │    │    │    ├── js                   # contains JavaScript files
-    │    │    ├── templates                 # contains the application’s templates.
-    │    │    │    ├── fragments            # contains the reusable fragments of web views.
-    │    │    │    │    ├── _base.html      # base/parent contents of html files
-    │    │    │    │    ├── _footer.html    # footer's contents
-    │    │    │    │    └── _navigation.py  # navigation menu links
-    │    │    │    └── __init__.py          # The package initializer
-    │    │    ├── __init__.py               # The package initializer
-    │    │    ├── app.py                    # The WSGI web application logic.
-    │    │    ├── app.py                    # contains the web application logic.
-    │    │    ├── routes.py                 # contains the definition of the web’s routes.
-    │    ├── __init__.py                    # The package initializer
-    │    ├── config.py                      # contains the application configuration parameters.
-    │    └── README.md                      # The README file of ews module
-    ├── README.md                           # Instructions and helpful links
-    └── robots.txt                          # tells which URLs the search engine crawlers can access on your site
+/
+├── ews                                 # An external web-service
+├── iws                                 # An internal web-service
+│    ├── account                        # an account’s rest service.
+│    │    ├── v1                        # contains v1 blueprints/api resources.
+│    │    │    ├── routes               # contains the routes of api resource.
+│    │    ├── v2                        # contains v2 blueprints/api resources.
+│    │    │    ├── routes               # contains the routes of api resource.
+│    │    ├── __init__.py               # The package initializer
+│    │    ├── models.py                 # The model objects
+│    │    ├── README.md                 # Instructions and helpful links
+│    │    └── _routes.py                # The package initializer
+│    ├── api                            # The API service
+│    ├── common                         # contains the definition of the common’s models.
+│    ├── framework                      # contains the definition of the framework’s models.
+│    ├── logger                         # The logger module
+│    ├── tests                          # The unit-tests module of an application
+│    ├── webapp                         # contains the definition of the webapp’s module.
+│    │    ├── static                    # The static contents like css, js etc.
+│    │    │    ├── css                  # contains css files
+│    │    │    ├── images               # contains image files
+│    │    │    ├── js                   # contains JavaScript files
+│    │    ├── templates                 # contains the application’s templates.
+│    │    │    ├── fragments            # contains the reusable fragments of web views.
+│    │    │    │    ├── _base.html      # base/parent contents of html files
+│    │    │    │    ├── _footer.html    # footer's contents
+│    │    │    │    └── _navigation.py  # navigation menu links
+│    │    │    └── __init__.py          # The package initializer
+│    │    ├── __init__.py               # The package initializer
+│    │    ├── app.py                    # The WSGI web application logic.
+│    │    ├── app.py                    # contains the web application logic.
+│    │    ├── routes.py                 # contains the definition of the web’s routes.
+│    ├── __init__.py                    # The package initializer
+│    ├── config.py                      # contains the application configuration parameters.
+│    ├── README.md                  # Instructions and helpful links
+│    └── /
+├── README.md                       # Instructions and helpful links
+├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
+├── <module>                        # The module service
+└── /
 ```
 
 ## Local Development

@@ -11,44 +11,49 @@ developer experience when composing HTTP requests and handling HTML documents.
 
 ## Project Structure
 ```
-    /
-    ├── <modules>                   # The name of the module
-    ├── api                         # The API module
-    │    ├── crawler                # crawler
-    │    ├── indexer                # indexer
-    │    ├── searcher               # searcher
-    │    ├── v1                     # v1 blueprints/endpoints
-    │    ├── __init__.py            # The package initializer
-    │    └── routes.py              # The API routes (blueprints/endpoints)
-    ├── resources                   # The service resources
-    │    ├── images                 # images
-    │    │    ├── __init__.py       # The package initializer
-    │    │    └── __init__.py       # The package initializer
-    │    └── __init__.py            # The package initializer
-    ├── tests                       # The service test-cases
-    │    ├── data                   # data
-    │    ├── __init__.py            # The package initializer
-    │    └── __init__.py            # The package initializer
-    ├── webapp                      # The web server
-    │    ├── static                 # The static contents like css, js etc.
-    │    │    ├── css               # css files
-    │    │    ├── images            # image files
-    │    │    ├── js                # JavaScript files
-    │    │    └── __init__.py       # The package initializer
-    │    ├── templates              # The web templates like fragments, html pages etc.
-    │    │    ├── fragments         # The HTML views/pages
-    │    │    └── __init__.py       # The package initializer
-    │    ├── __init__.py            # The package initializer
-    │    ├── config.py              # The webapp's configuration file
-    │    └── routes.py              # Routes of the webapp UI
-    ├── .env                    # The .env file
-    ├── .gitignore             # The .gitignore file
-    ├── default.env            # The default .env file
-    ├── gunicorn.conf.py       # The gunicorn configurations
-    ├── README.md              # Instructions and helpful links
-    ├── requirements.txt       # The webapp's dependencies/packages
-    ├── robots.txt             # tells which URLs the search engine crawlers can access on your site
-    └── wsgi.py                # the WSGI app
+/
+├── <modules>                       # The name of the module
+├── api                             # The API module
+│    ├── crawler                    # crawler
+│    ├── indexer                    # indexer
+│    ├── searcher                   # searcher
+│    ├── v1                         # v1 blueprints/endpoints
+│    ├── __init__.py                # The package initializer
+│    └── routes.py                  # The API routes (blueprints/endpoints)
+├── resources                       # The service resources
+│    ├── images                     # images
+│    │    ├── __init__.py           # The package initializer
+│    │    └── __init__.py           # The package initializer
+│    └── __init__.py                # The package initializer
+├── tests                           # The service test-cases
+│    ├── data                       # data
+│    ├── __init__.py                # The package initializer
+│    └── __init__.py                # The package initializer
+├── webapp                          # The web server
+│    ├── static                     # The static contents like css, js etc.
+│    │    ├── css                   # css files
+│    │    ├── images                # image files
+│    │    ├── js                    # JavaScript files
+│    │    └── __init__.py           # The package initializer
+│    ├── templates                  # The web templates like fragments, html pages etc.
+│    │    ├── fragments             # The HTML views/pages
+│    │    └── __init__.py           # The package initializer
+│    ├── __init__.py                # The package initializer
+│    ├── config.py                  # The webapp's configuration file
+│    ├── routes.py                  # Routes of the webapp UI
+│    └── /
+├── .env                            # The .env file
+├── .gitignore                      # The .gitignore file
+├── default.env                     # The default .env file
+├── gunicorn.conf.py                # The gunicorn configurations
+├── README.md                       # Instructions and helpful links
+├── requirements.txt                # The webapp's dependencies/packages
+├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
+├── wsgi.py                         # the WSGI app
+├── README.md                       # Instructions and helpful links
+├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
+├── <module>                        # The module service
+└── /
 ```
 
 ## Local Development

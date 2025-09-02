@@ -8,13 +8,16 @@ The ```chatting-service``` allows to connect with anyone using chat-room service
 ---
 
 ```
-    /
-    ├── modules                     # The modules
-    ├── chatting-service
-    |    ├── <service>-iws          # The Chating Service
-    |    ├── webapp                 # The WebApp Service
-    |    └── README.md
-    └── README.md
+/
+├── modules                     # The modules
+├── chatting-service
+│    ├── <service>-iws          # The Chating Service
+│    ├── webapp                 # The WebApp Service
+│    ├── README.md
+│    └── /
+├── README.md
+├── <module>                        # The module service
+└── /
 ```
 
 
