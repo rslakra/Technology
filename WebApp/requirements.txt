@@ -10,7 +10,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==2.1.5
 PyYAML==6.0.2
-requests==2.32.3
+requests==2.32.4
 typing_extensions==4.12.2
 Werkzeug==3.1.3
 
