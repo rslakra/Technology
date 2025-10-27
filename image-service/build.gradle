@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    // Use your desired Spring Boot version
+    id 'org.springframework.boot' version '3.5.6'
+    // A Gradle plugin that provides Maven-like dependency management functionality
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.rslakra.technology'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21' // Use your desired Java version
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'com.h2database:h2:2.3.232'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}

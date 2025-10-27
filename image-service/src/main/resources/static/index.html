@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Image Sharing Service</title>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+<div class="container">
+    <div class="header">
+        <h2 style="text-align: center">Image Sharing Service</h2>
+        <!-- List of Images -->
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created On</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Download URL</th>
+            </tr>
+            </thead>
+            <tbody id="listImagesData"></tbody>
+        </table>
+    </div>
+
+    <div class="upload-content">
+        <!--upload multiple files -->
+        <div class="multiple-upload">
+            <h3>Upload File(s)</h3>
+            <form id="uploadImagesForm" name="uploadImagesForm">
+                <input id="uploadImagesInput" type="file" name="files" class="file-input" multiple required/>
+                <button type="submit" class="primary submit-btn">Submit</button>
+            </form>
+            <div class="response">
+                <div id="uploadImagesError"></div>
+                <div id="uploadImagesSuccess"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/ImageHelper.js"></script>
+</body>
+</html>

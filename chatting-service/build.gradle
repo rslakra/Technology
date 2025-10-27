@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.M7'
+		springBootVersion = '2.7.18'
 	}
 	repositories {
 		mavenCentral()
@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 21
 
 idea {
     module {
@@ -37,13 +37,13 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-websocket')
-	compile("org.webjars:webjars-locator")
-	compile("org.webjars:sockjs-client:1.1.2")
-	compile("org.webjars:stomp-websocket:2.3.3")
-	compile 'org.webjars:js-cookie:2.1.4'
-    compile 'org.webjars:jquery:3.2.1'
-	compile("org.springframework.boot:spring-boot-devtools")
+    implementation ('org.springframework.boot:spring-boot-starter-websocket')
+    implementation("org.webjars:webjars-locator")
+    implementation("org.webjars:sockjs-client:1.1.2")
+    implementation("org.webjars:stomp-websocket:2.3.3")
+    implementation 'org.webjars:js-cookie:2.1.4'
+    implementation 'org.webjars:jquery:3.2.1'
+    implementation("org.springframework.boot:spring-boot-devtools")
 	// providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
