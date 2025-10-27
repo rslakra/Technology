@@ -1,29 +1,30 @@
 package com.rslakra.imageservice.domain;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "Images")
+@Table(name = "images")
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "CreatedOn")
+    @Column(name = "created_on")
     private Date createdOn;
 
-    @Column(name = "Type")
+    @Column(name = "type")
     private String type;
 
     @Lob
     private byte[] data;
 
-    @Column(name = "Size")
+    @Column(name = "size")
     private long size;
 
     /**
@@ -48,11 +49,11 @@ public class Image {
         this.size = size;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -81,9 +78,9 @@ public class ImageController {
     }
 
     @GetMapping(value = "/download/{id}", produces = {"application/json;charset=UTF-8"})
-    public ResponseEntity<Resource> download(@PathVariable Integer id) {
+    public ResponseEntity<Resource> download(@PathVariable Optional<Long> idOptional) {
         // Load file from database
-        Image image = imageService.getImage(id);
+        Image image = imageService.getImage(idOptional);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(image.getType()))

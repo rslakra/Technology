@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ImageService {
@@ -43,10 +44,15 @@ public class ImageService {
     }
 
     /**
-     * @param id
+     * @param idOptional
      * @return
      */
-    public Image getImage(Integer id) {
+    public Image getImage(Optional<Long> idOptional) {
+        if(idOptional.isEmpty()) {
+            throw new RuntimeException("ID should provide!");
+        }
+
+        final Long id = idOptional.get();
         return imageRepository.findById(id)
                 .orElseThrow(() -> new ImageNotFoundException("File not found with id:" + id));
     }
