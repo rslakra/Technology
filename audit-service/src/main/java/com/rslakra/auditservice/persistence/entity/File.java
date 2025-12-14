@@ -2,9 +2,9 @@ package com.rslakra.auditservice.persistence.entity;
 
 import java.util.StringJoiner;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Table;
 
 /**
  * @author Rohtash Lakra

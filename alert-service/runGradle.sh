@@ -7,11 +7,13 @@ clear
 source "$(dirname "$0")/version.sh"
 
 echo
+JAVA_VERSION=21
+export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
 echo "${JAVA_HOME}"
 echo
 SNAPSHOT_VERSION=$(buildVersion SNAPSHOT)
 RELEASE_VERSION=$(buildVersion)
-#java -jar target/account-service-$RELEASE_VERSION.jar
-#mvn clean package -DskipTests
-mvn clean spring-boot:run -Drevision=$RELEASE_VERSION
+#java -jar build/libs/alert-service-$RELEASE_VERSION.jar
+#./gradlew clean build -x test
+./gradlew clean bootRun -Pversion=$RELEASE_VERSION
 echo

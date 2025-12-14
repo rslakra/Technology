@@ -31,15 +31,15 @@ spring:
     open-in-view: false
     show: true
     hibernate:
-      #      ddl-auto: update
-      ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+      # ddl-auto: create-drop
+    # database-platform: org.hibernate.dialect.H2Dialect  # Hibernate auto-detects dialect from JDBC URL
 
   #
   # H2 Database Settings
   #
   datasource:
-    url: jdbc:h2:file:~/Downloads/H2DB/AccountService;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:~/Downloads/H2DB/AccountService;AUTO_SERVER=TRUE
     driverClassName: org.h2.Driver
     username: sa
     password:

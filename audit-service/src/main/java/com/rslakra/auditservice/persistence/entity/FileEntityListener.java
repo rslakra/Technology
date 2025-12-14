@@ -2,11 +2,11 @@ package com.rslakra.auditservice.persistence.entity;
 
 import com.rslakra.auditservice.service.AppContextAware;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
+import jakarta.persistence.PreUpdate;
+import jakarta.transaction.Transactional;
 
 /**
  * @author Rohtash Lakra
