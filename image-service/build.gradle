@@ -1,36 +1,62 @@
+/**
+ * Spring Boot Gradle Build Configuration
+ * Author: Rohtash Lakra
+ */
+
+// Plugins
 plugins {
-    id 'java'
-    // Use your desired Spring Boot version
-    id 'org.springframework.boot' version '3.5.6'
-    // A Gradle plugin that provides Maven-like dependency management functionality
+    id 'org.springframework.boot' version '3.5.7'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
 }
 
+// Project Metadata
 group = 'com.rslakra.technology'
-version = '0.0.1-SNAPSHOT'
+// Version can be passed via -Pversion property from build scripts, otherwise defaults to 0.0.1-SNAPSHOT
+version = project.hasProperty('version') ? project.property('version') : '0.0.1-SNAPSHOT'
 
+// Java Configuration
+// Using toolchain API (Gradle 9.0 compatible) instead of deprecated sourceCompatibility
 java {
-    sourceCompatibility = '21' // Use your desired Java version
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
+// Configuration Settings
+configurations {
+    // Allow compileOnly to extend from annotationProcessor for Lombok support
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+// Repository Configuration
 repositories {
+    mavenLocal()  // Use local Maven repository for AppSuite dependencies
     mavenCentral()
 }
 
+// Dependencies
 dependencies {
+    // Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-    runtimeOnly 'com.h2database:h2:2.3.232'
-
+    
+    // Database Drivers
+    runtimeOnly 'com.h2database:h2'                    // H2 in-memory database
+    runtimeOnly 'com.mysql:mysql-connector-j:9.2.0'    // MySQL database connector
+    
+    // Test Dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test {
+// Test Configuration
+tasks.named('test') {
     useJUnitPlatform()
 }

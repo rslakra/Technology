@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -24,21 +24,13 @@ import java.util.Optional;
  * @created 10/20/22 5:47 PM
  */
 @ExtendWith(SpringExtension.class)
+@Import(HouseService.class)
 public class HouseServiceTest {
-
-    @TestConfiguration
-    static class HouseServiceConfiguration {
-
-        @Bean
-        public HouseService houseService() {
-            return new HouseService();
-        }
-    }
 
     @Autowired
     private HouseService houseService;
 
-    @Autowired
+    @MockitoBean
     private HouseRepository houseRepository;
 
     @BeforeEach
@@ -48,11 +40,21 @@ public class HouseServiceTest {
         House lakra = HouseRepositoryTest.createHouse(3L, "Lakra", false);
         List<House> allHouses = Arrays.asList(rohtash, singh, lakra);
 
+        // Mock save() to return the house with ID set (simulating JPA behavior)
+        Mockito.when(houseRepository.save(Mockito.any(House.class))).thenAnswer(invocation -> {
+            House house = invocation.getArgument(0);
+            if (house.getId() == null) {
+                // If no ID, assign a default one (simulating auto-generation)
+                house.setId(1L);
+            }
+            return house;
+        });
+
         Mockito.when(houseRepository.findById(rohtash.getId())).thenReturn(Optional.of(rohtash));
         Mockito.when(houseRepository.findById(singh.getId())).thenReturn(Optional.of(singh));
         Mockito.when(houseRepository.findById(lakra.getId())).thenReturn(Optional.of(lakra));
         Mockito.when(houseRepository.findAll()).thenReturn(allHouses);
-        Mockito.when(houseRepository.findById(-99L)).thenReturn(null);
+        Mockito.when(houseRepository.findById(-99L)).thenReturn(Optional.empty());
     }
 
     /**
@@ -76,6 +78,9 @@ public class HouseServiceTest {
         assertNotNull(house);
         assertNotNull(house.getId());
 
+        // Mock findById to return the created house
+        Mockito.when(houseRepository.findById(house.getId())).thenReturn(Optional.of(house));
+        
         House found = houseService.findById(house.getId());
         assertNotNull(found);
         assertNotNull(found.getId());

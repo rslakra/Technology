@@ -15,8 +15,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.test.context.TestConstructor.AutowireMode;
+import org.springframework.test.context.TestPropertySource;
 
 @DataJpaTest
+@TestPropertySource(properties = "spring.liquibase.enabled=false")
 @RequiredArgsConstructor
 @TestConstructor(autowireMode = AutowireMode.ALL)
 public class ItemRepositoryTest {
@@ -31,18 +33,22 @@ public class ItemRepositoryTest {
         var house = new House();
         house.setOwner("Rohtash Lakra");
         house.setFullyPaid(true);
-        house = entityManager.persist(house);
+        house = entityManager.persistAndFlush(house);
 
         var item = new Item();
         item.setName("Washing Machine");
-        item.setHouse(entityManager.getEntityManager().getReference(House.class, 1));
-        item = entityManager.persist(item);
+        item.setHouse(house);
+        item = entityManager.persistAndFlush(item);
     }
 
     @Test
     @DisplayName("find item by id")
     void testFindById() {
-        var item = itemRepository.findById(2L);
+        // Find the item by querying for items with the name "Washing Machine"
+        var items = itemRepository.findAll();
+        var item = items.stream()
+            .filter(i -> "Washing Machine".equals(i.getName()))
+            .findFirst();
         var
             condition =
             new Condition<Item>(i -> "Washing Machine".equals(i.getName()), "Name matches 'Washing Machine'");

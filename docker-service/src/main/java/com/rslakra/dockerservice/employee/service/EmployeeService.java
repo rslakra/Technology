@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 
 /**
  * @author Rohtash Lakra
@@ -24,10 +24,10 @@ public class EmployeeService {
     @PostConstruct
     public void init() {
         List<Employee> employees = new ArrayList<>();
-        employees.add(new Employee("Rohtash"));
-        employees.add(new Employee("Singh"));
-        employees.add(new Employee("Lakra"));
-        employees.add(new Employee("Sangita"));
+        employees.add(new Employee("Roh"));
+        employees.add(new Employee("Sin"));
+        employees.add(new Employee("Lak"));
+        employees.add(new Employee("San"));
         employees = employeeRepository.saveAll(employees);
         System.out.println("Employees:" + employees);
     }

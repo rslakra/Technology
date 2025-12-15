@@ -6,17 +6,18 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PostLoad;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PostLoad;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
+import jakarta.persistence.PreUpdate;
+import jakarta.transaction.Transactional;
 
 /**
  * @author Rohtash Lakra
  * @created 8/4/21 6:20 PM
  */
+@SuppressWarnings("unchecked")
 public class EntityOperationListener<E> {
 
     // LOGGER

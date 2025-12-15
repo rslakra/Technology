@@ -34,14 +34,14 @@ spring:
     show: true
     hibernate:
       #      ddl-auto: create-drop
-      database-platform: org.hibernate.dialect.H2Dialect
+      # database-platform: org.hibernate.dialect.H2Dialect  # Hibernate auto-detects dialect from JDBC URL
 
   #
   # H2 Database Settings
   #
-  spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  # spring.jpa.database-platform: org.hibernate.dialect.H2Dialect  # Hibernate auto-detects dialect from JDBC URL
   datasource:
-    url: jdbc:h2:file:~/Downloads/H2DB/LiquibaseService;DB_CLOSE_ON_EXIT=FALSE;
+    url: jdbc:h2:file:~/Downloads/H2DB/LiquibaseService;AUTO_SERVER=TRUE
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -56,6 +56,13 @@ spring:
     console:
       enabled: true
       path: /h2
+
+  #
+  # Thymeleaf Settings
+  # Disable template location check (no templates in this service)
+  #
+  thymeleaf:
+    check-template-location: false
 
   #
   # Liquibase Settings

@@ -39,14 +39,15 @@ spring:
     show: true
     hibernate:
       ddl-auto: create-drop
-      database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
 
   #
   # H2 Database Settings
   #
-  spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   datasource:
-    url: jdbc:h2:file:~/Downloads/H2DB/LiquibaseService;DB_CLOSE_ON_EXIT=FALSE;
+    url: jdbc:h2:file:~/Downloads/H2DB/LiquibaseService;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -63,11 +64,24 @@ spring:
       path: /h2
 
   #
+  # Thymeleaf Settings
+  # Disable template location check (no templates in this service)
+  #
+  thymeleaf:
+    check-template-location: false
+
+  #
   # Liquibase Settings
+  # Disable Liquibase for tests - use Hibernate ddl-auto instead
   #
   liquibase:
-    #    enabled: true
-    drop-first: true
-    change-log: classpath:liquibase/changelog/dbchangelog.xml
-
+    enabled: false
+  
+  #
+  # Auto-configuration Exclusions
+  # Explicitly exclude Liquibase auto-configuration for tests
+  #
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
 
