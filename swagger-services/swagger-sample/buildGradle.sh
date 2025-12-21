@@ -1,8 +1,8 @@
 #!/bin/bash
 # Author: Rohtash Lakra
-clear
 # Source common version function
-source "$(dirname "$0")/version.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../version.sh"
 
 echo
 echo "${JAVA_HOME}"
