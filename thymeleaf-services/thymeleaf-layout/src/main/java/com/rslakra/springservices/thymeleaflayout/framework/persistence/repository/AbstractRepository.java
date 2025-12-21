@@ -3,7 +3,7 @@ package com.rslakra.springservices.thymeleaflayout.framework.persistence.reposit
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @NoRepositoryBean
 @Transactional

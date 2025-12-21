@@ -1,6 +1,6 @@
 package com.rslakra.springservices.thymeleaflayout.framework;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public enum RequestUtils {
     

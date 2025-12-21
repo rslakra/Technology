@@ -9,12 +9,12 @@
     <h1 class="text-center">Home</h1>
 
     <div class="text-body">
-        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">Error: Error</div>
+        <div th:replace="~{fragments/alert :: alert (type='danger', message=${errorMessage})}">Error: Error</div>
     </div>
 
 </div>
 
-<div th:replace="fragments/footer :: footer">Footer</div>
+<div th:replace="~{fragments/footer :: footer}">Footer</div>
 
 </body>
 </html>

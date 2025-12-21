@@ -2,14 +2,21 @@
 
 ## Swagger UI
 
-To verify that Springfox is working, we can visit this URL in our browser:
+This project uses **springdoc-openapi** (compatible with Spring Boot 3) for API documentation.
+
+To verify that springdoc-openapi is working, we can visit this URL in our browser to view the OpenAPI JSON:
 ```shell
-http://localhost:8080/v2/api-docs
+http://localhost:8080/v3/api-docs
 ```
 
-Now we can test it in our browser by visiting:
+Now we can test it in our browser by visiting the Swagger UI:
 ```shell
-http://localhost:8080/swagger-ui/
+http://localhost:8080/swagger-ui.html
+```
+
+Or alternatively:
+```shell
+http://localhost:8080/swagger-ui/index.html
 ```
 
 
@@ -56,24 +63,24 @@ mvn clean package -DskipTests
 ```
 FROM openjdk:21
 VOLUME /tmp
-ADD ./target/employee-service-0.0.1-SNAPSHOT.jar app.jar
+ADD ./target/swagger-sample.jar app.jar
 EXPOSE 8080
 ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
 ```
 
 ## And build docker image
 ```
-docker build -t dockerlakra/employee-service .
+docker build -t dockerlakra/swagger-sample .
 ```
 
 ## Run your docker image and the microservice is up
 ```
-docker run -p 8080:8080 -d --name employee-service dockerlakra/employee-service
+docker run -p 8080:8080 -d --name swagger-sample dockerlakra/swagger-sample
 ```
 
 ## Check Logs
 ```shell
-docker container logs -f employee-service
+docker container logs -f swagger-sample
 ```
 
 ## Or instead of creating Dockerfile we can also use docker-maven-plugin the pom
@@ -90,8 +97,8 @@ docker container logs -f employee-service
       <artifactId>docker-maven-plugin</artifactId>
       <version>0.4.13</version>
       <configuration>
-        <imageName>${docker.image.prefix}/employee-service</imageName>
-        <baseImage>java:21</baseImage>
+        <imageName>${docker.image.prefix}/swagger-sample</imageName>
+        <baseImage>openjdk:21</baseImage>
         <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
         <resources>
           <resource>
@@ -113,33 +120,68 @@ docker container logs -f employee-service
 
 ## Run your docker image and the microservice is up
 ```
-docker run -p 8080:8080 -d --name employee-service dockerlakra/employee-service
+docker run -p 8080:8080 -d --name swagger-sample dockerlakra/swagger-sample
 ```
 
 ## If we want to run your microservice container in docker by linking mysql container in docker instead of directly pointing to url we can do that by below command
 ```shell
-docker run --link mysql-docker --name employee-service -d dockerlakra/employee-service
+docker run --link mysql-docker --name swagger-sample -d dockerlakra/swagger-sample
 ```
 
 OR
 
 ```shell
-docker container run --network=mysql-network --name employee-service -p 8080:8080 -d dockerlakra/employee-service
+docker container run --network=mysql-network --name swagger-sample -p 8080:8080 -d dockerlakra/swagger-sample
 ```
 
 OR
 
 ```shell
-docker container run --network=mysql-network --link mysql-docker --name employee-service -p 8080:8080 -d dockerlakra/employee-service
+docker container run --network=mysql-network --link mysql-docker --name swagger-sample -p 8080:8080 -d dockerlakra/swagger-sample
 ```
 
 ## Remove Docker Services
 ```shell
-docker rm employee-service
+docker rm swagger-sample
+```
+
+## Build Application
+
+### Using Maven
+```shell
+./buildMaven.sh
+```
+
+Or manually:
+```shell
+mvn clean install -DskipTests=true
+```
+
+### Using Gradle
+```shell
+./buildGradle.sh
+```
+
+Or manually:
+```shell
+./gradlew clean build -x test
+```
+
+## Run Application
+
+### Using Maven
+```shell
+./runMaven.sh
+```
+
+### Using Gradle
+```shell
+./runGradle.sh
 ```
 
 ## References
 - [Docker MySQL](https://www.javainuse.com/devOps/docker/docker-mysql)
+- [springdoc-openapi Documentation](https://springdoc.org/)
 
 # Author
 - Rohtash Lakra

@@ -3,9 +3,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <title>Thymeleaf Layout</title>
 
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
     <!-- css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.5/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/core-styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar-styles.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/form-styles.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/modal-dialog.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -15,8 +19,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/login-modal.css}"/>
 
     <!-- js -->
-    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- Bootstrap 5 doesn't require jQuery, but keeping it for other scripts -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/5.3.5/js/bootstrap.bundle.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 <!--    <script type="text/javascript" th:src="@{/js/login-modal.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/modal.js}"></script>

@@ -3,6 +3,7 @@ package com.rslakra.swaggerservice.controller.rest;
 import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.swaggerservice.persistence.entity.File;
 import com.rslakra.swaggerservice.persistence.repository.FileRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +25,8 @@ import java.util.Map;
  * @created 8/4/21 6:47 PM
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("${apiPrefix}/files")
+@Tag(name = "File Service")
 public class FileController {
 
     @Autowired
@@ -36,7 +38,7 @@ public class FileController {
     /**
      * @return
      */
-    @GetMapping("/files")
+    @GetMapping
     public List<File> getAllFiles() {
         return fileRepository.findAll();
     }
@@ -54,7 +56,7 @@ public class FileController {
      * @return
      * @throws NoRecordFoundException
      */
-    @GetMapping("/file/{fileId}")
+    @GetMapping("/{fileId}")
     public ResponseEntity<File> getFileById(@PathVariable(value = "fileId") Long fileId) {
         File file = findFileById(fileId);
         return ResponseEntity.ok().body(file);
@@ -64,7 +66,7 @@ public class FileController {
      * @param file
      * @return
      */
-    @PostMapping("/file")
+    @PostMapping
     public File addFile(@Validated @RequestBody File file) {
         return fileRepository.save(file);
     }
@@ -73,7 +75,7 @@ public class FileController {
      * @param file
      * @return
      */
-    @PutMapping("/file")
+    @PutMapping
     public ResponseEntity<File> updateFile(@Validated @RequestBody File file) {
         File oldFile = findFileById(file.getId());
 
@@ -88,7 +90,7 @@ public class FileController {
      * @param fileId
      * @return
      */
-    @DeleteMapping("/file/{fileId}")
+    @DeleteMapping("/{fileId}")
     public Map<String, Boolean> deleteFile(@PathVariable(value = "fileId") Long fileId) {
         File file = findFileById(fileId);
         fileRepository.delete(file);

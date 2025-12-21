@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @author Rohtash Lakra
@@ -20,6 +21,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Immutable
+@Table(name = "documents")
 public class Document extends Auditable<String> {
 
     @Id
@@ -29,3 +31,4 @@ public class Document extends Auditable<String> {
 
     private Long userId;
 }
+

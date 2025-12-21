@@ -4,7 +4,7 @@ import com.rslakra.springservices.thymeleaflayout.framework.persistence.reposito
 import com.rslakra.springservices.thymeleaflayout.home.persistence.entity.Contact;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @Repository

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.function.Supplier;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Slf4j
 @Controller

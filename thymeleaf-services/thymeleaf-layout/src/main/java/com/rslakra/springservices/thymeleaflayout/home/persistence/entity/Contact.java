@@ -3,9 +3,9 @@ package com.rslakra.springservices.thymeleaflayout.home.persistence.entity;
 import com.rslakra.appsuite.core.ToString;
 import com.rslakra.springservices.thymeleaflayout.framework.persistence.entity.AbstractEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contacts")

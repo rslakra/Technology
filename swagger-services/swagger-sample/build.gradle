@@ -1,0 +1,138 @@
+plugins {
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'java'
+    id 'checkstyle'
+}
+
+group = 'com.rslakra.technology'
+version = project.hasProperty('version') ? project.property('version') : '0.0.0'
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    // Dependency versions
+    lombokVersion = '1.18.36'
+    springdocOpenApiVersion = '2.6.0'
+    junitJupiterVersion = '5.11.4'
+    
+    // Checkstyle configuration
+    codeStylesDir = 'https://raw.githubusercontent.com/rslakra/code-styles/master'
+    checkstyleThreshold = 0
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    // SpringDoc OpenAPI
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocOpenApiVersion}"
+    
+    // Lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    
+    // Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// Checkstyle configuration
+checkstyle {
+    toolVersion = '10.20.1'
+    ignoreFailures = false
+    maxWarnings = project.ext.checkstyleThreshold
+    // Use styles.xml for checking (as per Maven execution phase)
+    configFile = file("${projectDir}/styles.xml")
+    configProperties = [
+        'checkstyle.config.dir': projectDir
+    ]
+}
+
+// Download checkstyle config files from remote URL
+task downloadCheckstyleConfig {
+    doFirst {
+        def checkstyleXml = file("${projectDir}/checkstyle.xml")
+        def checkstyleProps = file("${projectDir}/checkstyle.properties")
+        def stylesXml = file("${projectDir}/styles.xml")
+        
+        // Download checkstyle.xml (initial config)
+        if (!checkstyleXml.exists()) {
+            println "Downloading checkstyle.xml from ${project.ext.codeStylesDir}/checkstyle.xml"
+            try {
+                new URL("${project.ext.codeStylesDir}/checkstyle.xml").withInputStream { i -> 
+                    checkstyleXml.withOutputStream { it << i } 
+                }
+            } catch (Exception e) {
+                println "Warning: Could not download checkstyle.xml: ${e.message}"
+            }
+        }
+        
+        // Download checkstyle.properties
+        if (!checkstyleProps.exists()) {
+            println "Downloading checkstyle.properties from ${project.ext.codeStylesDir}/checkstyle.properties"
+            try {
+                new URL("${project.ext.codeStylesDir}/checkstyle.properties").withInputStream { i -> 
+                    checkstyleProps.withOutputStream { it << i } 
+                }
+            } catch (Exception e) {
+                println "Warning: Could not download checkstyle.properties: ${e.message}"
+            }
+        }
+        
+        // Download styles.xml (used for actual checking, as per Maven execution)
+        if (!stylesXml.exists()) {
+            println "Downloading styles.xml from ${project.ext.codeStylesDir}/styles.xml"
+            try {
+                new URL("${project.ext.codeStylesDir}/styles.xml").withInputStream { i -> 
+                    stylesXml.withOutputStream { it << i } 
+                }
+            } catch (Exception e) {
+                println "Warning: Could not download styles.xml: ${e.message}"
+                println "Checkstyle will be skipped"
+            }
+        }
+    }
+}
+
+tasks.withType(Checkstyle) {
+    dependsOn downloadCheckstyleConfig
+    onlyIf { file("${projectDir}/styles.xml").exists() }
+    showViolations = true
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
+
+// Spring Boot configuration
+springBoot {
+    buildInfo()
+}
+
+// JAR configuration
+jar {
+    enabled = false
+    archiveClassifier = ''
+}
+
+bootJar {
+    archiveBaseName = 'swagger-sample'
+    archiveVersion = project.version
+}
+

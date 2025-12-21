@@ -18,7 +18,7 @@
 <div class="body-container">
     <!-- New User -->
     <div>
-        <a class="button" href="upsertUser.html" th:href="@{/users/create}">New User</a>
+        <a class="button" href="editUser.html" th:href="@{/users/create}">New User</a>
     </div>
 
     <div th:switch="${users}">
@@ -27,12 +27,12 @@
             <tr>
                 <th>ID</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Email</th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
                 <th>Status</th>
+                <th>Roles</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -48,12 +48,17 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"/>
                     <td th:text="${user.userName}"/>
-                    <td th:text="${user.password}" th:type="password"/>
                     <td th:text="${user.email}"/>
                     <td th:text="${user.firstName}"/>
                     <td th:text="${user.middleName}"/>
                     <td th:text="${user.lastName}"/>
                     <td th:text="${user.status}"/>
+                    <td>
+                        <span th:each="role, iterStat : ${user.roles}" 
+                              th:text="${role.name} + (${iterStat.last} ? '' : ', ')">
+                        </span>
+                        <span th:if="${user.roles == null or user.roles.isEmpty()}">-</span>
+                    </td>
                     <td class="action-button">
                         <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
                             <i class="fa fa-pencil" style="font-size:24px;color:red"></i>

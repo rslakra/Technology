@@ -13,7 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Configuration
 @EnableConfigurationProperties(StaticDataProperties.class)

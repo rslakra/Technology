@@ -10,7 +10,7 @@
     <div>
         <form class="form-narrow form-horizontal" method="post" th:action="@{/register}">
             <div th:if="${param.error}">
-                <div th:replace="fragments/alert :: alert (type='danger', message='Sign up error. Please try again.')">Alert</div>
+                <div th:replace="~{fragments/alert :: alert (type='danger', message='Sign up error. Please try again.')}">Alert</div>
                 <div class="alert alert-danger">
                     Invalid user details!
                 </div>
@@ -81,7 +81,7 @@
 
 </div>
 
-<div th:replace="fragments/footer :: footer">Footer</div>
+<div th:replace="~{fragments/footer :: footer}">Footer</div>
 
 <!-- inline script -->
 <script th:inline="javascript" type="text/javascript">

@@ -49,13 +49,13 @@
         <checkstyle.threshold>0</checkstyle.threshold>
 
         <!-- appsuite-core -->
-        <appsuite-core.version>0.0.74</appsuite-core.version>
+        <appsuite-core.version>0.0.103</appsuite-core.version>
 
         <!-- appsuite-spring -->
-        <appsuite-spring.version>0.0.32</appsuite-spring.version>
+        <appsuite-spring.version>0.0.33</appsuite-spring.version>
 
         <!-- lombok -->
-        <lombok.version>1.18.34</lombok.version>
+        <lombok.version>1.18.36</lombok.version>
 
         <!-- swagger -->
         <swagger.skip>false</swagger.skip>
@@ -70,7 +70,7 @@
         <target-resources-path>${project.basedir}/target/generated-resources</target-resources-path>
 
         <!-- junit-jupiter-params -->
-        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
+        <junit-jupiter-params.version>5.11.4</junit-jupiter-params.version>
 
     </properties>
 
@@ -165,7 +165,7 @@
                             <id>default-minify</id>
                             <configuration>
                                 <encoding>UTF-8</encoding>
-                                <sourceDir>js</sourceDir>
+                                <sourceDir>static/js</sourceDir>
                                 <targetDir>static</targetDir>
                                 <includes>**/*.js</includes>
                                 <skipMerge>false</skipMerge>
@@ -191,13 +191,14 @@
                             <goals>
                                 <goal>compile-sass</goal>
                             </goals>
+                            <configuration>
+                                <inputFolder>${project.basedir}/src/main/resources/static/css</inputFolder>
+                                <outputFolder>${project.build.directory}/classes/static/css</outputFolder>
+                                <style>COMPRESSED</style>
+                                <noSourceMap>true</noSourceMap>
+                            </configuration>
                         </execution>
                     </executions>
-                    <configuration>
-                        <outputFolder>${project.build.directory}/classes/static</outputFolder>
-                        <style>COMPRESSED</style>
-                        <noSourceMap>true</noSourceMap>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -218,10 +219,24 @@
             <plugin>
                 <groupId>io.github.cleydyr</groupId>
                 <artifactId>dart-sass-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-css-using-sass</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile-sass</goal>
+                        </goals>
+                        <configuration>
+                            <inputFolder>${project.basedir}/src/main/resources/static/css</inputFolder>
+                            <outputFolder>${project.build.directory}/classes/static/css</outputFolder>
+                            <style>COMPRESSED</style>
+                            <noSourceMap>true</noSourceMap>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 
     <!-- reporting -->
     <reporting>
@@ -239,6 +254,5 @@
             </plugin>
         </plugins>
     </reporting>
-
 
 </project>

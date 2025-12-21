@@ -44,18 +44,36 @@
                     <input type="text" th:field="*{firstName}"
                            name="firstName" placeholder="First Name"/>
                 </label>
+                <label>Middle Name
+                    <input type="text" th:field="*{middleName}"
+                           name="middleName" placeholder="Middle Name"/>
+                </label>                
                 <label>Last Name
                     <input type="text" th:field="*{lastName}"
                            name="lastName" placeholder="Last Name"/>
                 </label>
                 <label>Status
-                    <input type="text" th:field="*{status}"
-                           name="status" placeholder="Status"/>
+                    <select th:field="*{status}" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="INACTIVE">INACTIVE</option>
+                        <option value="DELETED">DELETED</option>
+                    </select>
+                </label>
+                <label>Roles
+                    <select name="roleIds" multiple="multiple" size="5">
+                        <option th:each="role : ${allRoles}" 
+                                th:value="${role.id}" 
+                                th:text="${role.name}"
+                                th:selected="${user.roles != null and user.roles.?contains(role)}">
+                        </option>
+                    </select>
+                    <small>Hold Ctrl (Windows) or Cmd (Mac) to select multiple roles</small>
                 </label>
             </div>
 
             <div class="button-section">
-                <input type="submit" name="Submit"/>
+                <input type="submit" name="Submit" value="Save"/>
             </div>
         </form>
 
