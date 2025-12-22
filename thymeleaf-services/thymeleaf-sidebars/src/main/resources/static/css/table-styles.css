@@ -7,22 +7,24 @@ table {
     /*height: 350px;*/
 }
 
-table > tbody > tr > td, table > thead > tr > th {
+table>tbody>tr>td,
+table>thead>tr>th {
     padding: 10px;
     border-left: 1px dotted var(--primary-color);
     /*line-height: 20px;*/
 }
 
-table > tbody > tr, table > thead > tr {
+table>tbody>tr,
+table>thead>tr {
     border-bottom: 1px solid var(--primary-color);
 }
 
 table th {
     background-color: var(--primary-color);
-    color: var(--body-color);;
+    color: var(--body-color);
 }
 
-ol > li {
+ol>li {
     margin-top: 10px;
 }
 
@@ -138,7 +140,7 @@ td.number {
     border: 1px solid #257C9E;
 }
 
-.table-style h1 > span {
+.table-style h1>span {
     display: block;
     margin-top: 2px;
     font: 13px Arial, Helvetica, sans-serif;
@@ -230,4 +232,3 @@ td.number {
     margin-top: 10px;
     text-align: right;
 }
-

@@ -2,71 +2,78 @@
 <div class="sidebar" th:fragment="sidebar"> <!-- start:sidebar -->
     <div class="sidebar-inner"> <!-- start:sidebar-inner -->
         <!-- profile -->
-        <div class="profile" th:fragment="profile"> <!-- start:profile -->
-            <div class="img">
-                <img th:src="@{/images/rslakra.jpg}" alt="profile_pic">
-            </div>
-            <div class="profile_info">
-                <p>Welcome</p>
-                <p class="profile_name">Rohtash Laka</p>
-            </div>
-        </div> <!-- end:profile -->
-
+        <div th:replace="~{fragments/profile :: profile}">Top Navbar Menu</div>
+        
         <!-- sidebar-navigation -->
-        <div class="left-sidebar"> <!-- start:left-sidebar -->
-            <ul>
-                <li>
-                    <!-- <a href="#" class="active"> -->
-                    <a th:href="@{/}">
-                        <span class="icon"><i class="fas fa-dice-d6"></i></span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/tasks}">
-                        <span class="icon"><i class="fab fa-delicious"></i></span>
-                        <span class="title">Tasks</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/tutorials}">
-                        <span class="icon"><i class="fab fa-elementor"></i></span>
-                        <span class="title">Tutorials</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/reports}">
-                        <span class="icon"><i class="fas fa-chart-pie"></i></span>
-                        <span class="title">Reports</span>
-                    </a>
-                </li>
+        <ul>
+            <li>
+                <!-- <a href="#" class="active"> -->
+                <a th:href="@{/}">
+                    <span class="icon"><i class="fas fa-dice-d6"></i></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/tasks}">
+                    <span class="icon"><i class="fab fa-wpforms"></i></span>
+                    <span class="title">Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/tutorials}">
+                    <span class="icon"><i class="fab fa-elementor"></i></span>
+                    <span class="title">Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/reports}">
+                    <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                    <span class="title">Reports</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/about-us}">
+                    <span class="icon"><i class="fas fa-id-card"></i></span>
+                    <span class="title">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/leads/contact-us}">
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                    <span class="title">Contact Us</span>
+                </a>
+            </li>
+        </ul>
+        
+        <!-- Settings and Version Section -->
+        <div class="sidebar-footer">
+            <!-- Horizontal line -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Footer Menu -->
+            <ul class="sidebar-footer-menu">
+                <!-- Admin Menu Item -->
                 <li>
                     <a th:href="@{/admin}">
                         <span class="icon"><i class="fas fa-user-shield"></i></span>
                         <span class="title">Admin</span>
                     </a>
                 </li>
+                
+                <!-- Settings Menu Item -->
                 <li>
                     <a th:href="@{/settings}">
                         <span class="icon"><i class="fas fa-cog"></i></span>
                         <span class="title">Settings</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/about-us}">
-                        <span class="icon"><i class="fas fa-id-card"></i></span>
-                        <span class="title">About Us</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/leads/contact-us}">
-                        <span class="icon"><i class="fas fa-envelope"></i></span>
-                        <span class="title">Contact Us</span>
-                    </a>
-                </li>
-            </ul>
-        </div> <!-- end:left-sidebar -->
+            </ul>          
+            
+            <!-- Version -->
+            <div class="sidebar-version">
+                <span th:text="${appVersion != null ? appVersion : 'v0.0.1'}">v0.0.1</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-    </div> <!-- end:sidebar-inner -->
-
-</div> <!-- end:sidebar -->

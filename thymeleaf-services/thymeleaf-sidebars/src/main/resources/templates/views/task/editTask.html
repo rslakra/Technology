@@ -1,79 +1,75 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}">
 
 <!-- body -->
+
 <body> <!-- start:body -->
 
-<!-- contents -->
-<section layout:fragment="contents"> <!-- start:section:contents -->
-    <!-- start:contents -->
-    <div class="box-block"> <!-- start:header -->
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
         <!-- start:contents -->
-        <div class="container-fluid"> <!-- start:container-fluid -->
-            <h1 class="text-center">[[${pageTitle}]]</h1>
+        <div class="box-block"> <!-- start:header -->
+            <!-- start:contents -->
+            <h1 class="text-center mb-4">[[${pageTitle}]]</h1>
             <div class="form-container"> <!-- start:form-container -->
                 <form class="form-contents" th:action="@{/tasks/save}" th:object="${task}" method="post"
-                      enctype="multipart/form-data">
-                    <input type="hidden" th:field="*{id}"/>
-                    <div class="row">
-                        <div class="col-25">
-                            <label>Name</label>
-                        </div>
-                        <div class="col-75">
-                            <input class="fomr-control" type="text"
-                                   th:field="*{name}" required placeholder="Name"
-                                   minlength="2" maxlength="128"/>
+                    enctype="multipart/form-data">
+                    <input type="hidden" th:field="*{id}" />
+
+                    <div class="row align-items-center">
+                        <label class="col-sm-2 col-form-label" for="name">Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" th:field="*{name}" required placeholder="Name"
+                                minlength="2" maxlength="128" id="name" />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label" for="description">Description</label>
-                        <div class="col-sm-9">
-                            <input class="form-control" type="text"
-                                   th:field="*{description}" placeholder="Description"
-                                   minlength="2" maxlength="256" id="description"/>
+                    <div class="row align-items-center">
+                        <label class="col-sm-2 col-form-label" for="description">Description</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" th:field="*{description}" placeholder="Description"
+                                minlength="2" maxlength="256" id="description" />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label" for="priority">Priority</label>
-                        <div class="col-sm-9">
-                            <input class="form-control" type="number" step="1"
-                                   th:field="*{priority}" required min="1" id="priority"/>
+                    <div class="row align-items-center">
+                        <label class="col-sm-2 col-form-label" for="priority">Priority</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" step="1" th:field="*{priority}" required min="1"
+                                id="priority" />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 form-check-label" for="completed">Completed</label>
-                        <div class="col-sm-9">
-                            <input type="checkbox" th:field="*{completed}" id="completed"/>
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-sm-2 col-form-label" for="completed">Completed</label>
+                        <div class="col-sm-10 d-flex align-items-center">
+                            <input class="form-check-input me-2" type="checkbox" th:field="*{completed}"
+                                id="completed" />
                         </div>
                     </div>
 
-                    <div class="text-center">
-                        <input class="button btn-primary btn-info" type="submit" value="Save"/>
-                        <input class="btn btn-secondary btn-info" type="button" value="Cancel" id="btnCancel"/>
+                    <!-- <div class="form-check d-flex align-items-center">
+                        <input class="form-check-input me-2" type="checkbox" th:field="*{completed}" id="completed" />
+                        <label class="form-check-label mb-0" for="completed">Completed</label>
+                    </div> -->
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-2">Save</button>
+                        <button type="button" class="btn btn-secondary" id="btnCancel"
+                            th:attr="data-cancel-url=@{/tasks}">Cancel</button>
                     </div>
                 </form>
             </div> <!-- end:form-container -->
 
-        </div> <!-- start:container-fluid -->
+            <!-- end:contents -->
+        </div> <!-- end:header -->
 
-        <!-- end:contents -->
-    </div> <!-- end:header -->
+        <!-- javascript -->
+        <script type="text/javascript" th:src="@{/js/form-actions.js}"></script>
 
-    <!-- javascript -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btnCancel").on("click", function () {
-                window.location = "[[@{/tasks}]]";
-            });
-        });
-    </script>
-
-</section> <!-- end:section:contents -->
+    </section> <!-- end:section:contents -->
 
 </body>
+
 </html>

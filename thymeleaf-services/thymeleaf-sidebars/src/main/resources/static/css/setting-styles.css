@@ -31,3 +31,10 @@ body {
 .nav-pills a.nav-link i {
 	width: 20px;
 }
+
+.img-circle img {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	border: 5px solid #fff;
+}

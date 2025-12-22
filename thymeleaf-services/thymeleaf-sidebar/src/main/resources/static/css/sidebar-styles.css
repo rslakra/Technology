@@ -9,6 +9,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
 
 :root {
     /* ===== Colors ===== */
@@ -19,6 +30,10 @@
     --toggle-color: #DDDDDD;
     --text-color: #707070;
     --font-size: 16px;
+    
+    /* ===== Sidebar Dimensions ===== */
+    --sidebar-width-expanded: 225px;
+    --sidebar-width-collapsed: 80px;
 
     /* ====== Transition ====== */
     --tran-03: all 0.2s ease;
@@ -32,12 +47,17 @@ body {
     background: #eeeeee;
     /*background-color: var(--body-color);*/
     transition: var(--tran-05);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 
 .wrapper {
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .top_navbar {
@@ -46,7 +66,12 @@ body {
     display: flex;
     position: fixed;
     width: 100%;
+    max-width: 100%;
     top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
 .top_navbar .hamburger {
@@ -105,18 +130,29 @@ body {
 
 .top_navbar .menu .right_menu ul li {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
 }
 
+.top_navbar .menu .right_menu ul li i.fas,
 .top_navbar .menu .right_menu ul li .fas {
     font-size: 22px;
     cursor: pointer;
     color: var(--body-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
-.top_navbar .menu .right_menu ul li .profile_dd {
+.top_navbar .menu .right_menu ul li .profile-menu {
     position: absolute;
-    top: 35px;
-    right: -10px;
+    top: 45px;
+    right: 0px;
     background: #fff;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     padding: 10px 0;
@@ -126,21 +162,26 @@ body {
     user-select: none;
 }
 
-.top_navbar .menu .right_menu ul li .profile_dd.active {
+.top_navbar .menu .right_menu ul li .profile-menu.active {
     display: block;
 }
 
-.top_navbar .menu .right_menu ul li .profile_dd .dd_item {
+.top_navbar .menu .right_menu ul li .profile-menu .profile-menu-item {
+    display: block;
     padding: 10px;
     cursor: pointer;
     color: #004D40;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
 }
 
-.top_navbar .menu .right_menu ul li .profile_dd .dd_item:hover {
+.top_navbar .menu .right_menu ul li .profile-menu .profile-menu-item:hover {
     background: #E0F2F1;
+    text-decoration: none;
+    color: #004D40;
 }
 
-.top_navbar .menu .right_menu ul li .profile_dd:before {
+.top_navbar .menu .right_menu ul li .profile-menu:before {
     content: "";
     position: absolute;
     top: -20px;
@@ -149,18 +190,124 @@ body {
     border-color: transparent transparent #fff transparent;
 }
 
+/* Breadcrumb Bar - positioned below top navbar */
+.breadcrumb-bar {
+    position: fixed;
+    top: 60px; /* Below the top navbar */
+    left: var(--sidebar-width-expanded);
+    right: 0;
+    width: calc(100% - var(--sidebar-width-expanded));
+    z-index: 999;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Adjust breadcrumb bar when sidebar is collapsed */
+.wrapper.active .breadcrumb-bar {
+    left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+}
+
+.main_container {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    /*margin-top: 100px;*/ /* Account for top navbar (60px) + breadcrumb bar (40px) */
+}
+
+/* Adjust breadcrumb bar when sidebar is collapsed */
+.wrapper.active .breadcrumb-bar {
+    /* margin-left: var(--sidebar-width-collapsed); */
+    width: calc(100% - var(--sidebar-width-collapsed));
+}
+
 .main_container .sidebar {
     position: fixed;
     top: 60px;
     left: 0;
-    width: 225px;
-    height: 100%;
+    bottom: 0;
+    width: var(--sidebar-width-expanded);
     background: var(--primary-color);
-    transition: all 0.3s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Default expanded state */
+.wrapper:not(.active) .sidebar {
+    width: var(--sidebar-width-expanded);
+}
+
+/* Prevent transition on initial load to avoid flicker */
+.wrapper:not(.sidebar-ready) .sidebar,
+.wrapper:not(.sidebar-ready) .main_container .container {
+    transition: none !important;
+}
+
+/* Enable smooth transitions after state is applied */
+.wrapper.sidebar-ready .sidebar {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper.sidebar-ready .main_container .container {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Collapsed state - CSS handles all the styling and transitions */
+.wrapper.active .sidebar {
+    width: var(--sidebar-width-collapsed);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper.active .sidebar ul li a {
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    margin: 0;
+}
+
+.wrapper.active .sidebar ul li a .icon {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper.active .sidebar ul li a span.title,
+.wrapper.active .profile_info {
+    display: none;
+}
+
+.wrapper.active .main_container .container {
+    margin-left: var(--sidebar-width-collapsed);
+    margin-right: 0;
+    width: calc(100vw - var(--sidebar-width-collapsed));
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.wrapper.active .sidebar .sidebar-inner {
+    display: flex;
+    flex-direction: column;
 }
 
 .main_container .sidebar .sidebar-inner {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Ensure ol, ul have no padding-left for proper alignment */
+.main_container .sidebar ol,
+.main_container .sidebar ul {
+    padding-left: 0;
 }
 
 .main_container .sidebar .profile {
@@ -178,6 +325,10 @@ body {
 
 .main_container .sidebar .profile img {
     width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
 }
 
 .main_container .sidebar .profile p:first-child {
@@ -186,12 +337,19 @@ body {
     margin-bottom: 3px;
 }
 
+.main_container .sidebar .profile .profile_name {
+    margin-bottom: 0;
+}
+
 .main_container .container {
-    margin-top: 60px;
-    width: calc(100% - 225px);
-    margin-left: 225px;
+    margin-top: 100px; /* Account for top navbar (60px) + breadcrumb bar (40px) */
+    margin-left: var(--sidebar-width-expanded);
+    margin-right: 0;
+    width: calc(100vw - var(--sidebar-width-expanded));
+    max-width: 100%;
     padding: 16px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .main_container .sidebar ul li a {
@@ -201,6 +359,7 @@ body {
     white-space: nowrap;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     margin-bottom: 1px;
     transition: all 0.3s ease;
 }
@@ -208,6 +367,10 @@ body {
 .main_container .sidebar ul li a .icon {
     margin-right: 15px;
     font-size: 28px;
+    min-width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main_container .sidebar ul li a span {
@@ -220,6 +383,92 @@ body {
     color: #004D40;
 }
 
+/* Ensure active state works in collapsed sidebar too */
+.wrapper.active .sidebar ul li a.active {
+    background: #fff;
+    color: #004D40;
+}
+
+/* Sidebar Footer Section (Settings and Version) */
+.main_container .sidebar .sidebar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main_container .sidebar .sidebar-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 2);
+    margin: 16px 8px;
+    padding: 0;
+    height: 1px;
+    min-height: 1px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.main_container .sidebar .sidebar-footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main_container .sidebar .sidebar-footer-menu li a {
+    color: #fff;
+    font-size: var(--font-size);
+    padding: 16px 24px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+}
+
+.main_container .sidebar .sidebar-footer-menu li a:hover,
+.main_container .sidebar .sidebar-footer-menu li a.active {
+    background: #fff;
+    color: #004D40;
+}
+
+.main_container .sidebar .sidebar-version {
+    padding: 12px 24px;
+    color: rgba(255, 255, 255, 1) !important;
+    font-size: 12px;
+    text-align: center;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.main_container .sidebar .sidebar-version span {
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100%;
+}
+
+/* Adjust version padding when sidebar is collapsed */
+.wrapper.active .main_container .sidebar .sidebar-version {
+    padding: 12px 8px;
+    font-size: 10px;
+}
+
 .main_container .container .item {
     background: #fff;
     border: 1px solid #E0F2F1;
@@ -227,19 +476,5 @@ body {
     padding: 24px;
     font-size: var(--font-size);
     line-height: 24px;
-}
-
-/* after adding active class */
-.wrapper.active .sidebar {
-    width: 80px;
-}
-
-.wrapper.active .sidebar ul li a span.title,
-.wrapper.active .profile_info {
-    display: none;
-}
-
-.wrapper.active .main_container .container {
-    width: calc(100% - 80px);
-    margin-left: 80px;
+    box-sizing: border-box;
 }

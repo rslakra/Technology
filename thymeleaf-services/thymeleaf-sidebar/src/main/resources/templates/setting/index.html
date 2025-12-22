@@ -11,11 +11,8 @@
 
 <body>
 <div class="wrapper"> <!-- start:wrapper -->
-    <!-- top_navbar -->
-    <div class="top_navbar"> <!-- start:top_navbar -->
-        <div th:replace="~{fragments/hamburger :: hamburger}">Hamburger</div>
-        <div th:replace="~{fragments/top-navbar-menu :: top-navbar-menu}">Top Navbar Menu</div>
-    </div> <!-- end:top_navbar -->
+    <!-- Header with top navbar and breadcrumb -->
+    <div th:replace="~{fragments/header :: header}">Header</div>
 
     <!-- main_container -->
     <div class="main_container"> <!-- start:main_container -->
@@ -55,19 +52,19 @@
                                     <div class="tab-pane fade active show left-align" id="account-general">
                                         <div class="card-body media align-items-center">
                                             <img th:src="@{images/rslakra.jpg}" alt="User"
-                                                 class="d-block profile-photo">
-                                            <div class="media-body ml-4">
-                                                <label class="btn btn-outline-primary">
-                                                    Upload new photo
-                                                    <input type="file" class="account-settings-fileinput">
-                                                </label> &nbsp;
-                                                <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-
-                                                <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of
-                                                    800K
+                                                 class="profile-photo">
+                                            <div class="media-body">
+                                                <div class="mb-2">
+                                                    <label class="btn btn-outline-primary">
+                                                        Upload new photo
+                                                        <input type="file" class="account-settings-fileinput">
+                                                    </label>
+                                                    <button type="button" class="btn btn-default md-btn-flat ml-2">Reset</button>
                                                 </div>
+                                                <div class="text-muted small">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                             </div>
                                         </div>
+                                        <!-- card-body -->
                                         <hr class="border-light m-0">
                                         <div class="card-body">
                                             <div class="form-group">
@@ -124,7 +121,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Country</label>
-                                                <select class="custom-select">
+                                                <select class="form-select">
                                                     <option>USA</option>
                                                     <option selected="">Canada</option>
                                                     <option>UK</option>
@@ -180,28 +177,36 @@
                                     <!-- account-connections -->
                                     <div class="tab-pane fade left-align" id="account-connections">
                                         <div class="card-body">
-                                            <button type="button" class="btn btn-twitter">Connect to
-                                                <strong>Twitter</strong></button>
+                                            <button type="button" class="btn btn-twitter">
+                                                Connect to <strong>Twitter</strong>
+                                            </button>
                                         </div>
                                         <hr class="border-light m-0">
                                         <div class="card-body">
-                                            <h5 class="mb-2">
-                                                <a href="javascript:void(0)" class="float-right text-muted text-tiny"><i
-                                                        class="ion ion-md-close"></i> Remove</a>
-                                                <i class="ion ion-logo-google text-google"></i>
-                                                You are connected to Google:
-                                            </h5>
-                                            rslakra@gmail.com
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div class="account-connection-content">
+                                                    <h5 class="mb-1">
+                                                        <i class="fab fa-google text-google"></i>
+                                                        <span>You are connected to Google:</span>
+                                                    </h5>
+                                                    <div class="account-connection-email">rslakra@gmail.com</div>
+                                                </div>
+                                                <a href="javascript:void(0)" class="text-muted text-tiny account-connection-remove">
+                                                    <i class="fas fa-times"></i> Remove
+                                                </a>
+                                            </div>
                                         </div>
                                         <hr class="border-light m-0">
                                         <div class="card-body">
-                                            <button type="button" class="btn btn-facebook">Connect to
-                                                <strong>Facebook</strong></button>
+                                            <button type="button" class="btn btn-facebook">
+                                                Connect to <strong>Facebook</strong>
+                                            </button>
                                         </div>
                                         <hr class="border-light m-0">
                                         <div class="card-body">
-                                            <button type="button" class="btn btn-instagram">Connect to
-                                                <strong>Instagram</strong></button>
+                                            <button type="button" class="btn btn-instagram">
+                                                Connect to <strong>Instagram</strong>
+                                            </button>
                                         </div>
                                     </div>
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Alert Fragment -->
+<!-- Usage: <div th:replace="~{fragments/alert :: alert (type=${'success'}, message=${message})}"></div> -->
+<!-- Usage: <div th:replace="~{fragments/alert :: alert (type=${'danger'}, message=${errorMessage})}"></div> -->
+<div th:fragment="alert (type, message)">
+    <div th:if="${message != null}" th:classappend="${'alert-' + (type != null ? type : 'success')}"
+        class="alert alert-dismissible fade show text-center mb-3" role="alert">
+        <span th:text="${message}">Message</span>
+        <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+
+</html>

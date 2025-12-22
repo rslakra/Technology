@@ -1,100 +1,105 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}">
 
 <!-- body -->
+
 <body> <!-- start:body -->
 
-<!-- contents -->
-<section layout:fragment="contents"> <!-- start:section:contents -->
-    <div class="box-block">  <!-- start:box-block -->
-        <h1 class="text-center">Contact Us</h1>
-        <form class="form-contents" method="post" enctype="multipart/form-data"
-              th:action="@{/leads/save}" th:object="${lead}">
-            <input type="hidden" th:field="*{id}"/>
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
+        <div class="box-block"> <!-- start:box-block -->
+            <h1 class="text-center mb-4">Contact Us</h1>
+            <div class="form-container">
+                <form class="form-contents" method="post" enctype="multipart/form-data" th:action="@{/leads/save}"
+                    th:object="${lead}">
+                    <input type="hidden" th:field="*{id}" />
 
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" th:field="*{email}" required placeholder="Email">
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-sm-3 col-form-label" for="email">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" name="email" th:field="*{email}"
+                                required placeholder="Email">
+                        </div>
+                    </div>
 
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" placeholder="First Name">
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-sm-3 col-form-label" for="firstName">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="firstName" name="firstName"
+                                th:field="*{firstName}" placeholder="First Name">
+                        </div>
+                    </div>
 
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" placeholder="Last Name">
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-sm-3 col-form-label" for="lastName">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}"
+                                placeholder="Last Name">
+                        </div>
+                    </div>
 
-            <label for="country">Country</label>
-            <select id="country" name="country" th:field="*{country}">
-                <option value="australia">India</option>
-                <option value="canada">Canada</option>
-                <option value="usa">USA</option>
-            </select>
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-sm-3 col-form-label" for="country">Country</label>
+                        <div class="col-sm-9">
+                            <select class="form-select" id="country" name="country" th:field="*{country}">
+                                <option value="">Select Country</option>
+                                <option value="india">India</option>
+                                <option value="canada">Canada</option>
+                                <option value="usa">USA</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <label for="message">Message</label>
-            <textarea class="lead-message" id="message" name="message" th:field="*{message}"
-                      placeholder="Write something... "></textarea>
-            <input type="submit" value="Submit">
-        </form>
-    </div><!-- end:box-block -->
+                    <div class="mb-3 row align-items-start">
+                        <label class="col-sm-3 col-form-label" for="message">Message</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="message" name="message" th:field="*{message}" rows="5"
+                                placeholder="Write something..."></textarea>
+                        </div>
+                    </div>
 
-</section> <!-- end:section:contents -->
-
-
-<!-- inline script -->
-<script th:inline="javascript" type="text/javascript">
-    /* Fill in modal with content loaded with Ajax */
-    $(document).ready(function () {
-
-        /**
-         * Sign-In Button
-         */
-        $('#btnSignIn').on('click', function (e) {
-            e.preventDefault();
-            $("#myModal").modal();
-            $("#myModalBody").text("");
-            $.ajax({
-                url: "signup",
-                cache: false
-            }).done(function (html) {
-                $("#myModalBody").append(html);
-            });
-        });
-
-        /**
-         * Sign-Up Button
-         */
-        $('#btnSignUp').on('click', function (e) {
-            e.preventDefault();
-            $("#myModal").modal();
-            $("#myModalBody").text("");
-            $.ajax({
-                url: "signup",
-                cache: false
-            }).done(function (html) {
-                $("#myModalBody").append(html);
-            });
-        });
-
-    });
-</script>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Signup</h4>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-body" id="myModalBody">Model Body</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div><!-- end:box-block -->
 
-</div> <!-- end:container -->
+    </section> <!-- end:section:contents -->
+
+
+    <!-- inline script -->
+    <script th:inline="javascript" type="text/javascript">
+        /* Fill in modal with content loaded with Ajax */
+        $(document).ready(function () {
+
+            /**
+             * Sign-In Button
+             */
+            // Modal handlers are managed by modals.js
+            // Use data attributes to configure modal behavior
+            $('#btnSignIn').attr({
+                'data-modal': 'myModal',
+                'data-modal-title': 'Sign In',
+                'data-modal-url': 'signup'
+            });
+
+            $('#btnSignUp').attr({
+                'data-modal': 'myModal',
+                'data-modal-title': 'Sign Up',
+                'data-modal-url': 'signup'
+            });
+
+        });
+    </script>
+
+    <!-- Modal Dialogs -->
+    <div th:replace="~{fragments/modal-dialogs :: modal-dialogs}"></div>
+
+    </div> <!-- end:container -->
 
 </body>
+
 </html>

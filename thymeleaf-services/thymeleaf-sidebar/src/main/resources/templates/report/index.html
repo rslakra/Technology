@@ -4,11 +4,8 @@
 
 <body>
 <div class="wrapper">
-    <!-- top_navbar -->
-    <div class="top_navbar">
-        <div th:replace="~{fragments/hamburger :: hamburger}">Hamburger</div>
-        <div th:replace="~{fragments/top-navbar-menu :: top-navbar-menu}">Top Navbar Menu</div>
-    </div>
+    <!-- Header with top navbar and breadcrumb -->
+    <div th:replace="~{fragments/header :: header}">Header</div>
 
     <!-- main_container -->
     <div class="main_container">

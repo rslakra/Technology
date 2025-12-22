@@ -53,25 +53,26 @@ input[type=search]:focus,
 
 /* Set a style for the submit/login button */
 .form-container .form-button {
-    margin: 20px;
+    margin: 0;
     /* background color */
-    background-color: var(--button-background-color);
+    background-color: var(--button-background-color, var(--primary-color));
     /* text color */
     color: var(--body-color);
     border: none;
     /* round-up the edges of the button */
     border-radius: 10px;
     /* a slight dark shadow effect around the button */
-    box-shadow: 0px 0px 1px 1px var(--button-background-color);
+    box-shadow: 0px 0px 1px 1px var(--button-background-color, var(--primary-color));
 
-    padding: 16px 24px;
+    padding: 12px 24px;
     min-height: 48px;
-    min-width: 32px;
+    min-width: 80px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 /* Add a red background color to the cancel button */
@@ -117,7 +118,7 @@ input[type=search]:focus,
     border: 1px solid #257C9E;
 }
 
-.form-contents h1 > span {
+.form-contents h1>span {
     display: block;
     margin-top: 2px;
     font: 13px Arial, Helvetica, sans-serif;
@@ -127,11 +128,11 @@ input[type=search]:focus,
     display: block;
     font: 16px Arial, Helvetica, sans-serif;
     color: var(--text-color);
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 
 .form-contents input[type="button"],
-.form-contents input[type="checkbox"],
+.form-contents input[type="checkbox"]:not(.form-check-input),
 .form-contents input[type="color"],
 .form-contents input[type="date"],
 .form-contents input[type="datetime"],
@@ -243,15 +244,24 @@ input[type=search]:focus,
 /* Style inputs with type="text", select elements and text-area */
 input[type=text],
 input[type=search],
-select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+select,
+textarea {
+    width: 100%;
+    /* Full width */
+    padding: 12px;
+    /* Some padding */
+    border: 1px solid #ccc;
+    /* Gray border */
+    border-radius: 4px;
+    /* Rounded borders */
+    box-sizing: border-box;
+    /* Make sure that padding and width stays in place */
+    margin-top: 6px;
+    /* Add a top margin */
+    margin-bottom: 16px;
+    /* Bottom margin */
+    resize: vertical;
+    /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
 /* Style the submit button with a specific background color etc */
@@ -289,7 +299,6 @@ input[type=submit]:hover {
     margin: auto;
     vertical-align: middle;
     text-align: center;
-
     position: relative;
     cursor: pointer;
     font-size: 22px;
@@ -315,8 +324,8 @@ input[type=submit]:hover {
     margin-left: -20px;
 }
 
-.radio + .radio,
-.checkbox + .checkbox {
+.radio+.radio,
+.checkbox+.checkbox {
     margin-top: -5px;
 }
 
@@ -330,10 +339,41 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
-.radio-inline + .radio-inline,
-.checkbox-inline + .checkbox-inline {
+.radio-inline+.radio-inline,
+.checkbox-inline+.checkbox-inline {
     margin-top: 0;
     margin-left: 10px;
+}
+
+/* Bootstrap form-check-input styling - override form-contents rules */
+.form-check-input,
+.form-contents .form-check-input {
+    width: 1.25em !important;
+    height: 1.25em !important;
+    margin-top: 0.125em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    flex-shrink: 0;
+    display: inline-block !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color, #0d61b4);
+    border-color: var(--primary-color, #0d61b4);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 97, 180, 0.25);
 }
 
 /*input[type="radio"][disabled],*/
