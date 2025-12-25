@@ -1,7 +1,7 @@
 <div class="top_navbar" th:fragment="top-navbar">
     <!-- hamburger -->
     <div class="hamburger">
-        <div class="hamburger-inner">
+        <div class="hamburger__inner">
             <div class="one"></div>
             <div class="two"></div>
             <div class="three"></div>
@@ -16,10 +16,10 @@
         <div class="right_menu">
             <ul>
                 <li><i class="fas fa-user"></i>
-                    <div class="profile_dd">
-                        <div class="dd_item">Profile</div>
-                        <div class="dd_item">Change Password</div>
-                        <div class="dd_item">Logout</div>
+                    <div class="navbar-right-profile">
+                        <div class="navbar-profile-item" data-action="profile">Profile</div>
+                        <div class="navbar-profile-item" data-action="password">Change Password</div>
+                        <div class="navbar-profile-item" data-action="logout">Logout</div>
                     </div>
                 </li>
             </ul>

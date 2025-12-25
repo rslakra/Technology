@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layouts/layout-v1 :: main-fragment(
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/layout-v1 :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #home-static-resources},
                                                 ~{:: #home-header},
@@ -17,19 +16,29 @@
         <!-- Other static resource files -->
     </th:block>
 </head>
+
 <body>
-<div id="home-header">
-    Header of Home Page
-</div>
-<div id="home-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
-    Home Nav
-</div>
-<div id="home-main-content">
-    <h2>Home</h2>
-    <div>Content of Home Page</div>
-</div>
-<div id="home-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
-    Footer
-</div>
+    <div id="home-header">
+        Header of Home Page
+    </div>
+    <div id="home-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
+        Home Nav
+    </div>
+    <div id="home-main-content">
+        <h2>Home</h2>
+        <div>Content of Home Page</div>
+        <div>The concept of a "web application" was first introduced in the Java language in the Servlet Specification
+            version 2.2, which was released in 1999. At that time, both JavaScript and XML had already been developed,
+            but the XMLHttpRequest object had only been recently introduced on Internet Explorer 5 as an ActiveX
+            object.[citation needed] Beginning around the early 2000s, applications such as "Myspace (2003), Gmail
+            (2004), Digg (2004), [and] Google Maps (2005)," started to make their client sides more and more
+            interactive. A web page script is able to contact the server for storing/retrieving data without downloading
+            an entire web page. The practice became known as Ajax in 2005. Eventually this was replaced by web APIs
+            using JSON, accessed via JavaScript asynchronously on the client side.</div>
+    </div>
+    <div id="home-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
+        Footer
+    </div>
 </body>
+
 </html>

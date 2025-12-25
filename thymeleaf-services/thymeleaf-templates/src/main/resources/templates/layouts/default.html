@@ -1,69 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<!-- head -->
-<head> <!-- start:head -->
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
 
-    <!-- css -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
     <!-- Bootstrap CSS -->
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
-    <!-- Core CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/core-styles.css}"/>
-    <!-- Modal CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/modal-styles.css}"/>
-    <!-- SideBar-Menu CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/sidebar-styles.css}"/>
-    <!-- Form CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/form-styles.css}"/>
-    <!-- Table CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/table-styles.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-            crossorigin="anonymous"></script>
-    <!-- bootstrap -->
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="https://kit.fontawesome.com/ad03d7b147.js"></script>
+<body>
 
-</head> <!-- end:head -->
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <a class="navbar-brand" th:href="@{/}">Lakra Inc</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<!-- body -->
-<body> <!-- start:body -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact-us}">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/sign-in}">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="wrapper"> <!-- start:wrapper -->
-    <!-- top_navbar -->
-    <div th:replace="~{fragments/top-navbar :: top-navbar}">Top Navbar</div>
+    <!-- Contents Section -->
+    <section layout:fragment="contents">
+        <p>Filled with the contents' template.</p>
+    </section>
 
-    <!-- main_container -->
-    <div class="main_container"> <!-- start:main_container -->
-        <!-- sidebar -->
-        <div th:replace="~{fragments/sidebar :: sidebar}">Sidebar</div>
+    <!-- Footer -->
+    <footer class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div>
+            &copy; 2023 Lakra Inc. All rights reserved.
+        </div>
+    </footer>
 
-        <div class="container"> <!-- start:container -->
-            <!-- start:contents -->
-            <section layout:fragment="contents">
-                <!-- Contents Section -->
-                <p>Filled with the contents template.</p>
-            </section>
-            <!-- end:contents -->
-        </div> <!-- start:container -->
+    <!-- Optional Section -->
+    <th:block layout:fragment="optional" />
 
-    </div> <!-- end:main_container -->
-</div> <!-- end:wrapper -->
+</body>
 
-<!-- footer -->
-<div th:replace="~{fragments/footer :: footer}">footer</div>
-
-<!-- Optional Section -->
-<th:block layout:fragment="optional"/>
-
-</body> <!-- end:body -->
-</html> <!-- end:html -->
+</html>

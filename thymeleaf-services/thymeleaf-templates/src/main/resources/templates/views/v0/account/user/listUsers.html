@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout-v0}">
+
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
+
+        <!-- start:contents -->
+        <header class="box-block"> <!-- start:header -->
+            <!-- start:contents -->
+            <h1 class="text-center">Users</h1>
+
+            <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+                role="alert">
+                [[${message}]]
+                <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="form-container"> <!-- start:form-container -->
+                <form class="form-contents" th:action="@{/v0/users}">
+                    <div class="row">
+                        <!-- left-column -->
+                        <div class="column">
+                            <div class="flex-container">
+                                <input type="text" id="keyword" name="keyword" th:value="${keyword}" required
+                                    placeholder="Search ...">
+                                <button class="form-button" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- right-column -->
+                        <div class="column">
+                            <button class="form-button" id="btnClearUser">Clear</button>
+                            <button class="form-button" id="btnAddUser">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- end:form-container -->
+
+        </header>
+
+        <div class="box-block"> <!-- start:box-block -->
+            <div th:if="${users != null and users.size() > 0}">
+                <table class="table-style">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <th scope="row">[[${user.id}]]</th>
+                            <td>[[${user.name}]]</td>
+                            <td>[[${user.email}]]</td>
+                            <td>
+                                <i class="fa fa-pencil"></i>
+                                <a th:href="@{'/v0/users/' + ${user.id}}" title="Edit User"></a>
+                                &nbsp;
+                                <i class="fa fa-delete"></i>
+                                <a th:href="@{'/v0/users/delete/' + ${user.id}}" th:userTitle="${user.name}"
+                                    class="btn-delete" title="Delete User"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:unless="${users != null and users.size() > 0}">
+                <span>No users found!</span>
+            </div>
+
+
+            <div class="modal fade text-center" id="confirmModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <span id="confirmText"></span>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end:contents -->
+        </div> <!-- end:box-block -->
+
+        <!-- javascript -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".btn-delete").on("click", function (e) {
+                    e.preventDefault();
+                    link = $(this);
+
+                    userTitle = link.attr("userTitle");
+                    $("#yesBtn").attr("href", link.attr("href"));
+                    $("#confirmText").html("Do you want to delete the user \<strong\>" + userTitle + "\<\/strong\>?");
+                    $("#confirmModal").modal();
+                });
+
+                $("#btnClearUser").on("click", function (e) {
+                    e.preventDefault();
+                    $("#keyword").val("");
+                    window.location = "[[@{/v0/users}]]";
+                });
+
+                $("#btnAddUser").on("click", function (e) {
+                    e.preventDefault();
+                    window.location = "[[@{/v0/users/add}]]";
+                });
+            });
+        </script>
+
+    </section> <!-- end:section:contents -->
+
+</body>
+
+</html>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +37,7 @@ public class FaviconConfiguration {
     protected ResourceHttpRequestHandler faviconRequestHandler() {
         ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
         requestHandler.setLocations(Arrays.asList(new ClassPathResource("/static/images/")));
+        requestHandler.setResourceResolvers(Arrays.asList(new PathResourceResolver()));
         return requestHandler;
     }
 }

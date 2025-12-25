@@ -2,12 +2,18 @@ package com.rslakra.thymeleaf.web.filter;
 
 import com.rslakra.thymeleaf.persistence.entities.User;
 import com.rslakra.thymeleaf.web.application.ThymeleafApplication;
-import com.rslakra.thymeleaf.web.controller.ThymeleafController;
+import com.rslakra.thymeleaf.web.controller.thymeleaf.ThymeleafController;
 import org.thymeleaf.ITemplateEngine;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ThymeleafFilter implements Filter {
@@ -67,10 +73,38 @@ public class ThymeleafFilter implements Filter {
             throws ServletException {
         
         try {
+            // Get the request path without context path (similar to ThymeleafApplication.getRequestPath)
+            String requestURI = request.getRequestURI();
+            final String contextPath = request.getContextPath();
+            
+            // Remove context path if present
+            if (requestURI.startsWith(contextPath)) {
+                requestURI = requestURI.substring(contextPath.length());
+            }
+            
+            // Remove any path parameters (e.g., ;jsessionid=...)
+            final int fragmentIndex = requestURI.indexOf(';');
+            if (fragmentIndex != -1) {
+                requestURI = requestURI.substring(0, fragmentIndex);
+            }
+            
             // This prevents triggering engine executions for resource URLs
-            if (request.getRequestURI().startsWith("/css") ||
-                    request.getRequestURI().startsWith("/images") ||
-                    request.getRequestURI().startsWith("/favicon")) {
+            if (requestURI.startsWith("/css") ||
+                    requestURI.startsWith("/images") ||
+                    requestURI.startsWith("/favicon") ||
+                    requestURI.startsWith("/js") ||
+                    requestURI.endsWith(".css") ||
+                    requestURI.endsWith(".js") ||
+                    requestURI.endsWith(".png") ||
+                    requestURI.endsWith(".jpg") ||
+                    requestURI.endsWith(".jpeg") ||
+                    requestURI.endsWith(".gif") ||
+                    requestURI.endsWith(".ico") ||
+                    requestURI.endsWith(".svg") ||
+                    requestURI.endsWith(".woff") ||
+                    requestURI.endsWith(".woff2") ||
+                    requestURI.endsWith(".ttf") ||
+                    requestURI.endsWith(".eot")) {
                 return false;
             }
             
@@ -101,7 +135,7 @@ public class ThymeleafFilter implements Filter {
              * Execute the controller and process view template,
              * writing the results to the response writer.
              */
-            controller.process(request, response, this.servletContext, templateEngine);
+            controller.process(request, response);
             return true;
         } catch (Exception ex) {
             try {

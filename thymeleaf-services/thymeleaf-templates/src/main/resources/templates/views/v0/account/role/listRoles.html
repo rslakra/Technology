@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout-v0}">
+
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
+
+        <!-- start:contents -->
+        <header class="box-block"> <!-- start:header -->
+            <!-- start:contents -->
+            <h1 class="text-center">Roles</h1>
+
+            <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+                role="alert">
+                [[${message}]]
+                <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="form-container"> <!-- start:form-container -->
+                <form class="form-contents" th:action="@{/v0/roles}">
+                    <div class="row">
+                        <!-- left-column -->
+                        <div class="column">
+                            <div class="flex-container">
+                                <input type="text" id="keyword" name="keyword" th:value="${keyword}" required
+                                    placeholder="Search ...">
+                                <button class="form-button" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- right-column -->
+                        <div class="column">
+                            <button class="form-button" id="btnClearRole">Clear</button>
+                            <button class="form-button" id="btnAddRole">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- end:form-container -->
+
+        </header>
+
+        <div class="box-block"> <!-- start:box-block -->
+            <div th:if="${roles != null and roles.size() > 0}">
+                <table class="table-style">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="role : ${roles}">
+                            <th scope="row">[[${role.id}]]</th>
+                            <td>[[${role.name}]]</td>
+                            <td>[[${role.description}]]</td>
+                            <td>
+                                <i class="fa fa-pencil"></i>
+                                <a th:href="@{'/v0/roles/' + ${role.id}}" title="Edit Role"></a>
+                                &nbsp;
+                                <i class="fa fa-delete"></i>
+                                <a th:href="@{'/v0/roles/delete/' + ${role.id}}" th:roleTitle="${role.name}"
+                                    class="btn-delete" title="Delete Role"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:unless="${roles != null and roles.size() > 0}">
+                <span>No roles found!</span>
+            </div>
+
+
+            <div class="modal fade text-center" id="confirmModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <span id="confirmText"></span>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end:contents -->
+        </div> <!-- end:box-block -->
+
+        <!-- javascript -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".btn-delete").on("click", function (e) {
+                    e.preventDefault();
+                    link = $(this);
+
+                    roleTitle = link.attr("roleTitle");
+                    $("#yesBtn").attr("href", link.attr("href"));
+                    $("#confirmText").html("Do you want to delete the role \<strong\>" + roleTitle + "\<\/strong\>?");
+                    $("#confirmModal").modal();
+                });
+
+                $("#btnClearRole").on("click", function (e) {
+                    e.preventDefault();
+                    $("#keyword").val("");
+                    window.location = "[[@{/v0/roles}]]";
+                });
+
+                $("#btnAddRole").on("click", function (e) {
+                    e.preventDefault();
+                    window.location = "[[@{/v0/roles/add}]]";
+                });
+            });
+        </script>
+
+    </section> <!-- end:section:contents -->
+
+</body>
+
+</html>

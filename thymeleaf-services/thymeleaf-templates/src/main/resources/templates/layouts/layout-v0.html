@@ -1,60 +1,136 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- head -->
+
+<head> <!-- start:head -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
-<body>
+    <!-- css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <!-- Bootstrap CSS (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/bootstrap.min.css}" />
+    <!-- Core CSS Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/core-styles.css}" />
+    <!-- Modal CSS Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/modal-styles.css}" />
+    <!-- SideBar-Menu CSS Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/sidebar-styles.css}" />
+    <!-- Form CSS Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/form-styles.css}" />
+    <!-- Table CSS Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/table-styles.css}" />
+    <!-- Additional Styles (v0 specific) -->
+    <link rel="stylesheet" th:href="@{/css/v0/styles.css}" />
+    <!-- Boxicons for sidebar icons -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
 
+    <!-- Inline script to restore sidebar state immediately (prevents flickering) -->
+    <script>
+        (function () {
+            'use strict';
+            const STORAGE_KEY = 'sidebarExpanded';
 
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <a class="navbar-brand" th:href="@{/}">Lakra Inc</a>
-    <button class="navbar-toggler" type="button"
-            data-toggle="collapse" data-target="#navbar"
-            aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            // Function to restore sidebar state immediately
+            function restoreSidebarStateImmediate() {
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar) {
+                    const sidebarState = localStorage.getItem(STORAGE_KEY);
+                    if (sidebarState !== null) {
+                        const isExpanded = sidebarState === 'true';
+                        // Apply state immediately without transitions
+                        if (isExpanded) {
+                            sidebar.classList.remove('close');
+                        } else {
+                            sidebar.classList.add('close');
+                        }
+                    }
+                }
+            }
 
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/about-us}">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/contact-us}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/sign-in}">Sign In</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+            // Try to restore immediately if DOM is already loaded
+            if (document.readyState === 'loading') {
+                // DOM is still loading, wait for it
+                document.addEventListener('DOMContentLoaded', restoreSidebarStateImmediate);
+            } else {
+                // DOM is already loaded, restore immediately
+                restoreSidebarStateImmediate();
+            }
 
-<!-- Contents Section -->
-<section layout:fragment="contents">
-    <p>Filled with the contents' template.</p>
-</section>
+            // Also try immediately (in case sidebar is already in DOM)
+            restoreSidebarStateImmediate();
+        })();
+    </script>
 
-<!-- Footer -->
-<footer class="navbar navbar-expand-md navbar-dark bg-primary">
-    <div>
-        &copy; 2023 Lakra Inc. All rights reserved.
-    </div>
-</footer>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="https://kit.fontawesome.com/ad03d7b147.js"></script>
+    <!-- Navbar and Sidebar Actions (v0 specific) -->
+    <script th:src="@{/js/v0/navbar-actions.js}"></script>
 
-<!-- Optional Section -->
-<th:block layout:fragment="optional"/>
+</head> <!-- end:head -->
 
-</body>
-</html>
+<!-- body -->
 
+<body> <!-- start:body -->
 
+    <div class="wrapper"> <!-- start:wrapper -->
+        <!-- top_navbar -->
+        <div th:replace="~{fragments/v0/top-navbar :: top-navbar}">Top Navbar</div>
+
+        <!-- main_container -->
+        <div class="main_container"> <!-- start:main_container -->
+            <!-- sidebar -->
+            <div th:replace="~{fragments/v0/sidebar :: sidebar}">Sidebar</div>
+
+            <!-- Inline script to restore sidebar state immediately after sidebar is rendered -->
+            <script>
+                (function () {
+                    'use strict';
+                    const STORAGE_KEY = 'sidebarExpanded';
+                    const sidebar = document.querySelector('.sidebar');
+                    if (sidebar) {
+                        const sidebarState = localStorage.getItem(STORAGE_KEY);
+                        if (sidebarState !== null) {
+                            const isExpanded = sidebarState === 'true';
+                            // Apply state immediately without transitions
+                            if (isExpanded) {
+                                sidebar.classList.remove('close');
+                            } else {
+                                sidebar.classList.add('close');
+                            }
+                        }
+                    }
+                })();
+            </script>
+
+            <div class="container"> <!-- start:container -->
+                <!-- start:contents -->
+                <section layout:fragment="contents">
+                    <!-- Contents Section -->
+                    <p>Filled with the contents template.</p>
+                </section>
+                <!-- end:contents -->
+            </div> <!-- start:container -->
+
+        </div> <!-- end:main_container -->
+    </div> <!-- end:wrapper -->
+
+    <!-- footer -->
+    <div th:replace="~{fragments/v0/footer :: footer}">footer</div>
+
+    <!-- Optional Section -->
+    <th:block layout:fragment="optional" />
+
+</body> <!-- end:body -->
+
+</html> <!-- end:html -->

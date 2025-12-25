@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layouts/layout-v1 :: main-fragment(
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/layout-v1 :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #products-static-resources},
                                                 ~{:: #products-header},
@@ -17,21 +16,50 @@
         <!-- Other static resource files -->
     </th:block>
 </head>
+
 <body>
-<div id="products-header">
-    Header of Products Page
-</div>
-<div id="products-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
-    Nav
-</div>
-<div id="products-main-content">
-    <h2>Product</h2>
-    <p>Samsung</p>
-    <p>iPhone</p>
-    <p>Nokia</p>
-</div>
-<div id="products-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
-    Footer
-</div>
+    <!-- Header -->
+    <div id="products-header">
+        Header of Products Page
+    </div>
+
+    <!-- Navigation -->
+    <div id="products-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
+        Nav
+    </div>
+
+    <!-- Main Content -->
+    <div id="products-main-content">
+        <h2>Products</h2>
+        <p>Samsung</p>
+        <p>iPhone</p>
+        <p>Nokia</p>
+
+        <div>Traditional PC applications are typically single-tiered, residing solely on the client machine. In
+            contrast, web applications inherently facilitate a multi-tiered architecture. Though many variations are
+            possible, the most common structure is the three-tiered application. In its most common form, the three
+            tiers are called presentation, application and storage. The first tier, presentation, refers to a web
+            browser itself. The second tier refers to any engine using dynamic web content technology (such as ASP, CGI,
+            ColdFusion, Dart, JSP/Java, Node.js, PHP, Python or Ruby on Rails). The third tier refers to a database that
+            stores data and determines the structure of a user interface. Essentially, when using the three-tiered
+            system, the web browser sends requests to the engine, which then services them by making queries and updates
+            against the database and generates a user interface.
+        </div>
+        <div>
+            The 3-tier solution may fall short when dealing with more complex applications, and may need to be replaced
+            with the n-tiered approach; the greatest benefit of which is how business logic (which resides on the
+            application tier) is broken down into a more fine-grained model.[4] Another benefit would be to add an
+            integration tier, which separates the data tier and provides an easy-to-use interface to access the data.[4]
+            For example, the client data would be accessed by calling a "list_clients()" function instead of making an
+            SQL query directly against the client table on the database. This allows the underlying database to be
+            replaced without making any change to the other tiers.[4]
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="products-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
+        Footer
+    </div>
 </body>
+
 </html>

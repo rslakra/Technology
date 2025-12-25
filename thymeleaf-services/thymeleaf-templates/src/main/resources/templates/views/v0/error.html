@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{fragments/head :: head}">Head</div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout-v0}">
+
+<head>
+    <title>Error</title>
+</head>
 
 <body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-
-<div class="container">
-    <h1 class="text-center">Home</h1>
-
-    <div class="text-body">
-        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">Error: Error</div>
-    </div>
-
-</div>
-
-<div th:replace="fragments/footer :: footer">Footer</div>
-
+    <section layout:fragment="contents">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h1 class="display-1" th:text="${status} ?: '500'">500</h1>
+                            <h2 class="card-title" th:text="${error} ?: 'Internal Server Error'">Error</h2>
+                            <p class="card-text" th:if="${message}" th:text="${message}">An error occurred while
+                                processing your request.</p>
+                            <p class="card-text" th:unless="${message}">An unexpected error occurred. Please try again
+                                later.</p>
+                            <a th:href="@{/v0}" class="btn btn-primary mt-3">Go to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-</html>
 
+</html>

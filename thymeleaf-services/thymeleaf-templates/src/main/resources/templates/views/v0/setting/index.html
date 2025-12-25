@@ -1,253 +1,392 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout-v0}">
+
 <head>
     <link rel="stylesheet" type="text/css"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/setting-styles.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/v0/setting-styles.css}" />
 </head>
 <!-- body -->
+
 <body> <!-- start:body -->
 
-<!-- contents -->
-<section layout:fragment="contents"> <!-- start:section:contents -->
-    <!-- container -->
-    <div class="box-block"> <!-- start:container -->
-        <h1 class="mb-5">Settings</h1>
-        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
-            <!-- Tabs -->
-            <div class="nav-account-settings border-right">
-                <div class="p-4">
-                    <div class="img-circle text-center mb-3">
-                        <img src="images/rslakra.jpg" alt="Image" class="shadow">
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
+        <!-- container -->
+        <div class="box-block"> <!-- start:container -->
+            <h1 class="mb-5">Settings</h1>
+            <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+                <!-- Tabs -->
+                <div class="nav-account-settings border-right">
+                    <div class="p-4">
+                        <div class="img-circle text-center mb-3">
+                            <img th:src="@{/images/profile.jpg}" alt="Profile Image" class="shadow">
+                        </div>
+                        <h4 class="text-center">Rohtash Lakra</h4>
                     </div>
-                    <h4 class="text-center">Rohtash Lakra</h4>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                            aria-controls="account" aria-selected="true">
+                            <i class="fa fa-home text-center mr-1"></i>
+                            Account
+                        </a>
+                        <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
+                            aria-controls="password" aria-selected="false">
+                            <i class="fa fa-key text-center mr-1"></i>
+                            Password
+                        </a>
+                        <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                            aria-controls="security" aria-selected="false">
+                            <i class="fa fa-user text-center mr-1"></i>
+                            Security
+                        </a>
+                        <a class="nav-link" id="application-tab" data-toggle="pill" href="#application" role="tab"
+                            aria-controls="application" aria-selected="false">
+                            <i class="fa fa-tv text-center mr-1"></i>
+                            Application
+                        </a>
+                        <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab"
+                            aria-controls="notification" aria-selected="false">
+                            <i class="fa fa-bell text-center mr-1"></i>
+                            Notification
+                        </a>
+                    </div>
                 </div>
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                     aria-orientation="vertical">
-                    <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
-                       aria-controls="account" aria-selected="true">
-                        <i class="fa fa-home text-center mr-1"></i>
-                        Account
-                    </a>
-                    <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
-                       aria-controls="password" aria-selected="false">
-                        <i class="fa fa-key text-center mr-1"></i>
-                        Password
-                    </a>
-                    <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
-                       aria-controls="security" aria-selected="false">
-                        <i class="fa fa-user text-center mr-1"></i>
-                        Security
-                    </a>
-                    <a class="nav-link" id="application-tab" data-toggle="pill" href="#application" role="tab"
-                       aria-controls="application" aria-selected="false">
-                        <i class="fa fa-tv text-center mr-1"></i>
-                        Application
-                    </a>
-                    <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab"
-                       aria-controls="notification" aria-selected="false">
-                        <i class="fa fa-bell text-center mr-1"></i>
-                        Notification
-                    </a>
+
+                <!-- Account Settings -->
+                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                        <h3 class="mb-4">Account Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" value="Rohtash">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" value="Lakra">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" value="rslakra@gmail.com">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input type="text" class="form-control" value="+1 (201) 000-0001">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    <input type="text" class="form-control" value="Lakra Inc.">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" class="form-control" value="Team Builder">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Bio</label>
+                                    <textarea class="form-control"
+                                        rows="4">कंप्यूटर (अंग्रेजी: Computer) (अन्य हिन्दी नाम - अभिकलित्र, संगणक, अभिकलक, परिकलक) वस्तुतः एक अभिकलक यंत्र (programmable machine) है जो दिये गये गणितीय तथा तार्किक संक्रियाओं को क्रम से स्वचालित रूप से करने में सक्षम है। इसे अंक गणितीय, तार्किक क्रियाओं व अन्य विभिन्न प्रकार की गणनाओं को सटीकता से पूर्ण करने के लिए योजनाबद्ध तरीके से निर्देशित किया जा सकता है।</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Password Settings -->
+                    <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                        <h3 class="mb-4">Password Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Old password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>New password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Confirm new password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                        <h3 class="mb-4">Security Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Login</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Two-factor Auth</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="recovery">
+                                        <label class="form-check-label" for="recovery">
+                                            Recovery
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Application Settings -->
+                    <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+                        <h3 class="mb-4">Application Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="appCheck">
+                                        <label class="form-check-label" for="appCheck">
+                                            App check
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultTimezone">
+                                        <label class="form-check-label" for="defaultTimezone">
+                                            Default Timezone
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultLanguage">
+                                        <label class="form-check-label" for="defaultLanguage">
+                                            Default Language
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+                        <h3 class="mb-4">Notification Settings</h3>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="allowEmails">
+                                <label class="form-check-label" for="allowEmails">Send Email</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="allowTexts">
+                                <label class="form-check-label" for="allowTexts">Receive Text Messages</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="allowNewsletter">
+                                <label class="form-check-label" for="allowNewsletter">Receive Weekly
+                                    Newsletter</label>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary">Update</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- Account Settings -->
-            <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="account" role="tabpanel"
-                     aria-labelledby="account-tab">
-                    <h3 class="mb-4">Account Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" value="Rohtash">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" value="Lakra">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" value="rslakra@gmail.com">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Phone number</label>
-                                <input type="text" class="form-control" value="+1 (201) 000-0001">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input type="text" class="form-control" value="Lakra Inc.">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Designation</label>
-                                <input type="text" class="form-control" value="Team Builder">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Bio</label>
-                                <textarea class="form-control"
-                                          rows="4">कंप्यूटर (अंग्रेजी: Computer) (अन्य हिन्दी नाम - अभिकलित्र, संगणक, अभिकलक, परिकलक) वस्तुतः एक अभिकलक यंत्र (programmable machine) है जो दिये गये गणितीय तथा तार्किक संक्रियाओं को क्रम से स्वचालित रूप से करने में सक्षम है। इसे अंक गणितीय, तार्किक क्रियाओं व अन्य विभिन्न प्रकार की गणनाओं को सटीकता से पूर्ण करने के लिए योजनाबद्ध तरीके से निर्देशित किया जा सकता है।</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-
-                <!-- Password Settings -->
-                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                    <h3 class="mb-4">Password Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Old password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>New password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Confirm new password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-
-                <!-- Security Settings -->
-                <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
-                    <h3 class="mb-4">Security Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Login</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Two-factor Auth</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="recovery">
-                                    <label class="form-check-label" for="recovery">
-                                        Recovery
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-
-                <!-- Application Settings -->
-                <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
-                    <h3 class="mb-4">Application Settings</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="appCheck">
-                                    <label class="form-check-label" for="appCheck">
-                                        App check
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                           id="defaultTimezone">
-                                    <label class="form-check-label" for="defaultTimezone">
-                                        Default Timezone
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                           id="defaultLanguage">
-                                    <label class="form-check-label" for="defaultLanguage">
-                                        Default Language
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-
-                <!-- Notification Settings -->
-                <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
-                    <h3 class="mb-4">Notification Settings</h3>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="allowEmails">
-                            <label class="form-check-label" for="allowEmails">Send Email</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="allowTexts">
-                            <label class="form-check-label" for="allowTexts">Receive Text Messages</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="allowNewsletter">
-                            <label class="form-check-label" for="allowNewsletter">Receive Weekly
-                                Newsletter</label>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
-    </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- Script to activate tab based on hash fragment after Bootstrap loads -->
+        <script>
+            (function () {
+                'use strict';
 
-</section> <!-- end:section:contents -->
+                function activateTabFromHash() {
+                    const hash = window.location.hash;
+                    if (!hash || hash.length < 2) {
+                        return false;
+                    }
+
+                    console.log('Activating tab for hash:', hash);
+
+                    // Find the tab link by href attribute (this is how Bootstrap finds it)
+                    const tabLink = document.querySelector('a[href="' + hash + '"]');
+
+                    if (!tabLink) {
+                        console.warn('Tab link not found for href:', hash);
+                        return false;
+                    }
+
+                    // Find the tab pane element
+                    const tabPane = document.querySelector(hash);
+                    if (!tabPane) {
+                        console.warn('Tab pane not found for:', hash);
+                        return false;
+                    }
+
+                    console.log('Found tab elements:', tabLink, tabPane);
+
+                    // Use jQuery/Bootstrap if available (most reliable method)
+                    if (typeof $ !== 'undefined' && $.fn.tab) {
+                        try {
+                            // Use Bootstrap's tab API - this is the proper way
+                            $(tabLink).tab('show');
+                            console.log('Bootstrap tab activated successfully via API');
+                            return true;
+                        } catch (e) {
+                            console.warn('Bootstrap tab API failed:', e);
+                        }
+                    }
+
+                    // Fallback: Simulate a click event (triggers Bootstrap's event handlers)
+                    try {
+                        // Create and dispatch a click event
+                        const clickEvent = new MouseEvent('click', {
+                            view: window,
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        tabLink.dispatchEvent(clickEvent);
+                        console.log('Dispatched click event on tab link');
+                        return true;
+                    } catch (e) {
+                        console.warn('Click event dispatch failed:', e);
+                    }
+
+                    // Last resort: Manual activation
+                    console.log('Using manual activation fallback');
+
+                    // Remove active class from all tabs and panes
+                    document.querySelectorAll('.nav-pills .nav-link').forEach(function (link) {
+                        link.classList.remove('active');
+                        link.setAttribute('aria-selected', 'false');
+                    });
+
+                    document.querySelectorAll('.tab-pane').forEach(function (pane) {
+                        pane.classList.remove('show', 'active');
+                    });
+
+                    // Activate the target tab link
+                    tabLink.classList.add('active');
+                    tabLink.setAttribute('aria-selected', 'true');
+
+                    // Activate the target tab pane
+                    tabPane.classList.add('show', 'active');
+
+                    return true;
+                }
+
+                // Function to try activating tab with retries
+                function tryActivateTab() {
+                    var attempts = 0;
+                    var maxAttempts = 30; // Try for up to 3 seconds (30 * 100ms)
+                    var activated = false;
+
+                    var intervalId = setInterval(function () {
+                        attempts++;
+
+                        if (!activated) {
+                            activated = activateTabFromHash();
+                        }
+
+                        if (activated || attempts >= maxAttempts) {
+                            clearInterval(intervalId);
+                            if (activated) {
+                                console.log('Tab activated successfully on attempt', attempts);
+                            } else {
+                                console.warn('Failed to activate tab after', maxAttempts, 'attempts');
+                            }
+                        }
+                    }, 100);
+                }
+
+                // Wait for jQuery and Bootstrap to be ready
+                function initTabActivation() {
+                    // Check if jQuery is available
+                    if (typeof $ === 'undefined') {
+                        console.warn('jQuery not available, waiting...');
+                        setTimeout(initTabActivation, 100);
+                        return;
+                    }
+
+                    // Wait for Bootstrap tab plugin to be available
+                    if (typeof $.fn.tab === 'undefined') {
+                        console.warn('Bootstrap tab plugin not available, waiting...');
+                        setTimeout(initTabActivation, 100);
+                        return;
+                    }
+
+                    console.log('jQuery and Bootstrap ready, activating tab...');
+                    // Small delay to ensure everything is initialized
+                    setTimeout(tryActivateTab, 100);
+                }
+
+                // Start initialization
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        setTimeout(initTabActivation, 200);
+                    });
+                } else {
+                    // DOM is already loaded
+                    setTimeout(initTabActivation, 200);
+                }
+
+                // Also handle hash changes
+                window.addEventListener('hashchange', function () {
+                    setTimeout(activateTabFromHash, 100);
+                });
+            })();
+        </script>
+
+    </section> <!-- end:section:contents -->
 
 </body>
+
 </html>

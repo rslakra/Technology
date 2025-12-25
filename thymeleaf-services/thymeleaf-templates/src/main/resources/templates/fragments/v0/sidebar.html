@@ -1,72 +1,133 @@
 <!-- sidebar -->
-<div class="sidebar" th:fragment="sidebar"> <!-- start:sidebar -->
-    <div class="sidebar-inner"> <!-- start:sidebar-inner -->
-        <!-- profile -->
-        <div class="profile" th:fragment="profile"> <!-- start:profile -->
-            <div class="img">
-                <img th:src="@{/images/rslakra.jpg}" alt="profile_pic">
-            </div>
-            <div class="profile_info">
-                <p>Welcome</p>
-                <p class="profile_name">Rohtash Laka</p>
-            </div>
-        </div> <!-- end:profile -->
+<nav class="sidebar close" th:fragment="sidebar"> <!-- start:sidebar -->
+    <header> <!-- start:header -->
+        <div class="profile-photo-container">
+            <span class="profile-photo">
+                <a th:href="@{/v0}">
+                    <img th:src="@{/images/profile.jpg}" alt="The Thymeleaf Templates">
+                </a>
+            </span>
 
-        <!-- sidebar-navigation -->
-        <div class="left-sidebar"> <!-- start:left-sidebar -->
-            <ul>
-                <li>
-                    <!-- <a href="#" class="active"> -->
-                    <a th:href="@{/static}">
-                        <span class="icon"><i class="fas fa-dice-d6"></i></span>
-                        <span class="title">Dashboard</span>
+            <!-- profile-info -->
+            <div class="text profile-info">
+                <span class="name">Lakra Inc</span>
+                <span class="profession">Architect</span>
+            </div>
+        </div>
+
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <!-- menu-bar (middle section) -->
+    <div class="menu-bar"> <!-- start:menu-bar -->
+        <div class="menu"> <!-- start:menu -->
+
+            <!-- search-box -->
+            <div class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a th:href="@{/v0}">
+                        <i class='bx bx-arch icon'></i>
+                        <span class="text nav-text">Home</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/tasks}">
-                        <span class="icon"><i class="fab fa-delicious"></i></span>
-                        <span class="title">Tasks</span>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0}">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/tutorials}">
-                        <span class="icon"><i class="fab fa-elementor"></i></span>
-                        <span class="title">Tutorials</span>
+
+                <!-- roles -->
+                <li class="nav-link">
+                    <a th:href="@{/v0/roles}">
+                        <i class='bx bx-aperture icon'></i>
+                        <span class="text nav-text">Roles</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/reports}">
-                        <span class="icon"><i class="fas fa-chart-pie"></i></span>
-                        <span class="title">Reports</span>
+
+                <!-- users -->
+                <li class="nav-link">
+                    <a th:href="@{/v0/users}">
+                        <i class='bx bx-user-circle icon'></i>
+                        <span class="text nav-text">Users</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/admin}">
-                        <span class="icon"><i class="fas fa-user-shield"></i></span>
-                        <span class="title">Admin</span>
+
+                <!-- artists -->
+                <li class="nav-link">
+                    <a th:href="@{/v0/artists}">
+                        <i class='bx bx-user-voice icon'></i>
+                        <span class="text nav-text">Artists</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/settings}">
-                        <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="title">Settings</span>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0/songs}">
+                        <i class='bx bx-music icon'></i>
+                        <span class="text nav-text">Songs</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/about-us}">
-                        <span class="icon"><i class="fas fa-id-card"></i></span>
-                        <span class="title">About Us</span>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0/tasks}">
+                        <i class='bx bx-task icon'></i>
+                        <span class="text nav-text">Tasks</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{/leads/contact-us}">
-                        <span class="icon"><i class="fas fa-envelope"></i></span>
-                        <span class="title">Contact Us</span>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0/report}">
+                        <i class='bx bx-bar-chart-alt-2 icon'></i>
+                        <span class="text nav-text">Reports</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0/admin}">
+                        <i class='bx bx-bell icon'></i>
+                        <span class="text nav-text">Admin</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a th:href="@{/v0/setting}">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text nav-text">Settings</span>
                     </a>
                 </li>
             </ul>
-        </div> <!-- end:left-sidebar -->
 
-    </div> <!-- end:sidebar-inner -->
+        </div> <!-- end:menu -->
+    </div> <!-- end:menu-bar -->
 
-</div> <!-- end:sidebar -->
+    <!-- bottom-content (bottom section) -->
+    <div class="bottom-content">
+        <ul class="bottom-menu-links">
+            <!-- logout -->
+            <li class="nav-link">
+                <a href="#">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+            </li>
+        </ul>
+    </div> <!-- end:bottom-content -->
+
+</nav> <!-- end:sidebar -->

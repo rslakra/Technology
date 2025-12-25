@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout-v0}">
+
+<head>
+    <!-- bootstrap.min.css -->
+    <link rel="stylesheet" th:href="@{/css/v0/bootstrap.min.css}" />
+</head>
+<!-- body -->
+
+<body> <!-- start:body -->
+
+    <!-- contents -->
+    <section layout:fragment="contents"> <!-- start:section:contents -->
+        <!-- start:contents -->
+        <header class="box-block"> <!-- start:header -->
+            <!-- start:contents -->
+            <div class="container-fluid"> <!-- start:container-fluid -->
+                <h1 class="text-center">[[${pageTitle}]]</h1>
+                <div class="form-container"> <!-- start:form-container -->
+                    <form class="form-contents" th:action="@{/v0/roles/save}" th:object="${role}" method="post"
+                        enctype="multipart/form-data">
+                        <input type="hidden" th:field="*{id}" />
+                        <div class="row">
+                            <div class="col-25">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" th:field="*{name}" required minlength="2" maxlength="128" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="description">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" th:field="*{description}" minlength="2" maxlength="256"
+                                    class="form-control" id="description" />
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <input type="submit" value="Save" class="button btn-primary btn-info" />
+                            <input type="button" value="Cancel" id="btnCancel" class="btn btn-secondary btn-info" />
+                        </div>
+                    </form>
+                </div> <!-- end:form-container -->
+
+            </div> <!-- start:container-fluid -->
+
+            <!-- end:contents -->
+        </header> <!-- end:header -->
+
+        <!-- javascript -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btnCancel").on("click", function () {
+                    window.location = "[[@{/v0/roles}]]";
+                });
+            });
+        </script>
+
+    </section> <!-- end:section:contents -->
+
+</body>
+
+</html>

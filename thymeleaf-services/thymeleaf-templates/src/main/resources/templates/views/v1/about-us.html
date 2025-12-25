@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layouts/layout-v1 :: main-fragment(
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/layout-v1 :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #about-static-resources},
                                                 ~{:: #about-header},
@@ -17,19 +16,44 @@
         <!-- Other static resource files -->
     </th:block>
 </head>
+
+<!-- Body -->
+
 <body>
-<div id="about-header">
-    Header of About Page
-</div>
-<div id="about-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
-    Nav
-</div>
-<div id="about-main-content">
-    <h2>About</h2>
-    <div>Content of About Page</div>
-</div>
-<div id="about-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
-    Footer
-</div>
+    <!-- Header -->
+    <div id="about-header">
+        Header of About Page
+    </div>
+
+    <!-- Navigation -->
+    <div id="about-nav" th:replace="~{/fragments/v1/fragments :: nav-default}">
+        Nav
+    </div>
+
+    <!-- Main Content -->
+    <div id="about-main-content">
+        <h2>About</h2>
+        <div>An About Us page exists to share a business’ story and history and provide a deeper connection with
+            customers.
+        </div>
+        <div>Consumers want to know the team behind the brand they are supporting. An About Us page provides the perfect
+            real estate to pull back the curtain and reveal who is working behind the scenes.
+        </div>
+        <div>
+            Security breaches on these kinds of applications are a major concern because it can involve both enterprise
+            information and private customer data. Protecting these assets is an important part of any web application,
+            and there are some key operational areas that must be included in the development process.[5] This includes
+            processes for authentication, authorization, asset handling, input, and logging and auditing. Building
+            security into the applications from the beginning is sometimes more effective and less disruptive in the
+            long run.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="about-footer" th:replace="~{/fragments/v1/fragments :: copyright}">
+        Footer
+    </div>
+
 </body>
+
 </html>

@@ -2,34 +2,37 @@ package com.rslakra.thymeleaf.web.controller;
 
 import com.rslakra.thymeleaf.persistence.entities.Order;
 import com.rslakra.thymeleaf.service.OrderService;
+import com.rslakra.thymeleaf.web.controller.thymeleaf.AbstractThymeleafController;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.WebContext;
+import org.thymeleaf.web.servlet.IServletWebApplication;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class OrderListController implements ThymeleafController {
+public class OrderListController extends AbstractThymeleafController {
 
-    public OrderListController() {
-        super();
+    public OrderListController(
+            final IServletWebApplication webApplication,
+            final ServletContext servletContext,
+            final ITemplateEngine templateEngine) {
+        super(webApplication, servletContext, templateEngine);
     }
 
-    public void process(
-            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
-            final ServletContext servletContext, final ITemplateEngine templateEngine)
-        throws Exception {
+    @Override
+    protected void handleTemplate(
+            final HttpServletRequest servletRequest,
+            final HttpServletResponse servletResponse,
+            final WebContext webContext) throws Exception {
 
         final OrderService orderService = new OrderService();
         final List<Order> allOrders = orderService.findAll();
 
-        final WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
-        ctx.setVariable("orders", allOrders);
-
-        templateEngine.process("order/list", ctx, servletResponse.getWriter());
-
+        webContext.setVariable("orders", allOrders);
+        this.templateEngine.process("order/list", webContext, servletResponse.getWriter());
     }
 
 }

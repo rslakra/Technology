@@ -1,28 +1,32 @@
 package com.rslakra.thymeleaf.web.controller;
 
+import com.rslakra.thymeleaf.web.controller.thymeleaf.AbstractThymeleafController;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.WebContext;
+import org.thymeleaf.web.servlet.IServletWebApplication;
 
 import java.util.Calendar;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class HomeController implements ThymeleafController {
+public class HomeController extends AbstractThymeleafController {
 
-    public HomeController() {
-        super();
+    public HomeController(
+            final IServletWebApplication webApplication,
+            final ServletContext servletContext,
+            final ITemplateEngine templateEngine) {
+        super(webApplication, servletContext, templateEngine);
     }
 
-    public void process(
-            final HttpServletRequest servletRequest, final HttpServletResponse servletResponse,
-            final ServletContext servletContext, final ITemplateEngine templateEngine)
-        throws Exception {
+    @Override
+    protected void handleTemplate(
+            final HttpServletRequest servletRequest,
+            final HttpServletResponse servletResponse,
+            final WebContext webContext) throws Exception {
 
-        WebContext ctx = new WebContext(servletRequest, servletResponse, servletContext, servletRequest.getLocale());
-        ctx.setVariable("today", Calendar.getInstance());
-
-        templateEngine.process("home", ctx, servletResponse.getWriter());
+        webContext.setVariable("today", Calendar.getInstance());
+        this.templateEngine.process("home", webContext, servletResponse.getWriter());
     }
 }
