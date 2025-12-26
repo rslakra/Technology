@@ -1,0 +1,25 @@
+<!-- menu-navbar -->
+<div class="top_navbar" th:fragment="menu-navbar">
+    <!-- hamburger -->
+    <div th:replace="~{${version} + '/fragments/hamburger' :: hamburger}">Hamburger</div>
+
+    <!-- top-navbar-menu -->
+    <div class="menu">
+        <div class="logo">
+            Lakra Inc
+        </div>
+        <div class="right_menu">
+            <ul>
+                <li><i class="fas fa-user"></i>
+                    <div class="profile-dropdown">
+                        <a th:href="@{'/' + ${version} + '/settings#account-general'}"
+                            class="profile-dropdown-item">Profile</a>
+                        <a th:href="@{'/' + ${version} + '/settings#account-change-password'}"
+                            class="profile-dropdown-item">Change Password</a>
+                        <a th:href="@{'/' + ${version} + '/logout'}" class="profile-dropdown-item">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

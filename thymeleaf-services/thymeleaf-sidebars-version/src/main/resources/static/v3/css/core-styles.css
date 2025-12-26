@@ -1,0 +1,586 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    /* Colors */
+    --body-color: #FFFFFF;
+    --sidebar-color: #2e8fff;
+    --primary-color: #0d61b4;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDDDDD;
+    --text-color: #707070;
+    --font-size: 16px;
+    --block-color: #333;
+
+    /* Transition */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    background: #eee;
+}
+
+
+/* text-align */
+.left-align {
+    text-align: left;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.justify-align {
+    text-align: justify;
+}
+
+.right-align {
+    text-align: right;
+}
+
+/* box-block */
+.box-block {
+    background: var(--body-color);
+    padding: 32px 16px;
+    color: var(--block-color);
+    margin-bottom: 16px;
+    line-height: 1.5;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.box-block h1 {
+    font-size: 18pt;
+    padding-bottom: 16px;
+}
+
+.box-block p {
+    font-size: 14px;
+}
+
+
+/* action */
+.action {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+}
+
+/* a */
+a {
+   text-decoration: none;
+}
+
+a.btn {
+    text-decoration: none;
+    color: #666;
+    border: 2px solid #666;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+a.btn:hover {
+    background: #666;
+    color: #fff;
+    transition: .3s;
+    -webkit-transition: .3s;
+}
+
+.btn:before {
+    font-family: FontAwesome;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.github:before {
+    content: "\f09b"
+}
+
+.down:before {
+    content: "\f019"
+}
+
+.back:before {
+    content: "\f112"
+}
+
+.contributor {
+    background: #fff;
+    padding: 12px;
+    font-size: 12pt;
+    text-align: center;
+    color: var(--block-color);
+    margin-top: 40px;
+}
+
+.contributor span:before {
+    font-family: FontAwesome;
+    color: #e41b17;
+    content: "\f004";
+}
+
+.contributor a {
+    color: var(--block-color);
+    text-decoration: none;
+}
+
+.contributor a:hover {
+    color: #1DBF73;
+}
+
+.contributor a:hover:after {
+    font-family: FontAwesome;
+    content: "\f08e";
+    font-size: 9pt;
+    position: absolute;
+    margin: 3px;
+}
+
+main {
+    background: #fff;
+    padding: 20px;
+
+}
+
+article li {
+    color: #444;
+    font-size: 15px;
+    margin-left: 33px;
+    line-height: 1.5;
+    padding: 5px;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article p {
+    padding: 14px;
+    color: var(--block-color);
+}
+
+article p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* Ensure media layout works properly for profile photo section */
+.card-body.media {
+    display: flex;
+    align-items: center;
+}
+
+/* Add spacing only for profile photo in settings page (card-body.media context) */
+.card-body.media .profile-photo {
+    margin-right: 24px;
+}
+
+.card-body.media .media-body {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Profile photo upload section styling */
+.card-body.media .media-body .mb-2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-body.media .media-body .text-muted {
+    color: #6c757d !important;
+    margin-top: 8px;
+    display: block;
+}
+
+/* Hide file input */
+.account-settings-fileinput {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Ensure consistent alignment in account connections section */
+#account-connections .card-body {
+    text-align: left;
+}
+
+#account-connections .card-body button {
+    text-align: left;
+}
+
+#account-connections .card-body h5 {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/* Account connection content - generic reusable styles */
+.account-connection-content {
+    flex: 1;
+    min-width: 0;
+    padding-left: 12px;
+}
+
+.account-connection-content h5 {
+    display: flex;
+    align-items: center;
+    margin: 0 0 4px 0;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.account-connection-content h5 i {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.account-connection-content h5 span {
+    margin-left: 4px; /* Align text with button text */
+}
+
+.account-connection-email {
+    margin-top: 4px;
+    margin-left: 4px; /* Align with h5 text (same as button text alignment) */
+    padding-left: 0;
+    text-align: left;
+}
+
+.account-connection-remove {
+    flex-shrink: 0;
+    margin-left: 16px;
+    white-space: nowrap;
+}
+
+/* Improve dropdown select arrow positioning */
+.form-select {
+    padding-right: 2.5rem; /* Add more space for the arrow */
+    background-position: right 0.75rem center; /* Position arrow with proper spacing */
+    background-size: 16px 12px; /* Better arrow size */
+}
+
+/* Ensure select dropdowns have consistent styling */
+select.form-select {
+    height: 50px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    padding-right: 2.5rem;
+}
+
+/* Breadcrumb Navigation Styles */
+.breadcrumb-nav {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Breadcrumb Bar - separate bar below top navbar */
+.breadcrumb-bar {
+    padding: 10px 20px;
+}
+
+.breadcrumb-bar .breadcrumb-nav {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-bar .breadcrumb-nav .breadcrumb-list {
+    justify-content: flex-start;
+    padding: 0 16px;
+}
+
+/* Breadcrumb in page content (standalone) */
+.main_container .container .breadcrumb-nav {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+/* Breadcrumb in breadcrumb bar */
+.breadcrumb-bar .breadcrumb-list {
+    font-size: 14px;
+    justify-content: flex-start;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: none; /* Remove default separator */
+}
+
+.breadcrumb-separator {
+    margin: 0 8px;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.breadcrumb-separator i {
+    font-size: 10px;
+}
+
+.breadcrumb-link {
+    color: #0d61b4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #0a4d8f;
+    text-decoration: underline;
+}
+
+/* Breadcrumb links in breadcrumb bar */
+.breadcrumb-bar .breadcrumb-link {
+    color: #0d61b4;
+}
+
+.breadcrumb-bar .breadcrumb-link:hover {
+    color: #0a4d8f;
+    text-decoration: underline;
+}
+
+.breadcrumb-bar .breadcrumb-current {
+    color: #212529;
+}
+
+.breadcrumb-bar .breadcrumb-separator {
+    color: #6c757d;
+}
+
+.breadcrumb-link i {
+    font-size: 14px;
+}
+
+.breadcrumb-current {
+    color: #212529;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+
+@media only screen and (min-width: 720px) {
+    main {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 24px;
+    }
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+    cursor: pointer;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    color: var(--block-color);
+    font-size: 16px;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+    font-family: FontAwesome;
+    font-size: 18pt;
+    position: relative;
+    float: right;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+    content: "\f204";
+    transition: .6s;
+}
+
+.to-active:after {
+    content: "\f205";
+    color: #008080;
+    transition: .6s;
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+    margin: 10px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+    box-sizing: border-box;
+}
+
+/* Syntax Highlighter */
+pre.pretty-print {
+    padding: 15px !important;
+    margin: 10px;
+    border: 0 !important;
+    background: #f2f2f2;
+    overflow: auto;
+}
+
+.source {
+    white-space: pre;
+    overflow: auto;
+    max-height: 400px;
+}
+
+code {
+    border: 1px solid #ddd;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container > div {
+    margin: inherit;
+    padding: inherit;
+    font-size: inherit;
+}
+
+
+.form-narrow {
+    max-width: 490px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.navbar {
+    padding: 0 10px;
+}
+
+*.icon-dark {
+    color: grey;
+}
+
+.message {
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 1px solid grey;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.search button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 80px;
+    background: #5bc0de;
+}
+
+
+/* row */
+.row {
+    margin-right: inherit;
+    margin-left: inherit;
+}
+
+.row:before, .row:after {
+    display: table;
+    /*content: " "*/
+}
+
+.row:after {
+    clear: both
+}
+
+.row:before, .row:after {
+    display: table;
+    /*content: " "*/
+}
+
+.row:after {
+    clear: both
+}

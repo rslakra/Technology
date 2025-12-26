@@ -1,0 +1,107 @@
+body {
+    font-size: 16px;
+}
+
+.form-narrow {
+    max-width: 490px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.navbar {
+    padding: 0 10px;
+}
+
+*.icon-dark {
+    color: grey;
+}
+
+.message {
+    position: absolute;
+    top: 40px;
+    right: 5px;
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 1px solid grey;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+
+.search button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 80px;
+    background: grey;
+}
+
+/* Profile photo styles */
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #E0F2F1;
+    display: block;
+}
+
+.profile-photo-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.profile-photo-container {
+    flex-shrink: 0;
+}
+
+.profile-photo-actions {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-photo-actions .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-photo-actions .text-muted {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Legacy support for media class */
+.card-body.media img {
+    max-width: 120px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}

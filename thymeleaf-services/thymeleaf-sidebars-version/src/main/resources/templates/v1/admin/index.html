@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+    <div class="item">
+        <h3>System Overview</h3>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-server"></i> System Status</h4>
+                        <p class="mb-2"><strong>Status:</strong> <span class="text-success">Operational</span></p>
+                        <p class="mb-2"><strong>Uptime:</strong> 99.9%</p>
+                        <p class="mb-0"><strong>Last Updated:</strong> <span
+                                th:text="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd HH:mm:ss')}">2025-01-01
+                                12:00:00</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-users"></i> User Management</h4>
+                        <p class="mb-2"><strong>Total Users:</strong> <span
+                                th:text="${totalUsers != null ? totalUsers : '0'}">0</span></p>
+                        <p class="mb-2"><strong>Active Users:</strong> <span
+                                th:text="${activeUsers != null ? activeUsers : '0'}">0</span></p>
+                        <p class="mb-0"><strong>Admin Users:</strong> <span
+                                th:text="${adminUsers != null ? adminUsers : '0'}">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Quick Actions</h3>
+        <div style="margin-top: 15px;">
+            <button class="btn btn-primary" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-user-cog"></i> Manage Users
+            </button>
+            <button class="btn btn-secondary" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-cog"></i> System Settings
+            </button>
+            <button class="btn btn-info" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-file-alt"></i> View Logs
+            </button>
+            <button class="btn btn-warning" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-database"></i> Backup Data
+            </button>
+            <button class="btn btn-danger" style="margin-bottom: 10px;">
+                <i class="fas fa-shield-alt"></i> Security Audit
+            </button>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Administrative Functions</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-user-shield text-primary"></i> <strong>User
+                            Management:</strong> Create, edit, and manage user accounts and permissions</li>
+                    <li class="mb-2"><i class="fas fa-sliders-h text-secondary"></i> <strong>System
+                            Configuration:</strong> Configure application settings and preferences</li>
+                    <li class="mb-2"><i class="fas fa-lock text-danger"></i> <strong>Security:</strong>
+                        Monitor security events and manage access controls</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-archive text-warning"></i> <strong>Data
+                            Management:</strong> Backup, restore, and maintain system data</li>
+                    <li class="mb-2"><i class="fas fa-chart-line text-info"></i>
+                        <strong>Monitoring:</strong> View system logs, performance metrics, and error
+                        reports
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

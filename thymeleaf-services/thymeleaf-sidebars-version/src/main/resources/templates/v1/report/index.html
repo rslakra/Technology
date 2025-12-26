@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <h2 class="text-center mb-4">Reports Dashboard</h2>
+
+    <div class="item">
+        <h3>Overview Statistics</h3>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-file-alt text-primary"></i> Generated
+                            Reports</h4>
+                        <h3 class="text-primary">156</h3>
+                        <p class="text-muted mb-0">Total reports this month</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-download text-info"></i> Downloads</h4>
+                        <h3 class="text-info">892</h3>
+                        <p class="text-muted mb-0">Total downloads</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-calendar text-success"></i> Scheduled</h4>
+                        <h3 class="text-success">24</h3>
+                        <p class="text-muted mb-0">Scheduled reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Report Categories</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-chart-bar"></i> Analytics Reports</h4>
+                        <p class="card-text">View detailed analytics reports, performance metrics, and data
+                            insights. Generate custom reports based on your requirements.</p>
+                        <a href="#" class="btn btn-sm btn-primary">View Reports</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-file-export"></i> Export Options</h4>
+                        <p class="card-text">Export reports in various formats including PDF, Excel, CSV,
+                            and JSON. Schedule automatic report generation and delivery.</p>
+                        <a href="#" class="btn btn-sm btn-primary">Export</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Quick Actions</h3>
+        <div style="margin-top: 15px;">
+            <button class="btn btn-primary" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-plus"></i> Create New Report
+            </button>
+            <button class="btn btn-secondary" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-calendar-alt"></i> Schedule Report
+            </button>
+            <button class="btn btn-info" style="margin-right: 10px; margin-bottom: 10px;">
+                <i class="fas fa-history"></i> View History
+            </button>
+            <button class="btn btn-success" style="margin-bottom: 10px;">
+                <i class="fas fa-download"></i> Download All
+            </button>
+        </div>
+    </div>
+</div>
+
+</html>

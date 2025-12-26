@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- top_navbar -->
+        <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Top Navbar</div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <header class="intro">
+                    <h1>Welcome to v4!</h1>
+                    <p>CSS Sidebar Menu with icons Example</p>
+                    <p>SideBar Menu Using HTML CSS and jQuery.</p>
+                    <div class="action">
+                        <a href="https://www.rslakra.com/" title="Back to download and tutorial page"
+                            class="btn back">Back to Learning</a>
+                        <a href="https://github.com/rslakra" title="View on GitHub" class="btn github">View on
+                            GitHub</a>
+                    </div>
+                </header>
+
+                <div class="item">
+                    <h2>Welcome to Version 4</h2>
+                    <p>This is the v4 implementation of the Thymeleaf Sidebar application.</p>
+                    <p>It features a modern sidebar design with smooth transitions and responsive layout.</p>
+                </div>
+                <div class="item">
+                    <h2>Features</h2>
+                    <p>Modern UI design with CSS and JavaScript.</p>
+                    <p>Fully responsive sidebar that adapts to different screen sizes.</p>
+                </div>
+                <div class="item">
+                    <h2>Getting Started</h2>
+                    <p>Navigate through the sidebar menu to explore different sections.</p>
+                    <p>Use the hamburger menu to toggle the sidebar visibility.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

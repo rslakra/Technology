@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <h2 class="text-center mb-4">Development Dashboard</h2>
+
+    <div class="item">
+        <h3>Development Tools</h3>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-code"></i> Code Repository</h4>
+                        <p class="card-text">Manage code repositories, version control, and collaboration
+                            tools.</p>
+                        <a href="#" class="btn btn-sm btn-primary">Access Repository</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-flask"></i> Testing Tools</h4>
+                        <p class="card-text">Access testing frameworks, unit tests, and integration testing
+                            tools.</p>
+                        <a href="#" class="btn btn-sm btn-primary">Run Tests</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-rocket"></i> Deployment</h4>
+                        <p class="card-text">Manage deployment pipelines, CI/CD, and release management.</p>
+                        <a href="#" class="btn btn-sm btn-primary">Deploy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Development Resources</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-book text-primary"></i>
+                        <strong>Documentation:</strong> View API documentation, code samples, and
+                        development guidelines
+                    </li>
+                    <li class="mb-2"><i class="fas fa-tasks text-info"></i> <strong>Task
+                            Management:</strong> Track development progress and manage project tasks</li>
+                    <li class="mb-2"><i class="fas fa-users-cog text-success"></i> <strong>Team
+                            Collaboration:</strong> Collaborate with the development team and share
+                        resources</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-bug text-danger"></i> <strong>Debugging
+                            Tools:</strong> Access debugging tools and error tracking systems</li>
+                    <li class="mb-2"><i class="fas fa-chart-bar text-warning"></i>
+                        <strong>Analytics:</strong> Monitor development metrics and code quality
+                    </li>
+                    <li class="mb-2"><i class="fas fa-plug text-secondary"></i> <strong>APIs &
+                            Integrations:</strong> Manage API endpoints and third-party integrations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

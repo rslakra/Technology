@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- top_navbar -->
+        <div class="top_navbar">
+            <div th:replace="~{${version} + '/fragments/hamburger' :: hamburger}">Hamburger</div>
+            <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Navbar Menu</div>
+        </div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <h2 class="text-center">Reports Dashboard</h2>
+
+                <div class="item">
+                    <h3>Overview Statistics</h3>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-md-4">
+                            <div style="background: #f0f0f0; padding: 20px; border-radius: 5px; text-align: center;">
+                                <h4>Total Tasks</h4>
+                                <p style="font-size: 32px; font-weight: bold; color: #0d61b4;"
+                                    th:text="${totalTasks != null ? totalTasks : '0'}">0</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: #f0f0f0; padding: 20px; border-radius: 5px; text-align: center;">
+                                <h4>Completed Tasks</h4>
+                                <p style="font-size: 32px; font-weight: bold; color: #28a745;"
+                                    th:text="${completedTasks != null ? completedTasks : '0'}">0</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background: #f0f0f0; padding: 20px; border-radius: 5px; text-align: center;">
+                                <h4>Pending Tasks</h4>
+                                <p style="font-size: 32px; font-weight: bold; color: #ffc107;"
+                                    th:text="${pendingTasks != null ? pendingTasks : '0'}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h3>Recent Activity</h3>
+                    <p>View and analyze your recent activities, task completions, and system usage statistics.</p>
+                    <ul>
+                        <li>Task completion trends</li>
+                        <li>User activity logs</li>
+                        <li>Performance metrics</li>
+                        <li>System health reports</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <h3>Data Export</h3>
+                    <p>Export your reports in various formats for analysis and sharing.</p>
+                    <button class="btn btn-primary" style="margin-right: 10px;">Export as PDF</button>
+                    <button class="btn btn-secondary" style="margin-right: 10px;">Export as CSV</button>
+                    <button class="btn btn-info">Export as Excel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

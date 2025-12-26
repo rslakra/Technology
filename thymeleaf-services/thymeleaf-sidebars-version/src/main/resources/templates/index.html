@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thymeleaf Sidebar - Version Selector</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <div class="version-container">
+        <h1>Thymeleaf Sidebar</h1>
+        <p class="subtitle">Select a version to continue</p>
+        <div class="version-list">
+            <a th:each="version : ${versions}" th:href="@{'/' + ${version}}" class="version-link"
+                th:text="${version.toUpperCase()}">
+                V0
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

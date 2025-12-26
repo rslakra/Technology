@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    /* ===== Colors ===== */
+    --body-color: #FFFFFF;
+    --sidebar-color: #2e8fff;
+    --primary-color: #0d61b4;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDDDDD;
+    --text-color: #707070;
+    --font-size: 16px;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+    background: #eee;
+}
+
+.intro {
+    background: #fff;
+    padding: 60px 0px;
+    color: #333;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.intro h1 {
+    font-size: 18pt;
+    padding-bottom: 15px;
+
+}
+
+.intro p {
+    font-size: 14px;
+}
+
+.action {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+}
+
+a.btn {
+    text-decoration: none;
+    color: #666;
+    border: 2px solid #666;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+a.btn:hover {
+    background: #666;
+    color: #fff;
+    transition: .3s;
+    -webkit-transition: .3s;
+}
+
+.btn:before {
+    font-family: FontAwesome;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.github:before {
+    content: "\f09b"
+}
+
+.down:before {
+    content: "\f019"
+}
+
+.back:before {
+    content: "\f112"
+}
+
+.contributor {
+    background: #fff;
+    padding: 12px;
+    font-size: 12pt;
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+
+}
+
+.contributor span:before {
+    font-family: FontAwesome;
+    color: #e41b17;
+    content: "\f004";
+
+
+}
+
+.contributor a {
+    color: #333;
+    text-decoration: none;
+}
+
+.contributor a:hover {
+    color: #1DBF73;
+}
+
+.contributor a:hover:after {
+    font-family: FontAwesome;
+    content: "\f08e";
+    font-size: 9pt;
+    position: absolute;
+    margin: 3px;
+}
+
+main {
+    background: #fff;
+    padding: 20px;
+
+}
+
+article li {
+    color: #444;
+    font-size: 15px;
+    margin-left: 33px;
+    line-height: 1.5;
+    padding: 5px;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article p {
+    padding: 14px;
+    color: #333;
+}
+
+article p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+@media only screen and (min-width: 720px) {
+    main {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 24px;
+    }
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+    cursor: pointer;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+    font-family: FontAwesome;
+    font-size: 18pt;
+    position: relative;
+    float: right;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+    content: "\f204";
+    transition: .6s;
+}
+
+.to-active:after {
+    content: "\f205";
+    color: #008080;
+    transition: .6s;
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+    margin: 10px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+    box-sizing: border-box;
+}
+
+/* Syntax Highlighter*/
+
+pre.pretty-print {
+    padding: 15px !important;
+    margin: 10px;
+    border: 0 !important;
+    background: #f2f2f2;
+    overflow: auto;
+}
+
+.source {
+    white-space: pre;
+    overflow: auto;
+    max-height: 400px;
+}
+
+code {
+    border: 1px solid #ddd;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+/* Custom styles for forms and tables */
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search i {
+    position: absolute;
+    left: 10px;
+    color: #666;
+}
+
+.search input {
+    padding-left: 35px;
+}
+
+.icon-dark {
+    color: #333;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.icon-dark:hover {
+    color: #0d61b4;
+    text-decoration: none;
+}
+
+.table-responsive-xl {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.item {
+    background: #fff;
+    border: 1px solid #E0F2F1;
+    margin-bottom: 30px;
+    padding: 24px;
+    font-size: 16px;
+    line-height: 22px;
+    border-radius: 5px;
+}
+
+.item h3 {
+    margin-bottom: 15px;
+    color: #0d61b4;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #E0F2F1;
+    border-radius: 5px;
+}
+
+.list-group-item {
+    border: 1px solid #E0F2F1;
+}
+
+.list-group-item.active {
+    background-color: #0d61b4;
+    border-color: #0d61b4;
+}
+
+/* Profile image sizing */
+.ui-w-80 {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #E0F2F1;
+    display: block;
+}
+
+.profile-photo-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.profile-photo-container {
+    flex-shrink: 0;
+}
+
+.profile-photo-actions {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-photo-actions .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-photo-actions .text-muted {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.card-body.media img {
+    max-width: 120px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- top_navbar -->
+        <div class="top_navbar">
+            <div th:replace="~{${version} + '/fragments/hamburger' :: hamburger}">Hamburger</div>
+            <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Navbar Menu</div>
+        </div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <header class="intro">
+                    <h1>Welcome to Dashboard!</h1>
+                    <p>Overview of your application status and key metrics.</p>
+                    <p>Monitor performance, track development progress, and manage your resources.</p>
+                    <div class="action">
+                        <a href="https://www.rslakra.com/" title="Back to download and tutorial page"
+                            class="btn back">Back to Learning</a>
+                        <a href="https://github.com/rslakra" title="View on GitHub" class="btn github">View on
+                            GitHub</a>
+                    </div>
+                </header>
+
+                <div class="item">
+                    <h2>Quick Overview</h2>
+                    <p>Get a comprehensive view of your application's health, performance metrics, and recent
+                        activities.</p>
+                    <p>Access key information at a glance and navigate to detailed sections for in-depth analysis.</p>
+                </div>
+
+                <div class="item">
+                    <h2>Key Metrics</h2>
+                    <p>Monitor system performance, track development progress, and view important statistics.</p>
+                    <p>Stay informed about application status, resource utilization, and operational efficiency.</p>
+                </div>
+
+                <div class="item">
+                    <h2>Quick Actions</h2>
+                    <p>Access frequently used features: Tasks, Todos, Tutorials, Reports, Admin, and Settings.</p>
+                    <p>Navigate quickly to different sections of the application.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

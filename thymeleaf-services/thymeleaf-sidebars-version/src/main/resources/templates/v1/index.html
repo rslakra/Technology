@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <header class="box-block">
+        <h1>Welcome to Thymeleaf Sidebars Version 1!</h1>
+        <p>This is the v1 implementation of the Thymeleaf Sidebar application.</p>
+        <p>It features a modern sidebar design with smooth transitions and responsive layout.</p>
+        <div class="action">
+            <a href="https://www.rslakra.com/" title="Back to download and tutorial page" class="btn back">Back to
+                Learning</a>
+            <a href="https://github.com/rslakra" title="View on GitHub" class="btn github">View on
+                GitHub</a>
+        </div>
+    </header>
+
+    <div class="item">
+        <h2>Quick Overview</h2>
+        <p>Get a comprehensive view of your application's health, performance metrics, and recent
+            activities.</p>
+        <p>Access key information at a glance and navigate to detailed sections for in-depth analysis.</p>
+    </div>
+
+    <div class="item">
+        <h2>Key Metrics</h2>
+        <p>Monitor system performance, track development progress, and view important statistics.</p>
+        <p>Stay informed about application status, resource utilization, and operational efficiency.</p>
+    </div>
+
+    <div class="item">
+        <h2>Quick Actions</h2>
+        <p>Access frequently used features: Performance monitoring, Development tools, Reports, and
+            Settings.</p>
+        <p>Navigate quickly to admin functions, user management, and configuration options.</p>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <h2 class="text-center mb-4">Performance Dashboard</h2>
+
+    <div class="item">
+        <h3>Performance Metrics</h3>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-tachometer-alt text-primary"></i> Response
+                            Time</h5>
+                        <h3 class="text-primary">120ms</h3>
+                        <p class="text-muted small mb-0">Average</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-server text-info"></i> CPU Usage</h5>
+                        <h3 class="text-info">45%</h3>
+                        <p class="text-muted small mb-0">Current</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-memory text-success"></i> Memory</h5>
+                        <h3 class="text-success">62%</h3>
+                        <p class="text-muted small mb-0">Used</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-network-wired text-warning"></i> Throughput
+                        </h5>
+                        <h3 class="text-warning">1.2K</h3>
+                        <p class="text-muted small mb-0">req/sec</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h3>Performance Analysis</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-chart-line"></i> Application Performance
+                        </h4>
+                        <p class="card-text">Monitor and analyze system performance metrics, response times,
+                            and resource utilization. Track application performance, database query
+                            performance, and server resource usage.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-chart-area"></i> Performance Trends</h4>
+                        <p class="card-text">View real-time performance data, historical trends, and
+                            performance reports. Identify bottlenecks and optimize system performance based
+                            on metrics and analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- Header with top navbar and breadcrumb -->
+        <div th:replace="~{${version} + '/fragments/header' :: header}">Header</div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <!-- Page-specific content will be inserted here -->
+                <div th:insert="~{::content}">
+                    <!-- Content from individual pages -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

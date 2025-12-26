@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- top_navbar -->
+        <div class="top_navbar">
+            <div th:replace="~{${version} + '/fragments/hamburger' :: hamburger}">Hamburger</div>
+            <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Navbar Menu</div>
+        </div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <header class="intro">
+                    <p>
+                        Welcome to the Spring MVC Thymeleaf Application!
+                    </p>
+                    <p>
+                        Get started quickly by signing up.
+                    </p>
+                    <p>
+                        This tutorial uses the Thymeleaf integration with the Spring Framework.
+                    </p>
+                    <div class="action">
+                        <a href="https://www.rslakra.com/" title="Back to download and tutorial page"
+                            class="btn back">Back to Learning</a>
+                        <a href="https://github.com/rslakra" title="View on GitHub" class="btn github">View on
+                            GitHub</a>
+                    </div>
+                </header>
+                <!-- contents -->
+                <div th:replace="~{${version} + '/fragments/contents' :: contents}">contents</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

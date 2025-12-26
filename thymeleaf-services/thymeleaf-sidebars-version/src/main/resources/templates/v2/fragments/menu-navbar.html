@@ -1,0 +1,33 @@
+<!-- menu-navbar -->
+<div class="menu" th:fragment="menu-navbar">
+    <div class="logo">
+        Lakra Inc
+        <!--        <a th:href="@{/}">-->
+        <!--            <span class="icon">-->
+        <!--                <i class="fas fa-brands fa-html5"></i>-->
+        <!--            </span>-->
+        <!--            <span class="title">Lakra Inc</span>-->
+        <!--        </a>-->
+    </div>
+    <div class="right_menu">
+        <ul>
+            <li>
+                <i class="fas fa-user" style="cursor: pointer;"></i>
+                <div class="profile-dropdown">
+                    <div class="dropdown-item">
+                        <a th:href="@{'/' + ${version} + '/settings#account-general'}"
+                            style="color: #004D40; text-decoration: none; display: block;">Profile</a>
+                    </div>
+                    <div class="dropdown-item">
+                        <a th:href="@{'/' + ${version} + '/settings#account-change-password'}"
+                            style="color: #004D40; text-decoration: none; display: block;">Change Password</a>
+                    </div>
+                    <div class="dropdown-item">
+                        <a th:href="@{'/' + ${version}}"
+                            style="color: #004D40; text-decoration: none; display: block;">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<!-- sidebar -->
+<div class="sidebar" th:fragment="sidebar"> <!-- start:sidebar -->
+    <div class="sidebar-inner"> <!-- start:sidebar-inner -->
+        <!-- profile -->
+        <div th:replace="~{${version} + '/fragments/profile' :: profile}">Top Navbar Menu</div>
+
+        <!-- sidebar-navigation -->
+        <ul>
+            <li>
+                <!-- <a href="#" class="active"> -->
+                <a th:href="@{/}">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/dashboard'}">
+                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/tasks'}">
+                    <span class="icon"><i class="fas fa-tasks"></i></span>
+                    <span class="title">Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/tutorials'}">
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="title">Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/reports'}">
+                    <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                    <span class="title">Reports</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Settings and Version Section -->
+        <div class="sidebar-footer">
+            <!-- Horizontal line -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Footer Menu -->
+            <ul class="sidebar-footer-menu">
+                <!-- Admin Menu Item -->
+                <li>
+                    <a th:href="@{'/' + ${version} + '/admin'}">
+                        <span class="icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="title">Admin</span>
+                    </a>
+                </li>
+
+                <!-- Settings Menu Item -->
+                <li>
+                    <a th:href="@{'/' + ${version} + '/settings'}">
+                        <span class="icon"><i class="fas fa-cog"></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Version -->
+            <div class="sidebar-version">
+                <span th:text="${appVersion != null ? appVersion : 'v0.0.1'}">v0.0.1</span>
+            </div>
+        </div>
+    </div>
+</div>

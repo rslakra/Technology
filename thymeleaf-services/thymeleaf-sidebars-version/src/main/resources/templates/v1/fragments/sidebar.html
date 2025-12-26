@@ -1,0 +1,73 @@
+<!-- sidebar -->
+<div class="sidebar" th:fragment="sidebar">
+    <!-- profile -->
+    <div class="profile">
+        <img th:src="@{'/' + ${version} + '/images/profile.jpg'}" alt="profile_picture" />
+        <h3>Rohtash Lakra</h3>
+        <p>Architect</p>
+    </div>
+
+    <!-- nav-items -->
+    <ul>
+        <li>
+            <a th:href="@{/}" class="active">
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="item">Home</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/dashboard'}">
+                <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                <span class="item">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/tasks'}">
+                <span class="icon"><i class="fas fa-tasks"></i></span>
+                <span class="item">Tasks</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/todos'}">
+                <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                <span class="item">Todos</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/tutorials'}">
+                <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                <span class="item">Tutorials</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/performance'}">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="item">Performance</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/development'}">
+                <span class="icon"><i class="fas fa-laptop-code"></i></span>
+                <span class="item">Development</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/reports'}">
+                <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                <span class="item">Reports</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/admin'}">
+                <span class="icon"><i class="fas fa-user-shield"></i></span>
+                <span class="item">Admin</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{'/' + ${version} + '/settings'}">
+                <span class="icon"><i class="fas fa-cog"></i></span>
+                <span class="item">Settings</span>
+            </a>
+        </li>
+    </ul>
+</div>

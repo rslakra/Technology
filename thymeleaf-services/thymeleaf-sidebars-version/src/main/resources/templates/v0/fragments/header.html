@@ -1,0 +1,10 @@
+<!-- header -->
+<header th:fragment="header">
+    <!-- top_navbar -->
+    <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Top Navbar</div>
+
+    <!-- Breadcrumb Navigation Bar -->
+    <div class="breadcrumb-bar">
+        <div th:replace="~{${version} + '/fragments/breadcrumb' :: breadcrumb}">Breadcrumb</div>
+    </div>
+</header>

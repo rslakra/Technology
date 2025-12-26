@@ -1,0 +1,58 @@
+<!-- sidebar -->
+<div class="sidebar" th:fragment="sidebar">
+    <div class="sidebar__inner">
+        <!-- profile -->
+        <div th:replace="~{${version} + '/fragments/profile' :: profile}">Profile</div>
+        <!-- sidebar-navigation -->
+        <ul>
+            <li>
+                <a th:href="@{/}">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/dashboard'}">
+                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/tasks'}">
+                    <span class="icon"><i class="fas fa-tasks"></i></span>
+                    <span class="title">Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/todos'}">
+                    <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                    <span class="title">Todo</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/tutorials'}">
+                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                    <span class="title">Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/reports'}">
+                    <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                    <span class="title">Reports</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/admin'}">
+                    <span class="icon"><i class="fas fa-user-shield"></i></span>
+                    <span class="title">Admin</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{'/' + ${version} + '/settings'}">
+                    <span class="icon"><i class="fas fa-cog"></i></span>
+                    <span class="title">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

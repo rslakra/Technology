@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{${version} + '/fragments/head' :: head}">Head</div>
+
+<body>
+    <div class="wrapper">
+        <!-- top_navbar -->
+        <div class="top_navbar">
+            <div th:replace="~{${version} + '/fragments/hamburger' :: hamburger}">Hamburger</div>
+            <div th:replace="~{${version} + '/fragments/menu-navbar' :: menu-navbar}">Top Navbar</div>
+        </div>
+
+        <!-- main_container -->
+        <div class="main_container">
+            <!-- sidebar -->
+            <div th:replace="~{${version} + '/fragments/sidebar' :: sidebar}">Sidebar</div>
+            <!-- container -->
+            <div class="container">
+                <h2 class="text-center">Admin Dashboard</h2>
+
+                <div class="item">
+                    <h3>System Overview</h3>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-md-6">
+                            <div style="background: #f0f0f0; padding: 20px; border-radius: 5px;">
+                                <h4>System Status</h4>
+                                <p><strong>Status:</strong> <span style="color: #28a745;">Operational</span></p>
+                                <p><strong>Uptime:</strong> 99.9%</p>
+                                <p><strong>Last Updated:</strong> <span
+                                        th:text="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd HH:mm:ss')}">2025-01-01
+                                        12:00:00</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="background: #f0f0f0; padding: 20px; border-radius: 5px;">
+                                <h4>User Management</h4>
+                                <p><strong>Total Users:</strong> <span
+                                        th:text="${totalUsers != null ? totalUsers : '0'}">0</span></p>
+                                <p><strong>Active Users:</strong> <span
+                                        th:text="${activeUsers != null ? activeUsers : '0'}">0</span></p>
+                                <p><strong>Admin Users:</strong> <span
+                                        th:text="${adminUsers != null ? adminUsers : '0'}">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h3>Quick Actions</h3>
+                    <div style="margin-top: 15px;">
+                        <button class="btn btn-primary" style="margin-right: 10px; margin-bottom: 10px;">Manage
+                            Users</button>
+                        <button class="btn btn-secondary" style="margin-right: 10px; margin-bottom: 10px;">System
+                            Settings</button>
+                        <button class="btn btn-info" style="margin-right: 10px; margin-bottom: 10px;">View Logs</button>
+                        <button class="btn btn-warning" style="margin-right: 10px; margin-bottom: 10px;">Backup
+                            Data</button>
+                        <button class="btn btn-danger" style="margin-bottom: 10px;">Security Audit</button>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h3>Administrative Functions</h3>
+                    <ul>
+                        <li><strong>User Management:</strong> Create, edit, and manage user accounts and permissions
+                        </li>
+                        <li><strong>System Configuration:</strong> Configure application settings and preferences</li>
+                        <li><strong>Security:</strong> Monitor security events and manage access controls</li>
+                        <li><strong>Data Management:</strong> Backup, restore, and maintain system data</li>
+                        <li><strong>Monitoring:</strong> View system logs, performance metrics, and error reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div th:replace="~{${version} + '/fragments/footer' :: footer}">footer</div>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{${version} + '/layouts/layout' :: layout}">
+<div th:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0"><i class="fas fa-book"></i> Tutorials</h2>
+        <button class="btn btn-primary" id="btnAddTutorial">
+            <i class="fas fa-plus"></i> Add New Tutorial
+        </button>
+    </div>
+
+    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show message" role="alert">
+        <i class="fas fa-check-circle"></i> [[${message}]]
+        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form th:action="@{'/' + ${version} + '/tutorials'}">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="search">
+                            <i class="fa fa-search"></i>
+                            <input id="keyword" type="search" name="keyword" th:value="${keyword}" required
+                                class="form-control" placeholder="Search tutorials by keyword...">
+                            <button type="submit" class="btn btn-secondary">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button type="button" class="btn btn-outline-secondary" id="btnClear">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${tutorials.size() > 0}">
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" style="width: 80px;">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col" style="width: 120px;">Level</th>
+                                <th scope="col" style="width: 120px;" class="text-center">Status</th>
+                                <th scope="col" style="width: 120px;" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tutorial : ${tutorials}">
+                                <th scope="row">[[${tutorial.id}]]</th>
+                                <td><strong>[[${tutorial.title}]]</strong></td>
+                                <td>[[${tutorial.description}]]</td>
+                                <td>
+                                    <span class="badge badge-info">[[${tutorial.level}]]</span>
+                                </td>
+                                <td class="text-center">
+                                    <a th:if="${tutorial.published == true}" class="btn btn-sm btn-success"
+                                        th:href="@{'/' + ${version} + '/tutorials/' + ${tutorial.id} + '/published/false'}"
+                                        title="Unpublish Tutorial">
+                                        <i class="fas fa-check"></i> Published
+                                    </a>
+                                    <a th:if="${tutorial.published == false}" class="btn btn-sm btn-outline-secondary"
+                                        th:href="@{'/' + ${version} + '/tutorials/' + ${tutorial.id} + '/published/true'}"
+                                        title="Publish Tutorial">
+                                        <i class="far fa-square"></i> Draft
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <a th:href="@{'/' + ${version} + '/tutorials/' + ${tutorial.id}}"
+                                        title="Edit Tutorial" class="btn btn-sm btn-outline-primary mr-1">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a th:href="@{'/' + ${version} + '/tutorials/delete/' + ${tutorial.id}}"
+                                        th:tutorialTitle="${tutorial.title}" title="Delete Tutorial"
+                                        class="btn btn-sm btn-outline-danger btn-delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" th:unless="${tutorials.size() > 0}">
+        <div class="card-body text-center py-5">
+            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+            <p class="text-muted mb-0">No tutorials found! Click "Add New Tutorial" to create one.</p>
+        </div>
+    </div>
+
+    <div class="modal fade text-center" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <span id="confirmText"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-delete").on("click", function (e) {
+                e.preventDefault();
+                link = $(this);
+
+                tutorialTitle = link.attr("tutorialTitle");
+                $("#yesBtn").attr("href", link.attr("href"));
+                $("#confirmText").html("Do you want to delete the Tutorial \<strong\>" + tutorialTitle + "\<\/strong\>?");
+                $("#confirmModal").modal();
+            });
+
+            $("#btnClear").on("click", function (e) {
+                e.preventDefault();
+                $("#keyword").val("");
+                window.location = "[[@{'/' + ${version} + '/tutorials'}]]";
+            });
+
+            $("#btnAddTutorial").on("click", function (e) {
+                e.preventDefault();
+                window.location = "[[@{'/' + ${version} + '/tutorials/add'}]]";
+            });
+        });
+    </script>
+</div>
+
+</html>
