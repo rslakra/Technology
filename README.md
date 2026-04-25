@@ -37,6 +37,15 @@ The ```Technology``` repository contains all the Technology python projects.
 
 - [MVN Repository](https://mvnrepository.com)
 
+- [Online Store Schema](https://erd.dbdesigner.net/designer/schema/169624-online-store)
+- [Hotel Management Schema](https://app.dbdesigner.net/designer/schema/55051)
+- [Schema.org Vehicle](https://schema.org/Vehicle)
+
+
+- [One-to-One Relationship in JPA](https://www.baeldung.com/jpa-one-to-one)
+- [hypersistence-utils](https://github.com/vladmihalcea/hypersistence-utils)
+
+
 
 # Author
 
