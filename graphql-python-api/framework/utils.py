@@ -6,6 +6,7 @@ import os
 import re
 import sys
 import traceback
+import urllib.request
 import uuid
 
 from framework.enums import BaseEnum
@@ -63,3 +64,15 @@ class Utils(BaseEnum):
     def exists(path) -> bool:
         """Returns true if the path exists otherwise false."""
         return os.path.exists(path)
+
+    @staticmethod
+    def measure_ttfb(url: str) -> float:
+        """Approximate time-to-first-byte in milliseconds (stdlib HTTP GET)."""
+        watcher = StopWatch()
+        watcher.start()
+        try:
+            with urllib.request.urlopen(url, timeout=30) as resp:
+                resp.read(1)
+        finally:
+            watcher.stop()
+        return (watcher.duration or 0.0) * 1000
