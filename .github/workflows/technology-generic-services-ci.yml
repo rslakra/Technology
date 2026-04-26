@@ -1,0 +1,78 @@
+name: Technology - Generic Services CI
+
+env:
+  JAVA_VERSION: "21"
+  DISTRIBUTION: "temurin"
+
+on:
+  push:
+    paths:
+      - "account-service/**"
+      - "alert-service/**"
+      - "distributed-store/**"
+      - "docker-service/**"
+      - "employee-service/**"
+      - "image-service/**"
+      - "liquibase-service/**"
+      - ".github/workflows/technology-core-services-ci.yml"
+  pull_request:
+    paths:
+      - "account-service/**"
+      - "alert-service/**"
+      - "distributed-store/**"
+      - "docker-service/**"
+      - "employee-service/**"
+      - "image-service/**"
+      - "liquibase-service/**"
+      - ".github/workflows/technology-core-services-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-test-maven:
+    name: ${{ matrix.module }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - account-service
+          - alert-service
+          - distributed-store
+          - docker-service
+          - employee-service
+          - liquibase-service
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+          cache-dependency-path: ${{ matrix.module }}/pom.xml
+
+      - name: Build and run unit tests
+        working-directory: ${{ matrix.module }}
+        run: mvn -B -ntp test
+
+  build-and-test-image-service:
+    name: image-service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
+
+      - name: Build and run unit tests
+        working-directory: image-service
+        run: |
+          chmod +x gradlew
+          ./gradlew test

@@ -1,0 +1,50 @@
+name: Technology - ThymeleafServices CI
+
+env:
+  JAVA_VERSION: "21"
+  DISTRIBUTION: "temurin"
+
+on:
+  push:
+    paths:
+      - "thymeleaf-services/**"
+      - ".github/workflows/technology-thymeleaf-services-ci.yml"
+  pull_request:
+    paths:
+      - "thymeleaf-services/**"
+      - ".github/workflows/technology-thymeleaf-services-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.module }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - thymeleaf-services/thymeleaf-fragments
+          - thymeleaf-services/thymeleaf-jetty
+          - thymeleaf-services/thymeleaf-layout
+          - thymeleaf-services/thymeleaf-layouts
+          - thymeleaf-services/thymeleaf-sidebar
+          - thymeleaf-services/thymeleaf-sidebars
+          - thymeleaf-services/thymeleaf-sidebars-version
+          - thymeleaf-services/thymeleaf-templates
+          - thymeleaf-services/thymeleaf-tomcat
+          - thymeleaf-services/thymeleaf-undertow
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+          cache-dependency-path: ${{ matrix.module }}/pom.xml
+
+      - name: Build and run unit tests
+        working-directory: ${{ matrix.module }}
+        run: mvn -B -ntp test

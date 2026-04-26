@@ -1,0 +1,46 @@
+name: Technology - RateLimiters CI
+
+env:
+  JAVA_VERSION: "21"
+  DISTRIBUTION: "temurin"
+
+on:
+  push:
+    paths:
+      - "rate-limiters/**"
+      - ".github/workflows/technology-rate-limiters-ci.yml"
+  pull_request:
+    paths:
+      - "rate-limiters/**"
+      - ".github/workflows/technology-rate-limiters-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.module }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - rate-limiters/distributed-rate-limiter
+          - rate-limiters/fixed-window-counter-ratelimiter
+          - rate-limiters/leaky-bucket-ratelimiter
+          - rate-limiters/sliding-window-counter-ratelimiter
+          - rate-limiters/sliding-window-log-ratelimiter
+          - rate-limiters/token-bucket-ratelimiter
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+          cache-dependency-path: ${{ matrix.module }}/pom.xml
+
+      - name: Build and run unit tests
+        working-directory: ${{ matrix.module }}
+        run: mvn -B -ntp test
