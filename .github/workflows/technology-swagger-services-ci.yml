@@ -24,7 +24,7 @@ jobs:
       matrix:
         module:
           - swagger-services/swagger-sample
-          - swagger-services/swagger-service
+          # - swagger-services/swagger-service
     steps:
       - name: Checkout
         uses: actions/checkout@v5

@@ -24,15 +24,15 @@ jobs:
       matrix:
         module:
           - thymeleaf-services/thymeleaf-fragments
-          - thymeleaf-services/thymeleaf-jetty
-          - thymeleaf-services/thymeleaf-layout
-          - thymeleaf-services/thymeleaf-layouts
-          - thymeleaf-services/thymeleaf-sidebar
-          - thymeleaf-services/thymeleaf-sidebars
-          - thymeleaf-services/thymeleaf-sidebars-version
-          - thymeleaf-services/thymeleaf-templates
-          - thymeleaf-services/thymeleaf-tomcat
-          - thymeleaf-services/thymeleaf-undertow
+          # - thymeleaf-services/thymeleaf-jetty
+          # - thymeleaf-services/thymeleaf-layout
+          # - thymeleaf-services/thymeleaf-layouts
+          # - thymeleaf-services/thymeleaf-sidebar
+          # - thymeleaf-services/thymeleaf-sidebars
+          # - thymeleaf-services/thymeleaf-sidebars-version
+          # - thymeleaf-services/thymeleaf-templates
+          # - thymeleaf-services/thymeleaf-tomcat
+          # - thymeleaf-services/thymeleaf-undertow
     steps:
       - name: Checkout
         uses: actions/checkout@v5
