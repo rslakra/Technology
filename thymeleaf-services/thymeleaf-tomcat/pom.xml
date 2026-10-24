@@ -137,7 +137,7 @@
         <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
-            <version>3.3.5</version>
+            <version>3.4.13</version>
         </dependency>
 
         <dependency>
