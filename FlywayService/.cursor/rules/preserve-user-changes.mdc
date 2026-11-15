@@ -1,0 +1,27 @@
+---
+description: Preserve user edits, renames, and layout choices; adapt tooling to match
+alwaysApply: true
+---
+
+# Preserve user changes
+
+The user owns the project layout and naming. **Keep whatever they change.**
+
+## Do
+
+- Read the **current** tree, imports, and config before editing (do not assume an older layout).
+- When the user renames or moves folders/files, update references (Makefile, imports, Docker, README) to match **their** structure.
+- Treat the repository root as the Python app root (`iws/`, `webapp/`, `flyway/`, `infra/`, etc.) unless they rename again.
+
+## Do not
+
+- Revert renames (e.g. `api` → `iws`, `db/migration` → `flyway`, `scripts/` → `infra/scripts/`).
+- Recreate deleted paths or “restore” a previous folder structure the user replaced.
+- Overwrite user wording, env values, or descriptions they edited without being asked.
+- Run broad refactors that undo their organization when fixing a narrow issue.
+
+## When fixing something
+
+1. Inspect what exists now.
+2. Make the smallest change that works with **their** layout.
+3. If their change and tooling conflict, fix tooling—not their structure—unless they ask otherwise.

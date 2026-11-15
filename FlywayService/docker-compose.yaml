@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: accounts-postgres
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      POSTGRES_DB: ${DATABASE_NAME:-accounts}
+    ports:
+      - "${DATABASE_PORT:-5444}:5432"
+    volumes:
+      - ${POSTGRES_DATA_DIR}:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-postgres} -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  flyway:
+    image: flyway/flyway:10-alpine
+    container_name: accounts-flyway
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./flyway:/flyway/sql
+      - ./flyway.conf:/flyway/conf/flyway.conf
+    environment:
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/${DATABASE_NAME}
+      FLYWAY_USER: ${DATABASE_USER:-postgres}
+      FLYWAY_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      FLYWAY_LOCATIONS: filesystem:/flyway/sql
+    command: migrate

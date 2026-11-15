@@ -1,0 +1,16 @@
+{
+  "name": "Accounts Service",
+  "build": {
+    "dockerfile": "devcontainer.Dockerfile",
+    "context": "../.."
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-python.python",
+    "charliermarsh.ruff"
+  ],
+  "forwardPorts": [8016, 5444],
+  "postCreateCommand": "make install"
+}
